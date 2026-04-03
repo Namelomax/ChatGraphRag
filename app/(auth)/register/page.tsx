@@ -11,7 +11,7 @@ import { type RegisterActionState, register } from "../actions";
 
 export default function Page() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [isSuccessful, setIsSuccessful] = useState(false);
 
   const [state, formAction] = useActionState<RegisterActionState, FormData>(
@@ -41,7 +41,7 @@ export default function Page() {
   }, [state.status]);
 
   const handleSubmit = (formData: FormData) => {
-    setEmail(formData.get("email") as string);
+    setUsername(formData.get("username") as string);
     formAction(formData);
   };
 
@@ -49,7 +49,7 @@ export default function Page() {
     <>
       <h1 className="text-2xl font-semibold tracking-tight">Create account</h1>
       <p className="text-sm text-muted-foreground">Get started for free</p>
-      <AuthForm action={handleSubmit} defaultEmail={email}>
+      <AuthForm action={handleSubmit} defaultUsername={username}>
         <SubmitButton isSuccessful={isSuccessful}>Sign up</SubmitButton>
         <p className="text-center text-[13px] text-muted-foreground">
           {"Have an account? "}

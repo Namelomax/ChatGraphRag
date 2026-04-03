@@ -27,6 +27,21 @@ export function DataStreamHandler() {
         mutate(unstable_serialize(getChatHistoryPaginationKey));
         continue;
       }
+
+      // Handle data-finish LAST to ensure status is set to idle after all stream parts
+      if (delta.type === "data-finish") {
+        setArtifact((draftArtifact) => {
+          if (!draftArtifact) {
+            return { ...initialArtifactData, status: "idle" };
+          }
+          return {
+            ...draftArtifact,
+            status: "idle",
+          };
+        });
+        continue;
+      }
+
       const artifactDefinition = artifactDefinitions.find(
         (currentArtifactDefinition) =>
           currentArtifactDefinition.kind === artifact.kind
@@ -72,12 +87,6 @@ export function DataStreamHandler() {
               ...draftArtifact,
               content: "",
               status: "streaming",
-            };
-
-          case "data-finish":
-            return {
-              ...draftArtifact,
-              status: "idle",
             };
 
           default:

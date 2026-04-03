@@ -229,7 +229,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                 return (
                   <div className="flex flex-col gap-4">
                     {groupedChats.today.length > 0 && (
-                      <div>
+                      <div key="today">
                         <div className="px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-sidebar-foreground/70">
                           Today
                         </div>
@@ -249,7 +249,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                     )}
 
                     {groupedChats.yesterday.length > 0 && (
-                      <div>
+                      <div key="yesterday">
                         <div className="px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-sidebar-foreground/70">
                           Yesterday
                         </div>
@@ -269,7 +269,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                     )}
 
                     {groupedChats.lastWeek.length > 0 && (
-                      <div>
+                      <div key="lastWeek">
                         <div className="px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-sidebar-foreground/70">
                           Last 7 days
                         </div>
@@ -289,7 +289,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                     )}
 
                     {groupedChats.lastMonth.length > 0 && (
-                      <div>
+                      <div key="lastMonth">
                         <div className="px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-sidebar-foreground/70">
                           Last 30 days
                         </div>
@@ -309,7 +309,7 @@ export function SidebarHistory({ user }: { user: User | undefined }) {
                     )}
 
                     {groupedChats.older.length > 0 && (
-                      <div>
+                      <div key="older">
                         <div className="px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-sidebar-foreground/70">
                           Older
                         </div>

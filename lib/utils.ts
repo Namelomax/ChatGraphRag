@@ -47,10 +47,9 @@ export async function fetchWithErrorHandlers(
 }
 
 export function generateUUID(): string {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
-    const r = (Math.random() * 16) | 0;
-    const v = c === 'x' ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
+  // Generate 32-char hex ID (no dashes) for SurrealDB compatibility
+  return 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'.replace(/[x]/g, () => {
+    return ((Math.random() * 16) | 0).toString(16);
   });
 }
 

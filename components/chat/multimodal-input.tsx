@@ -52,8 +52,10 @@ import {
   PromptInputTools,
 } from "../ai-elements/prompt-input";
 import { Button } from "../ui/button";
+import { Spinner } from "../ui/spinner";
 import { PaperclipIcon, StopIcon } from "./icons";
 import { PreviewAttachment } from "./preview-attachment";
+import { RagDocumentsSelector } from "./rag-documents-selector";
 import {
   type SlashCommand,
   SlashCommandMenu,
@@ -259,6 +261,7 @@ function PureMultimodalInput({
   const uploadFile = useCallback(async (file: File) => {
     const formData = new FormData();
     formData.append("file", file);
+    formData.append("chatId", chatId);
 
     try {
       const response = await fetch(
@@ -271,11 +274,11 @@ function PureMultimodalInput({
 
       if (response.ok) {
         const data = await response.json();
-        const { url, pathname, contentType } = data;
+        const { url, pathname, contentType, name } = data;
 
         return {
           url,
-          name: pathname,
+          name: name ?? pathname,
           contentType,
         };
       }
@@ -284,7 +287,7 @@ function PureMultimodalInput({
     } catch (_error) {
       toast.error("Failed to upload file, please try again!");
     }
-  }, []);
+  }, [chatId]);
 
   const handleFileChange = useCallback(
     async (event: ChangeEvent<HTMLInputElement>) => {
@@ -441,35 +444,45 @@ function PureMultimodalInput({
       >
         {(attachments.length > 0 || uploadQueue.length > 0) && (
           <div
-            className="flex w-full self-start flex-row gap-2 overflow-x-auto px-3 pt-3 no-scrollbar"
+            className="flex w-full self-start flex-col gap-2 px-3 pt-3"
             data-testid="attachments-preview"
           >
-            {attachments.map((attachment) => (
-              <PreviewAttachment
-                attachment={attachment}
-                key={attachment.url}
-                onRemove={() => {
-                  setAttachments((currentAttachments) =>
-                    currentAttachments.filter((a) => a.url !== attachment.url)
-                  );
-                  if (fileInputRef.current) {
-                    fileInputRef.current.value = "";
-                  }
-                }}
-              />
-            ))}
+            {uploadQueue.length > 0 && (
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Spinner className="size-3" />
+                <span>
+                  Обработка файлов... Пожалуйста, подождите.
+                </span>
+              </div>
+            )}
+            <div className="flex w-full flex-row gap-2 overflow-x-auto no-scrollbar">
+              {attachments.map((attachment) => (
+                <PreviewAttachment
+                  attachment={attachment}
+                  key={attachment.url}
+                  onRemove={() => {
+                    setAttachments((currentAttachments) =>
+                      currentAttachments.filter((a) => a.url !== attachment.url)
+                    );
+                    if (fileInputRef.current) {
+                      fileInputRef.current.value = "";
+                    }
+                  }}
+                />
+              ))}
 
-            {uploadQueue.map((filename) => (
-              <PreviewAttachment
-                attachment={{
-                  url: "",
-                  name: filename,
-                  contentType: "",
-                }}
-                isUploading={true}
-                key={filename}
-              />
-            ))}
+              {uploadQueue.map((filename) => (
+                <PreviewAttachment
+                  attachment={{
+                    url: "",
+                    name: filename,
+                    contentType: "",
+                  }}
+                  isUploading={true}
+                  key={filename}
+                />
+              ))}
+            </div>
           </div>
         )}
         <PromptInputTextarea
@@ -519,13 +532,13 @@ function PureMultimodalInput({
           <PromptInputTools>
             <AttachmentsButton
               fileInputRef={fileInputRef}
-              selectedModelId={selectedModelId}
               status={status}
             />
             <ModelSelectorCompact
               onModelChange={onModelChange}
               selectedModelId={selectedModelId}
             />
+            <RagDocumentsSelector chatId={chatId} />
           </PromptInputTools>
 
           {status === "submitted" ? (
@@ -587,32 +600,17 @@ export const MultimodalInput = memo(
 function PureAttachmentsButton({
   fileInputRef,
   status,
-  selectedModelId,
 }: {
   fileInputRef: React.MutableRefObject<HTMLInputElement | null>;
   status: UseChatHelpers<ChatMessage>["status"];
-  selectedModelId: string;
 }) {
-  const { data: modelsResponse } = useSWR(
-    `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/models`,
-    (url: string) => fetch(url).then((r) => r.json()),
-    { revalidateOnFocus: false, dedupingInterval: 3_600_000 }
-  );
-
-  const caps: Record<string, ModelCapabilities> | undefined =
-    modelsResponse?.capabilities ?? modelsResponse;
-  const hasVision = caps?.[selectedModelId]?.vision ?? false;
-
   return (
     <Button
       className={cn(
         "h-7 w-7 rounded-lg border border-border/40 p-1 transition-colors",
-        hasVision
-          ? "text-foreground hover:border-border hover:text-foreground"
-          : "text-muted-foreground/30 cursor-not-allowed"
+        "text-foreground hover:border-border hover:text-foreground"
       )}
       data-testid="attachments-button"
-      disabled={status !== "ready" || !hasVision}
       onClick={(event) => {
         event.preventDefault();
         fileInputRef.current?.click();

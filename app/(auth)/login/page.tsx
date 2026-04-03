@@ -12,7 +12,7 @@ import { type LoginActionState, login } from "../actions";
 
 export default function Page() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [isSuccessful, setIsSuccessful] = useState(false);
 
   const [state, formAction] = useActionState<LoginActionState, FormData>(
@@ -39,7 +39,7 @@ export default function Page() {
   }, [state.status]);
 
   const handleSubmit = (formData: FormData) => {
-    setEmail(formData.get("email") as string);
+    setUsername(formData.get("username") as string);
     formAction(formData);
   };
 
@@ -49,7 +49,7 @@ export default function Page() {
       <p className="text-sm text-muted-foreground">
         Sign in to your account to continue
       </p>
-      <AuthForm action={handleSubmit} defaultEmail={email}>
+      <AuthForm action={handleSubmit} defaultUsername={username}>
         <SubmitButton isSuccessful={isSuccessful}>Sign in</SubmitButton>
         <p className="text-center text-[13px] text-muted-foreground">
           {"No account? "}

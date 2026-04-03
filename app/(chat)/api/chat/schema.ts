@@ -7,15 +7,15 @@ const textPartSchema = z.object({
 
 const filePartSchema = z.object({
   type: z.enum(["file"]),
-  mediaType: z.enum(["image/jpeg", "image/png"]),
-  name: z.string().min(1).max(100),
-  url: z.string().url(),
+  mediaType: z.string(),
+  name: z.string().min(1).max(200),
+  url: z.string(),
 });
 
 const partSchema = z.union([textPartSchema, filePartSchema]);
 
 const userMessageSchema = z.object({
-  id: z.string().uuid(),
+  id: z.string().min(1).max(50),
   role: z.enum(["user"]),
   parts: z.array(partSchema),
 });
@@ -27,7 +27,7 @@ const toolApprovalMessageSchema = z.object({
 });
 
 export const postRequestBodySchema = z.object({
-  id: z.string().uuid(),
+  id: z.string().min(1).max(50),
   message: userMessageSchema.optional(),
   messages: z.array(toolApprovalMessageSchema).optional(),
   selectedChatModel: z.string(),

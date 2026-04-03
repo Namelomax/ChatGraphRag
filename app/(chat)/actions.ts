@@ -47,7 +47,8 @@ export async function deleteTrailingMessages({ id }: { id: string }) {
 
   const [message] = await getMessageById({ id });
   if (!message) {
-    throw new Error("Message not found");
+    // Message might not be saved yet - skip deletion
+    return;
   }
 
   const chat = await getChatById({ id: message.chatId });

@@ -11,4 +11,20 @@ export const authConfig = {
   },
   providers: [],
   callbacks: {},
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  cookies: {
+    sessionToken: {
+      name: `authjs.session-token`,
+      options: {
+        httpOnly: true,
+        sameSite: "lax",
+        path: "/",
+        secure: process.env.NODE_ENV === "production",
+        domain: undefined,
+      },
+    },
+  },
 } satisfies NextAuthConfig;

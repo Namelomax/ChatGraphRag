@@ -1,57 +1,117 @@
 import "server-only";
-
-import {
-  and,
-  asc,
-  count,
-  desc,
-  eq,
-  gt,
-  gte,
-  inArray,
-  lt,
-  type SQL,
-} from "drizzle-orm";
-import { drizzle } from "drizzle-orm/postgres-js";
-import postgres from "postgres";
 import type { ArtifactKind } from "@/components/chat/artifact";
 import type { VisibilityType } from "@/components/chat/visibility-selector";
 import { ChatbotError } from "../errors";
 import { generateUUID } from "../utils";
-import {
-  type Chat,
-  chat,
-  type DBMessage,
-  document,
-  message,
-  type Suggestion,
-  stream,
-  suggestion,
-  type User,
-  user,
-  vote,
-} from "./schema";
 import { generateHashedPassword } from "./utils";
 
-const client = postgres(process.env.POSTGRES_URL ?? "");
-const db = drizzle(client);
+export type User = {
+  id: string;
+  email: string; // used as username internally
+  password?: string | null;
+  createdAt?: string;
+};
 
-export async function getUser(email: string): Promise<User[]> {
+type Chat = {
+  id: string;
+  createdAt: string;
+  title: string;
+  userId: string;
+  visibility: "public" | "private";
+};
+
+export type DBMessage = {
+  id: string;
+  chatId: string;
+  role: string;
+  parts: unknown;
+  attachments: unknown;
+  createdAt: Date;
+  userId?: string;
+};
+
+export type Suggestion = {
+  id: string;
+  documentId: string;
+  documentCreatedAt: Date;
+  originalText: string;
+  suggestedText: string;
+  description: string | null;
+  isResolved: boolean;
+  userId: string;
+  createdAt: Date;
+};
+
+type DocumentRecord = {
+  id: string;
+  title: string;
+  kind: ArtifactKind;
+  content: string | null;
+  userId: string;
+  createdAt: Date;
+};
+
+const surrealUrl = process.env.SURREAL_HTTP_URL ?? "http://127.0.0.1:8000/sql";
+const surrealUser = process.env.SURREAL_USER ?? "root";
+const surrealPass = process.env.SURREAL_PASS ?? "secret";
+const surrealNamespace = process.env.SURREAL_NS ?? "forus";
+const surrealDatabase = process.env.SURREAL_DB ?? "protocoler";
+
+async function surrealQuery<T>(query: string, vars: Record<string, unknown>) {
+  const interpolated = query.replace(/\$([a-zA-Z_]\w*)/g, (_, key) =>
+    JSON.stringify(vars[key])
+  );
+  // Prepend USE statement to guarantee namespace/database context in SurrealDB 3.x
+  const body = `USE NS ${surrealNamespace}; USE DB ${surrealDatabase}; ${interpolated}`;
+  const response = await fetch(surrealUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain",
+      Accept: "application/json",
+      Authorization: `Basic ${Buffer.from(`${surrealUser}:${surrealPass}`).toString("base64")}`,
+    },
+    body,
+    cache: "no-store",
+  });
+  if (!response.ok) {
+    throw new ChatbotError("bad_request:database", "SurrealDB query failed");
+  }
+  const json = (await response.json()) as Array<{ status?: string; result?: unknown; detail?: string }>;
+  // SurrealDB returns one entry per statement; skip the USE NS / USE DB entries (index 0 and 1)
+  // and check the rest for errors
+  for (let i = 2; i < json.length; i++) {
+    const entry = json[i];
+    if (entry.status && entry.status !== "OK") {
+      throw new ChatbotError("bad_request:database", entry.detail ?? "SurrealDB query error");
+    }
+  }
+  // Return only the actual query results (skip USE NS / USE DB results)
+  return json.slice(2) as T;
+}
+
+export async function getUser(username: string): Promise<User[]> {
   try {
-    return await db.select().from(user).where(eq(user.email, email));
+    const result = await surrealQuery<Array<{ result?: User[] }>>(
+      "SELECT * FROM user WHERE email = $username LIMIT 1;",
+      { username }
+    );
+    return result[0]?.result ?? [];
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
-      "Failed to get user by email"
+      "Failed to get user by username"
     );
   }
 }
 
-export async function createUser(email: string, password: string) {
+export async function createUser(username: string, password: string) {
   const hashedPassword = generateHashedPassword(password);
 
   try {
-    return await db.insert(user).values({ email, password: hashedPassword });
+    return await surrealQuery(
+      "CREATE user CONTENT { email: $username, password: $password, createdAt: time::now() };",
+      { username, password: hashedPassword }
+    );
   } catch (_error) {
     throw new ChatbotError("bad_request:database", "Failed to create user");
   }
@@ -62,10 +122,15 @@ export async function createGuestUser() {
   const password = generateHashedPassword(generateUUID());
 
   try {
-    return await db.insert(user).values({ email, password }).returning({
-      id: user.id,
-      email: user.email,
-    });
+    const result = await surrealQuery<Array<{ result?: Array<{ id: string; email: string }> }>>(
+      "CREATE user CONTENT { email: $email, password: $password, createdAt: time::now() };",
+      { email, password }
+    );
+    const created = result[0]?.result?.[0];
+    if (!created) {
+      throw new Error("No user created");
+    }
+    return [{ id: created.id, email: created.email }];
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -86,29 +151,29 @@ export async function saveChat({
   visibility: VisibilityType;
 }) {
   try {
-    return await db.insert(chat).values({
-      id,
-      createdAt: new Date(),
-      userId,
-      title,
-      visibility,
-    });
-  } catch (_error) {
+    console.log("saveChat called with:", { id, userId, title, visibility });
+    const result = await surrealQuery(
+      "CREATE chat CONTENT { id: $id, createdAt: time::now(), userId: $userId, title: $title, visibility: $visibility };",
+      { id, userId, title, visibility }
+    );
+    console.log("saveChat result:", JSON.stringify(result));
+    return result;
+  } catch (error) {
+    console.error("saveChat error:", error);
     throw new ChatbotError("bad_request:database", "Failed to save chat");
   }
 }
 
 export async function deleteChatById({ id }: { id: string }) {
   try {
-    await db.delete(vote).where(eq(vote.chatId, id));
-    await db.delete(message).where(eq(message.chatId, id));
-    await db.delete(stream).where(eq(stream.chatId, id));
-
-    const [chatsDeleted] = await db
-      .delete(chat)
-      .where(eq(chat.id, id))
-      .returning();
-    return chatsDeleted;
+    await surrealQuery("DELETE vote WHERE chatId = $id;", { id });
+    await surrealQuery("DELETE message WHERE chatId = $id;", { id });
+    await surrealQuery("DELETE stream WHERE chatId = $id;", { id });
+    const deleted = await surrealQuery<Array<{ result?: Chat[] }>>(
+      "DELETE chat WHERE id = $id RETURN BEFORE;",
+      { id }
+    );
+    return deleted[0]?.result?.[0] ?? null;
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -119,27 +184,15 @@ export async function deleteChatById({ id }: { id: string }) {
 
 export async function deleteAllChatsByUserId({ userId }: { userId: string }) {
   try {
-    const userChats = await db
-      .select({ id: chat.id })
-      .from(chat)
-      .where(eq(chat.userId, userId));
-
-    if (userChats.length === 0) {
-      return { deletedCount: 0 };
+    const chats = await surrealQuery<Array<{ result?: Array<{ id: string }> }>>(
+      "SELECT id FROM chat WHERE userId = $userId;",
+      { userId }
+    );
+    const ids = chats[0]?.result?.map((c) => c.id) ?? [];
+    for (const id of ids) {
+      await deleteChatById({ id });
     }
-
-    const chatIds = userChats.map((c) => c.id);
-
-    await db.delete(vote).where(inArray(vote.chatId, chatIds));
-    await db.delete(message).where(inArray(message.chatId, chatIds));
-    await db.delete(stream).where(inArray(stream.chatId, chatIds));
-
-    const deletedChats = await db
-      .delete(chat)
-      .where(eq(chat.userId, userId))
-      .returning();
-
-    return { deletedCount: deletedChats.length };
+    return { deletedCount: ids.length };
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -160,56 +213,11 @@ export async function getChatsByUserId({
   endingBefore: string | null;
 }) {
   try {
-    const extendedLimit = limit + 1;
-
-    const query = (whereCondition?: SQL<unknown>) =>
-      db
-        .select()
-        .from(chat)
-        .where(
-          whereCondition
-            ? and(whereCondition, eq(chat.userId, id))
-            : eq(chat.userId, id)
-        )
-        .orderBy(desc(chat.createdAt))
-        .limit(extendedLimit);
-
-    let filteredChats: Chat[] = [];
-
-    if (startingAfter) {
-      const [selectedChat] = await db
-        .select()
-        .from(chat)
-        .where(eq(chat.id, startingAfter))
-        .limit(1);
-
-      if (!selectedChat) {
-        throw new ChatbotError(
-          "not_found:database",
-          `Chat with id ${startingAfter} not found`
-        );
-      }
-
-      filteredChats = await query(gt(chat.createdAt, selectedChat.createdAt));
-    } else if (endingBefore) {
-      const [selectedChat] = await db
-        .select()
-        .from(chat)
-        .where(eq(chat.id, endingBefore))
-        .limit(1);
-
-      if (!selectedChat) {
-        throw new ChatbotError(
-          "not_found:database",
-          `Chat with id ${endingBefore} not found`
-        );
-      }
-
-      filteredChats = await query(lt(chat.createdAt, selectedChat.createdAt));
-    } else {
-      filteredChats = await query();
-    }
-
+    const data = await surrealQuery<Array<{ result?: Chat[] }>>(
+      "SELECT * FROM chat WHERE userId = $id ORDER BY createdAt DESC;",
+      { id }
+    );
+    const filteredChats = data[0]?.result ?? [];
     const hasMore = filteredChats.length > limit;
 
     return {
@@ -226,7 +234,11 @@ export async function getChatsByUserId({
 
 export async function getChatById({ id }: { id: string }) {
   try {
-    const [selectedChat] = await db.select().from(chat).where(eq(chat.id, id));
+    const result = await surrealQuery<Array<{ result?: Chat[] }>>(
+      "SELECT * FROM chat WHERE id = $id LIMIT 1;",
+      { id }
+    );
+    const selectedChat = result[0]?.result?.[0];
     if (!selectedChat) {
       return null;
     }
@@ -239,7 +251,17 @@ export async function getChatById({ id }: { id: string }) {
 
 export async function saveMessages({ messages }: { messages: DBMessage[] }) {
   try {
-    return await db.insert(message).values(messages);
+    for (const item of messages) {
+      await surrealQuery(
+        "CREATE message CONTENT { id: $id, chatId: $chatId, userId: $userId, role: $role, parts: $parts, attachments: $attachments, createdAt: $createdAt };",
+        {
+          ...item,
+          userId: item.userId ?? "",
+          createdAt: item.createdAt.toISOString(),
+        }
+      );
+    }
+    return true;
   } catch (_error) {
     throw new ChatbotError("bad_request:database", "Failed to save messages");
   }
@@ -253,7 +275,10 @@ export async function updateMessage({
   parts: DBMessage["parts"];
 }) {
   try {
-    return await db.update(message).set({ parts }).where(eq(message.id, id));
+    return await surrealQuery("UPDATE message SET parts = $parts WHERE id = $id;", {
+      id,
+      parts,
+    });
   } catch (_error) {
     throw new ChatbotError("bad_request:database", "Failed to update message");
   }
@@ -261,11 +286,14 @@ export async function updateMessage({
 
 export async function getMessagesByChatId({ id }: { id: string }) {
   try {
-    return await db
-      .select()
-      .from(message)
-      .where(eq(message.chatId, id))
-      .orderBy(asc(message.createdAt));
+    const result = await surrealQuery<Array<{ result?: DBMessage[] }>>(
+      "SELECT * FROM message WHERE chatId = $id ORDER BY createdAt ASC;",
+      { id }
+    );
+    return (result[0]?.result ?? []).map((message) => ({
+      ...message,
+      createdAt: new Date(message.createdAt),
+    }));
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -284,22 +312,10 @@ export async function voteMessage({
   type: "up" | "down";
 }) {
   try {
-    const [existingVote] = await db
-      .select()
-      .from(vote)
-      .where(and(eq(vote.messageId, messageId)));
-
-    if (existingVote) {
-      return await db
-        .update(vote)
-        .set({ isUpvoted: type === "up" })
-        .where(and(eq(vote.messageId, messageId), eq(vote.chatId, chatId)));
-    }
-    return await db.insert(vote).values({
-      chatId,
-      messageId,
-      isUpvoted: type === "up",
-    });
+    return await surrealQuery(
+      "UPSERT vote:$id CONTENT { chatId: $chatId, messageId: $messageId, isUpvoted: $isUpvoted };",
+      { id: `${chatId}-${messageId}`, chatId, messageId, isUpvoted: type === "up" }
+    );
   } catch (_error) {
     throw new ChatbotError("bad_request:database", "Failed to vote message");
   }
@@ -307,7 +323,11 @@ export async function voteMessage({
 
 export async function getVotesByChatId({ id }: { id: string }) {
   try {
-    return await db.select().from(vote).where(eq(vote.chatId, id));
+    const result = await surrealQuery<Array<{ result?: unknown[] }>>(
+      "SELECT * FROM vote WHERE chatId = $id;",
+      { id }
+    );
+    return result[0]?.result ?? [];
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -330,17 +350,10 @@ export async function saveDocument({
   userId: string;
 }) {
   try {
-    return await db
-      .insert(document)
-      .values({
-        id,
-        title,
-        kind,
-        content,
-        userId,
-        createdAt: new Date(),
-      })
-      .returning();
+    return await surrealQuery(
+      "CREATE document CONTENT { id: $id, title: $title, kind: $kind, content: $content, userId: $userId, createdAt: time::now() };",
+      { id, title, kind, content, userId }
+    );
   } catch (_error) {
     throw new ChatbotError("bad_request:database", "Failed to save document");
   }
@@ -354,23 +367,16 @@ export async function updateDocumentContent({
   content: string;
 }) {
   try {
-    const docs = await db
-      .select()
-      .from(document)
-      .where(eq(document.id, id))
-      .orderBy(desc(document.createdAt))
-      .limit(1);
-
-    const latest = docs[0];
+    const docs = await getDocumentsById({ id });
+    const latest = docs.at(-1);
     if (!latest) {
       throw new ChatbotError("not_found:database", "Document not found");
     }
 
-    return await db
-      .update(document)
-      .set({ content })
-      .where(and(eq(document.id, id), eq(document.createdAt, latest.createdAt)))
-      .returning();
+    return await surrealQuery(
+      "UPDATE document SET content = $content WHERE id = $id;",
+      { id, content }
+    );
   } catch (_error) {
     if (_error instanceof ChatbotError) {
       throw _error;
@@ -384,13 +390,14 @@ export async function updateDocumentContent({
 
 export async function getDocumentsById({ id }: { id: string }) {
   try {
-    const documents = await db
-      .select()
-      .from(document)
-      .where(eq(document.id, id))
-      .orderBy(asc(document.createdAt));
-
-    return documents;
+    const result = await surrealQuery<Array<{ result?: DocumentRecord[] }>>(
+      "SELECT * FROM document WHERE id = $id ORDER BY createdAt ASC;",
+      { id }
+    );
+    return (result[0]?.result ?? []).map((doc) => ({
+      ...doc,
+      createdAt: new Date(doc.createdAt),
+    }));
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -401,13 +408,8 @@ export async function getDocumentsById({ id }: { id: string }) {
 
 export async function getDocumentById({ id }: { id: string }) {
   try {
-    const [selectedDocument] = await db
-      .select()
-      .from(document)
-      .where(eq(document.id, id))
-      .orderBy(desc(document.createdAt));
-
-    return selectedDocument;
+    const docs = await getDocumentsById({ id });
+    return docs.at(-1);
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -424,19 +426,14 @@ export async function deleteDocumentsByIdAfterTimestamp({
   timestamp: Date;
 }) {
   try {
-    await db
-      .delete(suggestion)
-      .where(
-        and(
-          eq(suggestion.documentId, id),
-          gt(suggestion.documentCreatedAt, timestamp)
-        )
-      );
-
-    return await db
-      .delete(document)
-      .where(and(eq(document.id, id), gt(document.createdAt, timestamp)))
-      .returning();
+    await surrealQuery(
+      "DELETE suggestion WHERE documentId = $id AND documentCreatedAt > $timestamp;",
+      { id, timestamp: timestamp.toISOString() }
+    );
+    return await surrealQuery(
+      "DELETE document WHERE id = $id AND createdAt > $timestamp RETURN BEFORE;",
+      { id, timestamp: timestamp.toISOString() }
+    );
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -451,7 +448,17 @@ export async function saveSuggestions({
   suggestions: Suggestion[];
 }) {
   try {
-    return await db.insert(suggestion).values(suggestions);
+    for (const item of suggestions) {
+      await surrealQuery(
+        "CREATE suggestion CONTENT { id: $id, documentId: $documentId, documentCreatedAt: $documentCreatedAt, originalText: $originalText, suggestedText: $suggestedText, description: $description, isResolved: $isResolved, userId: $userId, createdAt: $createdAt };",
+        {
+          ...item,
+          documentCreatedAt: item.documentCreatedAt.toISOString(),
+          createdAt: item.createdAt.toISOString(),
+        }
+      );
+    }
+    return true;
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -466,10 +473,11 @@ export async function getSuggestionsByDocumentId({
   documentId: string;
 }) {
   try {
-    return await db
-      .select()
-      .from(suggestion)
-      .where(eq(suggestion.documentId, documentId));
+    const result = await surrealQuery<Array<{ result?: Suggestion[] }>>(
+      "SELECT * FROM suggestion WHERE documentId = $documentId;",
+      { documentId }
+    );
+    return result[0]?.result ?? [];
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -480,7 +488,14 @@ export async function getSuggestionsByDocumentId({
 
 export async function getMessageById({ id }: { id: string }) {
   try {
-    return await db.select().from(message).where(eq(message.id, id));
+    const result = await surrealQuery<Array<{ result?: DBMessage[] }>>(
+      "SELECT * FROM message WHERE id = $id LIMIT 1;",
+      { id }
+    );
+    return (result[0]?.result ?? []).map((message) => ({
+      ...message,
+      createdAt: new Date(message.createdAt),
+    }));
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -497,30 +512,14 @@ export async function deleteMessagesByChatIdAfterTimestamp({
   timestamp: Date;
 }) {
   try {
-    const messagesToDelete = await db
-      .select({ id: message.id })
-      .from(message)
-      .where(
-        and(eq(message.chatId, chatId), gte(message.createdAt, timestamp))
-      );
-
-    const messageIds = messagesToDelete.map(
-      (currentMessage) => currentMessage.id
+    await surrealQuery(
+      "DELETE vote WHERE chatId = $chatId;",
+      { chatId }
     );
-
-    if (messageIds.length > 0) {
-      await db
-        .delete(vote)
-        .where(
-          and(eq(vote.chatId, chatId), inArray(vote.messageId, messageIds))
-        );
-
-      return await db
-        .delete(message)
-        .where(
-          and(eq(message.chatId, chatId), inArray(message.id, messageIds))
-        );
-    }
+    return await surrealQuery(
+      "DELETE message WHERE chatId = $chatId AND createdAt >= $timestamp;",
+      { chatId, timestamp: timestamp.toISOString() }
+    );
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -537,7 +536,10 @@ export async function updateChatVisibilityById({
   visibility: "private" | "public";
 }) {
   try {
-    return await db.update(chat).set({ visibility }).where(eq(chat.id, chatId));
+    return await surrealQuery(
+      "UPDATE chat SET visibility = $visibility WHERE id = $chatId;",
+      { chatId, visibility }
+    );
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -554,7 +556,10 @@ export async function updateChatTitleById({
   title: string;
 }) {
   try {
-    return await db.update(chat).set({ title }).where(eq(chat.id, chatId));
+    return await surrealQuery(
+      "UPDATE chat SET title = $title WHERE id = $chatId;",
+      { chatId, title }
+    );
   } catch (_error) {
     return;
   }
@@ -568,24 +573,12 @@ export async function getMessageCountByUserId({
   differenceInHours: number;
 }) {
   try {
-    const cutoffTime = new Date(
-      Date.now() - differenceInHours * 60 * 60 * 1000
+    const cutoffTime = new Date(Date.now() - differenceInHours * 60 * 60 * 1000);
+    const result = await surrealQuery<Array<{ result?: Array<{ count: number }> }>>(
+      "SELECT count() AS count FROM message WHERE userId = $id AND role = 'user' AND createdAt >= $cutoff;",
+      { id, cutoff: cutoffTime.toISOString() }
     );
-
-    const [stats] = await db
-      .select({ count: count(message.id) })
-      .from(message)
-      .innerJoin(chat, eq(message.chatId, chat.id))
-      .where(
-        and(
-          eq(chat.userId, id),
-          gte(message.createdAt, cutoffTime),
-          eq(message.role, "user")
-        )
-      )
-      .execute();
-
-    return stats?.count ?? 0;
+    return result[0]?.result?.[0]?.count ?? 0;
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -602,9 +595,10 @@ export async function createStreamId({
   chatId: string;
 }) {
   try {
-    await db
-      .insert(stream)
-      .values({ id: streamId, chatId, createdAt: new Date() });
+    await surrealQuery(
+      "CREATE stream CONTENT { id: $streamId, chatId: $chatId, createdAt: time::now() };",
+      { streamId, chatId }
+    );
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
@@ -615,18 +609,29 @@ export async function createStreamId({
 
 export async function getStreamIdsByChatId({ chatId }: { chatId: string }) {
   try {
-    const streamIds = await db
-      .select({ id: stream.id })
-      .from(stream)
-      .where(eq(stream.chatId, chatId))
-      .orderBy(asc(stream.createdAt))
-      .execute();
-
-    return streamIds.map(({ id }) => id);
+    const result = await surrealQuery<Array<{ result?: Array<{ id: string }> }>>(
+      "SELECT id FROM stream WHERE chatId = $chatId ORDER BY createdAt ASC;",
+      { chatId }
+    );
+    return (result[0]?.result ?? []).map(({ id }) => id);
   } catch (_error) {
     throw new ChatbotError(
       "bad_request:database",
       "Failed to get stream ids by chat id"
     );
+  }
+}
+
+export async function ensureSchema() {
+  try {
+    await surrealQuery("DEFINE TABLE user SCHEMALESS;", {});
+    await surrealQuery("DEFINE TABLE chat SCHEMALESS;", {});
+    await surrealQuery("DEFINE TABLE message SCHEMALESS;", {});
+    await surrealQuery("DEFINE TABLE vote SCHEMALESS;", {});
+    await surrealQuery("DEFINE TABLE document SCHEMALESS;", {});
+    await surrealQuery("DEFINE TABLE suggestion SCHEMALESS;", {});
+    await surrealQuery("DEFINE TABLE stream SCHEMALESS;", {});
+  } catch (_error) {
+    // Tables may already exist; ignore errors
   }
 }

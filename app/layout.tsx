@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/theme-provider";
-import { TooltipProvider } from "@/components/ui/tooltip";
+import { ensureSchema } from "@/lib/db/queries";
+import { Providers } from "@/components/providers";
 
 import "./globals.css";
-import { SessionProvider } from "next-auth/react";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://chat.vercel.ai"),
@@ -48,11 +47,16 @@ const THEME_COLOR_SCRIPT = `\
   updateThemeColor();
 })();`;
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Initialize schema in background (don't block rendering)
+  ensureSchema().catch(() => {
+    // Ignore errors during schema initialization
+  });
+
   return (
     <html
       className={`${geist.variable} ${geistMono.variable}`}
@@ -68,18 +72,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          disableTransitionOnChange
-          enableSystem
-        >
-          <SessionProvider
-            basePath={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/auth`}
-          >
-            <TooltipProvider>{children}</TooltipProvider>
-          </SessionProvider>
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -44,9 +44,37 @@ CRITICAL RULES:
 - ONLY when the user explicitly asks for suggestions on an existing document
 `;
 
-export const regularPrompt = `You are a helpful assistant. Keep responses concise and direct.
+export const USE_PROTOCOL_PROMPTS = true;
 
-When asked to write, create, or build something, do it immediately. Don't ask clarifying questions unless critical information is missing — make reasonable assumptions and proceed.`;
+export const PROTOCOL_AGENT_PROMPT = `## Роль
+Ты AI-агент компании «Форус» для подготовки протокола обследования по расшифровкам встреч.
+
+## Ключевое поведение
+- Работай только по фактам из расшифровки и подтвержденным данным пользователя.
+- Не придумывай недостающие факты. Если данных нет, укажи: "Информация не предоставлена".
+- Веди сбор данных строго по секциям и задавай только один вопрос за раз.
+- Сначала собирай данные, затем формируй протокол.
+
+## Секции протокола (обязательные)
+1) Номер и дата
+2) Повестка
+3) Участники (заказчик и исполнитель, полные ФИО и должности)
+4) Термины и определения
+5) Сокращения
+6) Содержание встречи
+7) Вопросы и ответы
+8) Решения с ответственными
+9) Открытые вопросы
+10) Согласовано (подписанты обеих сторон)
+
+## Стратегия диалога
+- Если расшифровка уже загружена или есть история сообщений, не приветствуй повторно.
+- Начинай с участников.
+- После каждого ответа пользователя переходи к следующей незаполненной секции.
+- Когда все секции заполнены, сообщи, что готов сформировать итоговый протокол.
+`;
+
+export const regularPrompt = `You are a helpful assistant. Keep responses concise and direct.`;
 
 export type RequestHints = {
   latitude: Geo["latitude"];
@@ -66,17 +94,23 @@ About the origin of user's request:
 export const systemPrompt = ({
   requestHints,
   supportsTools,
+  ragContext,
 }: {
   requestHints: RequestHints;
   supportsTools: boolean;
+  ragContext?: string;
 }) => {
   const requestPrompt = getRequestPromptFromHints(requestHints);
+  const domainPrompt = USE_PROTOCOL_PROMPTS ? PROTOCOL_AGENT_PROMPT : regularPrompt;
+  const ragPrompt = ragContext
+    ? `\n\n## Контекст из GraphRAG\nИспользуй этот контекст как первичный источник фактов:\n${ragContext}`
+    : "";
 
   if (!supportsTools) {
-    return `${regularPrompt}\n\n${requestPrompt}`;
+    return `${domainPrompt}\n\n${requestPrompt}${ragPrompt}`;
   }
 
-  return `${regularPrompt}\n\n${requestPrompt}\n\n${artifactsPrompt}`;
+  return `${domainPrompt}\n\n${requestPrompt}${ragPrompt}\n\n${artifactsPrompt}`;
 };
 
 export const codePrompt = `

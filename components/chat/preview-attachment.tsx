@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FileSpreadsheetIcon, FileTextIcon, FileTypeIcon } from "lucide-react";
 import type { Attachment } from "@/lib/types";
 import { Spinner } from "../ui/spinner";
 import { CrossSmallIcon } from "./icons";
@@ -13,10 +14,16 @@ export const PreviewAttachment = ({
   onRemove?: () => void;
 }) => {
   const { name, url, contentType } = attachment;
+  const prettyName = name.split("/").at(-1) ?? name;
+  const isSpreadsheet =
+    contentType.includes("sheet") || /\.(xls|xlsx|csv)$/i.test(prettyName);
+  const isTextLike =
+    contentType.startsWith("text/") ||
+    /\.(txt|md|json|doc|docx|pdf)$/i.test(prettyName);
 
   return (
     <div
-      className="group relative h-24 w-24 shrink-0 overflow-hidden rounded-xl border border-border/40 bg-muted"
+      className="group relative h-24 w-32 shrink-0 overflow-hidden rounded-xl border border-border/40 bg-muted"
       data-testid="input-attachment-preview"
     >
       {contentType?.startsWith("image") ? (
@@ -28,8 +35,17 @@ export const PreviewAttachment = ({
           width={96}
         />
       ) : (
-        <div className="flex size-full items-center justify-center text-muted-foreground text-xs">
-          File
+        <div className="flex size-full flex-col items-center justify-center gap-1 px-2 text-muted-foreground">
+          {isSpreadsheet ? (
+            <FileSpreadsheetIcon className="size-5" />
+          ) : isTextLike ? (
+            <FileTextIcon className="size-5" />
+          ) : (
+            <FileTypeIcon className="size-5" />
+          )}
+          <span className="line-clamp-2 text-center text-[11px] leading-tight">
+            {prettyName}
+          </span>
         </div>
       )}
 

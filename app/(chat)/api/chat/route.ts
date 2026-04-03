@@ -1,4 +1,3 @@
-import { geolocation, ipAddress } from "@vercel/functions";
 import {
   convertToModelMessages,
   createUIMessageStream,
@@ -22,7 +21,6 @@ import { type RequestHints, systemPrompt } from "@/lib/ai/prompts";
 import { getLanguageModel } from "@/lib/ai/providers";
 import { createDocument } from "@/lib/ai/tools/create-document";
 import { editDocument } from "@/lib/ai/tools/edit-document";
-import { getWeather } from "@/lib/ai/tools/get-weather";
 import { requestSuggestions } from "@/lib/ai/tools/request-suggestions";
 import { updateDocument } from "@/lib/ai/tools/update-document";
 import { isProductionEnvironment } from "@/lib/constants";
@@ -37,15 +35,15 @@ import {
   updateChatTitleById,
   updateMessage,
 } from "@/lib/db/queries";
-import type { DBMessage } from "@/lib/db/schema";
+import type { DBMessage } from "@/lib/db/queries";
 import { ChatbotError } from "@/lib/errors";
-import { checkIpRateLimit } from "@/lib/ratelimit";
+import { retrieveRagContext } from "@/lib/rag/service";
 import type { ChatMessage } from "@/lib/types";
 import { convertToUIMessages, generateUUID } from "@/lib/utils";
 import { generateTitleFromUserMessage } from "../../actions";
 import { type PostRequestBody, postRequestBodySchema } from "./schema";
 
-export const maxDuration = 60;
+export const maxDuration = 90;
 
 function getStreamContext() {
   try {
@@ -62,8 +60,11 @@ export async function POST(request: Request) {
 
   try {
     const json = await request.json();
+    console.log("Request JSON:", json);
     requestBody = postRequestBodySchema.parse(json);
-  } catch (_) {
+    console.log("Parsed requestBody:", requestBody);
+  } catch (error) {
+    console.error("Failed to parse request body:", error);
     return new ChatbotError("bad_request:api").toResponse();
   }
 
@@ -77,14 +78,13 @@ export async function POST(request: Request) {
     ]);
 
     if (!session?.user) {
+      console.error("No session or user found:", session);
       return new ChatbotError("unauthorized:chat").toResponse();
     }
 
     const chatModel = allowedModelIds.has(selectedChatModel)
       ? selectedChatModel
       : DEFAULT_CHAT_MODEL;
-
-    await checkIpRateLimit(ipAddress(request));
 
     const userType: UserType = session.user.type;
 
@@ -156,13 +156,11 @@ export async function POST(request: Request) {
       ];
     }
 
-    const { longitude, latitude, city, country } = geolocation(request);
-
     const requestHints: RequestHints = {
-      longitude,
-      latitude,
-      city,
-      country,
+      longitude: undefined,
+      latitude: undefined,
+      city: undefined,
+      country: undefined,
     };
 
     if (message?.role === "user") {
@@ -174,6 +172,7 @@ export async function POST(request: Request) {
             role: "user",
             parts: message.parts,
             attachments: [],
+            userId: session.user.id,
             createdAt: new Date(),
           },
         ],
@@ -187,20 +186,31 @@ export async function POST(request: Request) {
     const supportsTools = capabilities?.tools === true;
 
     const modelMessages = await convertToModelMessages(uiMessages);
+    const latestUserText =
+      message?.parts
+        ?.filter((part) => part.type === "text")
+        .map((part) => ("text" in part ? part.text : ""))
+        .join("\n")
+        .trim() ?? "";
+    const ragContext =
+      latestUserText.length > 0
+        ? await retrieveRagContext({ chatId: id, query: latestUserText }).catch(
+            () => ""
+          )
+        : "";
 
     const stream = createUIMessageStream({
       originalMessages: isToolApprovalFlow ? uiMessages : undefined,
       execute: async ({ writer: dataStream }) => {
         const result = streamText({
           model: getLanguageModel(chatModel),
-          system: systemPrompt({ requestHints, supportsTools }),
+          system: systemPrompt({ requestHints, supportsTools, ragContext }),
           messages: modelMessages,
           stopWhen: stepCountIs(5),
           experimental_activeTools:
             isReasoningModel && !supportsTools
               ? []
               : [
-                  "getWeather",
                   "createDocument",
                   "editDocument",
                   "updateDocument",
@@ -215,7 +225,6 @@ export async function POST(request: Request) {
             }),
           },
           tools: {
-            getWeather,
             createDocument: createDocument({
               session,
               dataStream,
@@ -268,6 +277,7 @@ export async function POST(request: Request) {
                     parts: finishedMsg.parts,
                     createdAt: new Date(),
                     attachments: [],
+                    userId: session.user.id,
                     chatId: id,
                   },
                 ],
@@ -282,6 +292,7 @@ export async function POST(request: Request) {
               parts: currentMessage.parts,
               createdAt: new Date(),
               attachments: [],
+              userId: session.user.id,
               chatId: id,
             })),
           });
@@ -303,9 +314,6 @@ export async function POST(request: Request) {
     return createUIMessageStreamResponse({
       stream,
       async consumeSseStream({ stream: sseStream }) {
-        if (!process.env.REDIS_URL) {
-          return;
-        }
         try {
           const streamContext = getStreamContext();
           if (streamContext) {
