@@ -1,4 +1,4 @@
-import { tool, type UIMessageStreamWriter } from "ai";
+import { tool, type UIMessage, type UIMessageStreamWriter } from "ai";
 import type { Session } from "next-auth";
 import { z } from "zod";
 import {
@@ -12,16 +12,22 @@ type CreateDocumentProps = {
   session: Session;
   dataStream: UIMessageStreamWriter<ChatMessage>;
   modelId: string;
+  /** Полный RAG-контекст (расшифровка встречи) */
+  ragContext?: string;
+  /** История сообщений чата для контекста документа */
+  chatMessages?: UIMessage[];
 };
 
 export const createDocument = ({
   session,
   dataStream,
   modelId,
+  ragContext,
+  chatMessages,
 }: CreateDocumentProps) =>
   tool({
     description:
-      "Create an artifact. You MUST specify kind: use 'code' for any programming/algorithm request (creates a script), 'text' for essays/writing (creates a document), 'sheet' for spreadsheets/data.",
+      "Create an artifact. WARNING: ONLY call when user EXPLICITLY says 'создай документ', 'сформируй протокол', 'create the document', or 'generate the protocol'. NEVER call on 'давай начнем', 'начнем', 'давай', 'ок', 'верно' — these are NOT document creation commands. You MUST complete ALL 9 data collection steps through dialogue BEFORE calling this tool. Premature document creation is a critical error. Use kind: 'text' for essays/protocols, 'code' for scripts, 'sheet' for spreadsheets.",
     inputSchema: z.object({
       title: z.string().describe("The title of the artifact"),
       kind: z
@@ -72,7 +78,11 @@ export const createDocument = ({
         dataStream,
         session,
         modelId,
+        ragContext,
+        chatMessages,
       });
+
+      console.log(`[createDocument] Used model: ${modelId}`);
 
       dataStream.write({ type: "data-finish", data: null, transient: true });
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { FileTextIcon, TrashIcon, DatabaseIcon } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
+import { FileTextIcon, TrashIcon, DatabaseIcon, UploadIcon } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -23,6 +23,8 @@ export function RagDocumentsSelector({ chatId }: { chatId: string }) {
   const [documents, setDocuments] = useState<RagDocument[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [deletingFile, setDeletingFile] = useState<string | null>(null);
+  const [uploadingFile, setUploadingFile] = useState<string | null>(null);
+  const ragFileInputRef = useRef<HTMLInputElement>(null);
 
   const fetchDocuments = useCallback(async () => {
     if (!chatId) return;
@@ -51,6 +53,62 @@ export function RagDocumentsSelector({ chatId }: { chatId: string }) {
       fetchDocuments();
     }
   }, [open, fetchDocuments]);
+
+  const handleRagFileUpload = useCallback(async () => {
+    const input = ragFileInputRef.current;
+    if (!input?.files?.length) return;
+
+    const files = Array.from(input.files);
+    setUploadingFile(files[0].name);
+
+    try {
+      for (const file of files) {
+        // Step 1: Extract text
+        const uploadResponse = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/files/upload`,
+          {
+            method: "POST",
+            body: (() => {
+              const fd = new FormData();
+              fd.append("file", file);
+              return fd;
+            })(),
+          }
+        );
+
+        if (!uploadResponse.ok) {
+          throw new Error("Failed to process file");
+        }
+
+        const { text, name } = await uploadResponse.json();
+
+        // Step 2: Index in RAG
+        if (text) {
+          const ragResponse = await fetch(
+            `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/files/index-rag`,
+            {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ chatId, fileName: name, text }),
+            }
+          );
+
+          if (!ragResponse.ok) {
+            throw new Error("Failed to index in RAG");
+          }
+        }
+
+        toast.success(`"${name}" добавлен в RAG`);
+      }
+
+      fetchDocuments();
+    } catch (error) {
+      toast.error("Не удалось загрузить файл в RAG");
+    } finally {
+      setUploadingFile(null);
+      if (input) input.value = "";
+    }
+  }, [chatId, fetchDocuments]);
 
   const handleDelete = async (fileName: string) => {
     setDeletingFile(fileName);
@@ -88,32 +146,40 @@ export function RagDocumentsSelector({ chatId }: { chatId: string }) {
   };
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button
-          className={cn(
-            "h-7 w-7 rounded-lg border border-border/40 p-1 transition-colors",
-            "text-foreground hover:border-border hover:text-foreground"
-          )}
-          variant="ghost"
-          title="Документы в RAG"
+    <>
+      <input
+        type="file"
+        className="hidden"
+        ref={ragFileInputRef}
+        multiple
+        onChange={handleRagFileUpload}
+      />
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            className={cn(
+              "h-7 w-7 rounded-lg border border-border/40 p-1 transition-colors",
+              "text-foreground hover:border-border hover:text-foreground"
+            )}
+            variant="ghost"
+            title="Документы в RAG"
+          >
+            <DatabaseIcon size={14} />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent
+          className="w-80 p-0"
+          align="start"
+          side="top"
+          sideOffset={8}
         >
-          <DatabaseIcon size={14} />
-        </Button>
-      </PopoverTrigger>
-      <PopoverContent
-        className="w-80 p-0"
-        align="start"
-        side="top"
-        sideOffset={8}
-      >
-        <div className="flex items-center gap-2 border-b border-border/50 px-3 py-2">
-          <DatabaseIcon size={14} className="text-muted-foreground" />
-          <span className="text-sm font-medium">Документы в RAG</span>
-          {documents.length > 0 && (
-            <span className="ml-auto text-xs text-muted-foreground">
-              {documents.length}
-            </span>
+          <div className="flex items-center gap-2 border-b border-border/50 px-3 py-2">
+            <DatabaseIcon size={14} className="text-muted-foreground" />
+            <span className="text-sm font-medium">Документы в RAG</span>
+            {documents.length > 0 && (
+              <span className="ml-auto text-xs text-muted-foreground">
+                {documents.length}
+              </span>
           )}
         </div>
 
@@ -174,7 +240,30 @@ export function RagDocumentsSelector({ chatId }: { chatId: string }) {
             </div>
           )}
         </div>
+
+        <div className="border-t border-border/50 px-3 py-2">
+          <Button
+            className="w-full gap-2"
+            size="sm"
+            variant="outline"
+            onClick={() => ragFileInputRef.current?.click()}
+            disabled={!!uploadingFile}
+          >
+            {uploadingFile ? (
+              <>
+                <Spinner className="size-3" />
+                <span className="truncate">Обработка...</span>
+              </>
+            ) : (
+              <>
+                <UploadIcon className="size-3.5" />
+                <span>Добавить файл в RAG</span>
+              </>
+            )}
+          </Button>
+        </div>
       </PopoverContent>
     </Popover>
+    </>
   );
 }

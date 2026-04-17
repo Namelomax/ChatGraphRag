@@ -1,4 +1,4 @@
-import type { UIMessageStreamWriter } from "ai";
+import type { UIMessage, UIMessageStreamWriter } from "ai";
 import type { Session } from "next-auth";
 import { codeDocumentHandler } from "@/artifacts/code/server";
 import { sheetDocumentHandler } from "@/artifacts/sheet/server";
@@ -22,6 +22,10 @@ export type CreateDocumentCallbackProps = {
   dataStream: UIMessageStreamWriter<ChatMessage>;
   session: Session;
   modelId: string;
+  /** Полный RAG-контекст (расшифровка встречи) */
+  ragContext?: string;
+  /** История сообщений чата для контекста документа */
+  chatMessages?: UIMessage[];
 };
 
 export type UpdateDocumentCallbackProps = {
@@ -52,6 +56,8 @@ export function createDocumentHandler<T extends ArtifactKind>(config: {
         dataStream: args.dataStream,
         session: args.session,
         modelId: args.modelId,
+        ragContext: args.ragContext,
+        chatMessages: args.chatMessages,
       });
 
       if (args.session?.user?.id) {

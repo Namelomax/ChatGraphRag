@@ -46,6 +46,7 @@ export function ChatShell() {
     setCurrentModelId,
     showCreditCardAlert,
     setShowCreditCardAlert,
+    attachedFileTextsRef,
   } = useActiveChat();
 
   const [editingMessage, setEditingMessage] = useState<ChatMessage | null>(
@@ -66,8 +67,12 @@ export function ChatShell() {
       setArtifact(initialArtifactData);
       setEditingMessage(null);
       setAttachments([]);
+      // Clear attached file texts when switching chats
+      if (attachedFileTextsRef) {
+        attachedFileTextsRef.current = [];
+      }
     }
-  }, [chatId, setArtifact]);
+  }, [chatId, setArtifact, attachedFileTextsRef]);
 
   return (
     <>
@@ -143,6 +148,7 @@ export function ChatShell() {
                   setMessages={setMessages}
                   status={status}
                   stop={stop}
+                  attachedFileTextsRef={attachedFileTextsRef}
                 />
               )}
             </div>

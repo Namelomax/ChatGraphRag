@@ -5,7 +5,7 @@ import { createDocumentHandler } from "@/lib/artifacts/server";
 
 export const sheetDocumentHandler = createDocumentHandler<"sheet">({
   kind: "sheet",
-  onCreateDocument: async ({ title, dataStream, modelId }) => {
+  onCreateDocument: async ({ title, dataStream, modelId, ragContext: _, chatMessages: __ }) => {
     let draftContent = "";
 
     const { fullStream } = streamText({

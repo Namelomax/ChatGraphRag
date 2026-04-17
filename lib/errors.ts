@@ -23,7 +23,7 @@ export type ErrorCode = `${ErrorType}:${Surface}`;
 export type ErrorVisibility = "response" | "log" | "none";
 
 export const visibilityBySurface: Record<Surface, ErrorVisibility> = {
-  database: "response", // temporarily show database errors in browser
+  database: "log",
   chat: "response",
   auth: "response",
   stream: "response",

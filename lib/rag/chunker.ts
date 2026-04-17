@@ -23,8 +23,8 @@ export function chunkText(text: string, chunkSize: number, overlap: number) {
 }
 export function splitText(
   text: string,
-  chunkSize = 800,
-  overlap = 120
+  chunkSize = 500,
+  overlap = 80
 ): string[] {
   const cleaned = text.replace(/\r\n/g, "\n").trim();
   if (!cleaned) {

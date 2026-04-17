@@ -18,6 +18,7 @@ import { imageArtifact } from "@/artifacts/image/client";
 import { sheetArtifact } from "@/artifacts/sheet/client";
 import { textArtifact } from "@/artifacts/text/client";
 import { useArtifact } from "@/hooks/use-artifact";
+import { initialArtifactData } from "@/hooks/use-artifact";
 import type { Document, Vote } from "@/lib/db/schema";
 import type { Attachment, ChatMessage } from "@/lib/types";
 import { fetcher } from "@/lib/utils";
@@ -397,7 +398,7 @@ function PureArtifact({
               documentId={artifact.documentId}
               isToolbarVisible={isToolbarVisible}
               onClose={() => {
-                setArtifact((prev) => ({ ...prev, isVisible: false }));
+                setArtifact({ ...initialArtifactData, status: "idle" });
               }}
               sendMessage={sendMessage}
               setIsToolbarVisible={setIsToolbarVisible}

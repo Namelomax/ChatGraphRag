@@ -3,12 +3,9 @@ import {
   createUIMessageStream,
   createUIMessageStreamResponse,
   generateId,
-  stepCountIs,
   streamText,
 } from "ai";
 import { checkBotId } from "botid/server";
-import { after } from "next/server";
-import { createResumableStreamContext } from "resumable-stream";
 import { auth, type UserType } from "@/app/(auth)/auth";
 import { entitlementsByUserType } from "@/lib/ai/entitlements";
 import {
@@ -25,7 +22,6 @@ import { requestSuggestions } from "@/lib/ai/tools/request-suggestions";
 import { updateDocument } from "@/lib/ai/tools/update-document";
 import { isProductionEnvironment } from "@/lib/constants";
 import {
-  createStreamId,
   deleteChatById,
   getChatById,
   getMessageCountByUserId,
@@ -37,23 +33,14 @@ import {
 } from "@/lib/db/queries";
 import type { DBMessage } from "@/lib/db/queries";
 import { ChatbotError } from "@/lib/errors";
-import { retrieveRagContext } from "@/lib/rag/service";
+import { retrieveRagContextWithGraph } from "@/lib/rag/service";
+import { generateRagQuery } from "@/lib/rag/query-generator";
 import type { ChatMessage } from "@/lib/types";
 import { convertToUIMessages, generateUUID } from "@/lib/utils";
 import { generateTitleFromUserMessage } from "../../actions";
 import { type PostRequestBody, postRequestBodySchema } from "./schema";
 
-export const maxDuration = 90;
-
-function getStreamContext() {
-  try {
-    return createResumableStreamContext({ waitUntil: after });
-  } catch (_) {
-    return null;
-  }
-}
-
-export { getStreamContext };
+export const maxDuration = 60;
 
 export async function POST(request: Request) {
   let requestBody: PostRequestBody;
@@ -69,7 +56,7 @@ export async function POST(request: Request) {
   }
 
   try {
-    const { id, message, messages, selectedChatModel, selectedVisibilityType } =
+    const { id, message, messages, selectedChatModel, selectedVisibilityType, attachedFileTexts } =
       requestBody;
 
     const [, session] = await Promise.all([
@@ -150,9 +137,24 @@ export async function POST(request: Request) {
         }),
       })) as ChatMessage[];
     } else {
+      // Filter out non-image file parts from the incoming message
+      // (AI SDK only supports images; documents are handled via RAG separately)
+      const filteredMessage = message
+        ? {
+            ...message,
+            parts: message.parts?.filter(
+              (part) =>
+                part.type === "text" ||
+                (part.type === "file" &&
+                  (part.mediaType?.startsWith("image/") ||
+                    part.mediaType?.startsWith("video/")))
+            ),
+          }
+        : undefined;
+
       uiMessages = [
         ...convertToUIMessages(messagesFromDb),
-        message as ChatMessage,
+        filteredMessage as ChatMessage,
       ];
     }
 
@@ -164,6 +166,7 @@ export async function POST(request: Request) {
     };
 
     if (message?.role === "user") {
+      // Save original message with file parts to DB
       await saveMessages({
         messages: [
           {
@@ -185,28 +188,82 @@ export async function POST(request: Request) {
     const isReasoningModel = capabilities?.reasoning === true;
     const supportsTools = capabilities?.tools === true;
 
-    const modelMessages = await convertToModelMessages(uiMessages);
+    // Filter out non-image file parts from ALL uiMessages before converting
+    const filteredUiMessages = uiMessages.map((msg) => ({
+      ...msg,
+      parts: msg.parts?.filter(
+        (part) =>
+          part.type === "text" ||
+          part.type === "reasoning" ||
+          (part.type === "file" &&
+            ((part as any).mediaType?.startsWith("image/") ||
+              (part as any).mediaType?.startsWith("video/")))
+      ),
+    })) as ChatMessage[];
+
+    const modelMessages = await convertToModelMessages(filteredUiMessages);
+
+    // Extract latest user text for RAG query generation
     const latestUserText =
       message?.parts
         ?.filter((part) => part.type === "text")
         .map((part) => ("text" in part ? part.text : ""))
         .join("\n")
         .trim() ?? "";
+
+    // Build chat history context for RAG query generation
+    const chatHistoryText = messagesFromDb
+      .slice(-5)
+      .map((m) => `${m.role}: ${JSON.stringify(m.parts)}`)
+      .join("\n");
+
+    // Use AI agent to generate a smart RAG query based on context
+    const ragQuery = await generateRagQuery({
+      userMessage: latestUserText,
+      chatHistory: chatHistoryText,
+    }).catch(() => "участники повестка решения встреча");
+
+    // Retrieve RAG context - the AI will use this as its knowledge base
     const ragContext =
-      latestUserText.length > 0
-        ? await retrieveRagContext({ chatId: id, query: latestUserText }).catch(
-            () => ""
-          )
-        : "";
+      await retrieveRagContextWithGraph({
+        chatId: id,
+        userId: session.user.id,
+        query: ragQuery,
+        topK: 10,
+        useGraphEnhancement: true,
+        useReranking: false, // LLM reranking слишком медленный (30-120s на chunk)
+      }).catch((err) => {
+        console.error("RAG retrieval error:", err);
+        return "";
+      }) ?? "";
+
+    if (ragContext) {
+      console.log("=== RAG RETRIEVAL ===");
+      console.log("RAG Query:", ragQuery);
+      console.log("RAG Context length:", ragContext.length, "chars");
+      console.log("RAG Context preview:", ragContext.substring(0, 500));
+      console.log("=====================");
+    } else {
+      console.log("=== RAG: No context found (query:", ragQuery, ") ===");
+    }
+
+    // Combine RAG context with attached file texts
+    const attachedTexts = (attachedFileTexts as string[] | undefined) ?? [];
+    const fullContext = [
+      ragContext,
+      ...attachedTexts.filter(Boolean),
+    ].join("\n\n---\n\n");
+
+    console.log(`[Context] RAG: ${ragContext.length} chars, Attached texts: ${attachedTexts.length} items, Total: ${fullContext.length} chars`);
 
     const stream = createUIMessageStream({
       originalMessages: isToolApprovalFlow ? uiMessages : undefined,
       execute: async ({ writer: dataStream }) => {
         const result = streamText({
           model: getLanguageModel(chatModel),
-          system: systemPrompt({ requestHints, supportsTools, ragContext }),
+          system: systemPrompt({ requestHints, supportsTools, ragContext: fullContext || undefined }),
           messages: modelMessages,
-          stopWhen: stepCountIs(5),
+          maxRetries: 1,
           experimental_activeTools:
             isReasoningModel && !supportsTools
               ? []
@@ -229,6 +286,8 @@ export async function POST(request: Request) {
               session,
               dataStream,
               modelId: chatModel,
+              ragContext: fullContext || undefined,
+              chatMessages: uiMessages,
             }),
             editDocument: editDocument({ dataStream, session }),
             updateDocument: updateDocument({
@@ -313,21 +372,6 @@ export async function POST(request: Request) {
 
     return createUIMessageStreamResponse({
       stream,
-      async consumeSseStream({ stream: sseStream }) {
-        try {
-          const streamContext = getStreamContext();
-          if (streamContext) {
-            const streamId = generateId();
-            await createStreamId({ streamId, chatId: id });
-            await streamContext.createNewResumableStream(
-              streamId,
-              () => sseStream
-            );
-          }
-        } catch (_) {
-          /* non-critical */
-        }
-      },
     });
   } catch (error) {
     const vercelId = request.headers.get("x-vercel-id");
@@ -345,8 +389,23 @@ export async function POST(request: Request) {
       return new ChatbotError("bad_request:activate_gateway").toResponse();
     }
 
-    console.error("Unhandled error in chat API:", error, { vercelId });
-    return new ChatbotError("offline:chat").toResponse();
+    // Log full error details for debugging
+    console.error("Unhandled error in chat API:", {
+      message: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+      cause: error instanceof Error ? error.cause : undefined,
+      vercelId,
+    });
+
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    return Response.json(
+      {
+        code: "offline:chat",
+        message: errorMessage,
+        cause: "Check server logs for details",
+      },
+      { status: 500 }
+    );
   }
 }
 

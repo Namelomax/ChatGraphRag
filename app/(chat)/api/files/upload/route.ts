@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { auth } from "@/app/(auth)/auth";
 import { extractDocumentText } from "@/lib/rag/extract";
-import { indexDocumentToGraphRag } from "@/lib/rag/service";
 import { saveLocalFile } from "@/lib/storage/local-files";
 
 const FileSchema = z.object({
@@ -30,7 +29,6 @@ export async function POST(request: Request) {
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File;
-    const chatId = formData.get("chatId");
 
     if (!file) {
       return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
@@ -50,21 +48,15 @@ export async function POST(request: Request) {
       const data = await saveLocalFile(file);
       const extractedText = await extractDocumentText(file);
 
-      if (typeof chatId === "string" && extractedText.trim().length > 0) {
-        await indexDocumentToGraphRag({
-          chatId,
-          userId: session.user.id,
-          fileName: file.name,
-          text: extractedText,
-        });
-      }
+      console.log(`[File Upload] name=${file.name}, size=${file.size}, textLength=${extractedText?.length ?? 0}`);
 
+      // Return text for systemPrompt, do NOT index to RAG here
       return NextResponse.json({
         url: data.url,
         pathname: data.pathname,
         name: data.originalName,
         contentType: data.contentType || "application/octet-stream",
-        indexed: extractedText.trim().length > 0,
+        text: extractedText,
       });
     } catch (_error) {
       return NextResponse.json({ error: "Upload failed" }, { status: 500 });

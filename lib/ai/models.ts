@@ -29,6 +29,12 @@ export const chatModels: ChatModel[] = [
     provider: "local",
     description: "Local LM Studio model",
   },
+  {
+    id: "openrouter/arcee-ai/trinity-large-preview:free",
+    name: "Trinity Large (OpenRouter)",
+    provider: "openrouter",
+    description: "Arcee AI Trinity via OpenRouter (free)",
+  },
 ];
 
 export async function getCapabilities(): Promise<

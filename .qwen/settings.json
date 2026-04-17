@@ -3,7 +3,9 @@
     "allow": [
       "Bash(curl *)",
       "Bash(bun *)",
-      "Bash(timeout *)"
+      "Bash(timeout *)",
+      "Bash(findstr *)",
+      "Bash(npx *)"
     ]
   },
   "$version": 3

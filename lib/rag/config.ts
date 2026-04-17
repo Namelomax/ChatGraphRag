@@ -12,7 +12,7 @@ export const ragConfig = {
     embeddingModel:
       process.env.LOCAL_EMBEDDING_MODEL ?? "text-embedding-nomic-embed-text-v1.5",
   },
-  chunkSize: Number(process.env.RAG_CHUNK_SIZE ?? 1200),
-  overlap: Number(process.env.RAG_CHUNK_OVERLAP ?? 120),
-  retrievalTopK: Number(process.env.RAG_TOP_K ?? 6),
+  chunkSize: Number(process.env.RAG_CHUNK_SIZE ?? 150),
+  overlap: Number(process.env.RAG_CHUNK_OVERLAP ?? 40),
+  retrievalTopK: Number(process.env.RAG_TOP_K ??  30),
 };

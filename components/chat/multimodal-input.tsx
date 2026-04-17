@@ -3,13 +3,7 @@
 import type { UseChatHelpers } from "@ai-sdk/react";
 import type { UIMessage } from "ai";
 import equal from "fast-deep-equal";
-import {
-  ArrowUpIcon,
-  BrainIcon,
-  EyeIcon,
-  LockIcon,
-  WrenchIcon,
-} from "lucide-react";
+import { ArrowUpIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 import {
@@ -23,13 +17,10 @@ import {
   useState,
 } from "react";
 import { toast } from "sonner";
-import useSWR from "swr";
 import { useLocalStorage, useWindowSize } from "usehooks-ts";
 import {
   ModelSelector,
   ModelSelectorContent,
-  ModelSelectorGroup,
-  ModelSelectorInput,
   ModelSelectorItem,
   ModelSelectorList,
   ModelSelectorLogo,
@@ -40,7 +31,6 @@ import {
   type ChatModel,
   chatModels,
   DEFAULT_CHAT_MODEL,
-  type ModelCapabilities,
 } from "@/lib/ai/models";
 import type { Attachment, ChatMessage } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -88,6 +78,7 @@ function PureMultimodalInput({
   editingMessage,
   onCancelEdit,
   isLoading,
+  attachedFileTextsRef,
 }: {
   chatId: string;
   input: string;
@@ -108,6 +99,7 @@ function PureMultimodalInput({
   editingMessage?: ChatMessage | null;
   onCancelEdit?: () => void;
   isLoading?: boolean;
+  attachedFileTextsRef?: React.MutableRefObject<string[]>;
 }) {
   const router = useRouter();
   const { setTheme, resolvedTheme } = useTheme();
@@ -224,25 +216,48 @@ function PureMultimodalInput({
       `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/chat/${chatId}`
     );
 
+    // Build message parts: file previews + extracted file texts + user input
+    const messageParts: Array<Record<string, unknown>> = [];
+
+    // Add file texts from RAG as text parts (so AI sees them directly)
+    if (attachedFileTextsRef?.current?.length) {
+      for (const fileText of attachedFileTextsRef.current) {
+        messageParts.push({
+          type: "text" as const,
+          text: `📎 Прикреплённый файл (содержимое):\n\n${fileText.substring(0, 8000)}`,
+        });
+      }
+    }
+
+    // Add file attachment previews
+    messageParts.push(
+      ...attachments.map((attachment) => ({
+        type: "file" as const,
+        url: attachment.url,
+        name: attachment.name,
+        mediaType: attachment.contentType,
+      }))
+    );
+
+    // Add user text
+    messageParts.push({
+      type: "text",
+      text: input,
+    });
+
     sendMessage({
       role: "user",
-      parts: [
-        ...attachments.map((attachment) => ({
-          type: "file" as const,
-          url: attachment.url,
-          name: attachment.name,
-          mediaType: attachment.contentType,
-        })),
-        {
-          type: "text",
-          text: input,
-        },
-      ],
+      parts: messageParts,
     });
 
     setAttachments([]);
     setLocalStorageInput("");
     setInput("");
+
+    // Clear attached file texts after sending
+    if (attachedFileTextsRef) {
+      attachedFileTextsRef.current = [];
+    }
 
     if (width && width > 768) {
       textareaRef.current?.focus();
@@ -256,6 +271,7 @@ function PureMultimodalInput({
     setLocalStorageInput,
     width,
     chatId,
+    attachedFileTextsRef,
   ]);
 
   const uploadFile = useCallback(async (file: File) => {
@@ -274,12 +290,13 @@ function PureMultimodalInput({
 
       if (response.ok) {
         const data = await response.json();
-        const { url, pathname, contentType, name } = data;
+        const { url, pathname, contentType, name, text } = data;
 
         return {
           url,
           name: name ?? pathname,
           contentType,
+          text: text ?? "",
         };
       }
       const { error } = await response.json();
@@ -302,10 +319,25 @@ function PureMultimodalInput({
           (attachment) => attachment !== undefined
         );
 
+        // Separate text for systemPrompt
+        const fileTexts = successfullyUploadedAttachments
+          .map((a) => a.text)
+          .filter(Boolean);
+
         setAttachments((currentAttachments) => [
           ...currentAttachments,
-          ...successfullyUploadedAttachments,
+          ...successfullyUploadedAttachments.map(({ text, ...rest }) => rest),
         ]);
+
+        // Store extracted text for sending with message
+        if (fileTexts.length > 0) {
+          if (attachedFileTextsRef) {
+            attachedFileTextsRef.current = [
+              ...attachedFileTextsRef.current,
+              ...fileTexts,
+            ];
+          }
+        }
       } catch (_error) {
         toast.error("Failed to upload files");
       } finally {
@@ -541,7 +573,7 @@ function PureMultimodalInput({
             <RagDocumentsSelector chatId={chatId} />
           </PromptInputTools>
 
-          {status === "submitted" ? (
+          {(status === "submitted" || status === "streaming") ? (
             <StopButton setMessages={setMessages} stop={stop} />
           ) : (
             <PromptInputSubmit
@@ -632,20 +664,11 @@ function PureModelSelectorCompact({
   onModelChange?: (modelId: string) => void;
 }) {
   const [open, setOpen] = useState(false);
-  const { data: modelsData } = useSWR(
-    `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/models`,
-    (url: string) => fetch(url).then((r) => r.json()),
-    { revalidateOnFocus: false, dedupingInterval: 3_600_000 }
-  );
 
-  const capabilities: Record<string, ModelCapabilities> | undefined =
-    modelsData?.capabilities ?? modelsData;
-  const dynamicModels: ChatModel[] | undefined = modelsData?.models;
-  const activeModels = dynamicModels ?? chatModels;
-
+  const activeModels = chatModels;
   const selectedModel =
-    activeModels.find((m: ChatModel) => m.id === selectedModelId) ??
-    activeModels.find((m: ChatModel) => m.id === DEFAULT_CHAT_MODEL) ??
+    activeModels.find((m) => m.id === selectedModelId) ??
+    activeModels.find((m) => m.id === DEFAULT_CHAT_MODEL) ??
     activeModels[0];
   const [provider] = selectedModel.id.split("/");
 
@@ -662,125 +685,28 @@ function PureModelSelectorCompact({
         </Button>
       </ModelSelectorTrigger>
       <ModelSelectorContent>
-        <ModelSelectorInput placeholder="Search models..." />
         <ModelSelectorList>
-          {(() => {
-            const curatedIds = new Set(chatModels.map((m) => m.id));
-            const allModels = dynamicModels
-              ? [
-                  ...chatModels,
-                  ...dynamicModels.filter((m) => !curatedIds.has(m.id)),
-                ]
-              : chatModels;
-
-            const grouped: Record<
-              string,
-              { model: ChatModel; curated: boolean }[]
-            > = {};
-            for (const model of allModels) {
-              const key = curatedIds.has(model.id)
-                ? "_available"
-                : model.provider;
-              if (!grouped[key]) {
-                grouped[key] = [];
-              }
-              grouped[key].push({ model, curated: curatedIds.has(model.id) });
-            }
-
-            const sortedKeys = Object.keys(grouped).sort((a, b) => {
-              if (a === "_available") {
-                return -1;
-              }
-              if (b === "_available") {
-                return 1;
-              }
-              return a.localeCompare(b);
-            });
-
-            const providerNames: Record<string, string> = {
-              alibaba: "Alibaba",
-              anthropic: "Anthropic",
-              "arcee-ai": "Arcee AI",
-              bytedance: "ByteDance",
-              cohere: "Cohere",
-              deepseek: "DeepSeek",
-              google: "Google",
-              inception: "Inception",
-              kwaipilot: "Kwaipilot",
-              meituan: "Meituan",
-              meta: "Meta",
-              minimax: "MiniMax",
-              mistral: "Mistral",
-              moonshotai: "Moonshot",
-              morph: "Morph",
-              nvidia: "Nvidia",
-              openai: "OpenAI",
-              perplexity: "Perplexity",
-              "prime-intellect": "Prime Intellect",
-              xiaomi: "Xiaomi",
-              xai: "xAI",
-              zai: "Zai",
-            };
-
-            return sortedKeys.map((key) => (
-              <ModelSelectorGroup
-                heading={
-                  key === "_available"
-                    ? "Available"
-                    : (providerNames[key] ?? key)
-                }
-                key={key}
-              >
-                {grouped[key].map(({ model, curated }) => {
-                  const logoProvider = model.id.split("/")[0];
-                  return (
-                    <ModelSelectorItem
-                      className={cn(
-                        "flex w-full",
-                        model.id === selectedModel.id &&
-                          "border-b border-dashed border-foreground/50",
-                        !curated && "opacity-40 cursor-default"
-                      )}
-                      key={model.id}
-                      onSelect={() => {
-                        if (!curated) {
-                          return;
-                        }
-                        onModelChange?.(model.id);
-                        setCookie("chat-model", model.id);
-                        setOpen(false);
-                        setTimeout(() => {
-                          document
-                            .querySelector<HTMLTextAreaElement>(
-                              "[data-testid='multimodal-input']"
-                            )
-                            ?.focus();
-                        }, 50);
-                      }}
-                      value={model.id}
-                    >
-                      <ModelSelectorLogo provider={logoProvider} />
-                      <ModelSelectorName>{model.name}</ModelSelectorName>
-                      <div className="ml-auto flex items-center gap-2 text-foreground/70">
-                        {capabilities?.[model.id]?.tools && (
-                          <WrenchIcon className="size-3.5" />
-                        )}
-                        {capabilities?.[model.id]?.vision && (
-                          <EyeIcon className="size-3.5" />
-                        )}
-                        {capabilities?.[model.id]?.reasoning && (
-                          <BrainIcon className="size-3.5" />
-                        )}
-                        {!curated && (
-                          <LockIcon className="size-3 text-muted-foreground/50" />
-                        )}
-                      </div>
-                    </ModelSelectorItem>
-                  );
-                })}
-              </ModelSelectorGroup>
-            ));
-          })()}
+          {activeModels.map((model) => (
+            <ModelSelectorItem
+              key={model.id}
+              onSelect={() => {
+                onModelChange?.(model.id);
+                setCookie("chat-model", model.id);
+                setOpen(false);
+                setTimeout(() => {
+                  document
+                    .querySelector<HTMLTextAreaElement>(
+                      "[data-testid='multimodal-input']"
+                    )
+                    ?.focus();
+                }, 50);
+              }}
+              value={model.id}
+            >
+              <ModelSelectorLogo provider={model.provider} />
+              <ModelSelectorName>{model.name}</ModelSelectorName>
+            </ModelSelectorItem>
+          ))}
         </ModelSelectorList>
       </ModelSelectorContent>
     </ModelSelector>

@@ -22,7 +22,7 @@ import { getChatHistoryPaginationKey } from "@/components/chat/sidebar-history";
 import { toast } from "@/components/chat/toast";
 import type { VisibilityType } from "@/components/chat/visibility-selector";
 import { useAutoResume } from "@/hooks/use-auto-resume";
-import { DEFAULT_CHAT_MODEL } from "@/lib/ai/models";
+import { DEFAULT_CHAT_MODEL, chatModels } from "@/lib/ai/models";
 import type { Vote } from "@/lib/db/schema";
 import { ChatbotError } from "@/lib/errors";
 import type { ChatMessage } from "@/lib/types";
@@ -81,6 +81,7 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
 
   const [input, setInput] = useState("");
   const [showCreditCardAlert, setShowCreditCardAlert] = useState(false);
+  const attachedFileTextsRef = useRef<string[]>([]);
 
   const { data: chatData, isLoading } = useSWR(
     isNewChat
@@ -146,6 +147,7 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
               : { message: lastMessage }),
             selectedChatModel: currentModelIdRef.current,
             selectedVisibilityType: visibility,
+            attachedFileTexts: attachedFileTextsRef.current,
             ...request.body,
           },
         };
@@ -197,17 +199,19 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
     }
   }, [chatId, isNewChat, setMessages]);
 
+  // Load saved model from cookie on mount
   useEffect(() => {
-    if (chatData && !isNewChat) {
-      const cookieModel = document.cookie
-        .split("; ")
-        .find((row) => row.startsWith("chat-model="))
-        ?.split("=")[1];
-      if (cookieModel) {
-        setCurrentModelId(decodeURIComponent(cookieModel));
+    const cookieModel = document.cookie
+      .split("; ")
+      .find((row) => row.startsWith("chat-model="))
+      ?.split("=")[1];
+    if (cookieModel) {
+      const decoded = decodeURIComponent(cookieModel);
+      if (chatModels.some((m) => m.id === decoded)) {
+        setCurrentModelId(decoded);
       }
     }
-  }, [chatData, isNewChat]);
+  }, []);
 
   const hasAppendedQueryRef = useRef(false);
   useEffect(() => {
@@ -264,6 +268,7 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
       setCurrentModelId,
       showCreditCardAlert,
       setShowCreditCardAlert,
+      attachedFileTextsRef,
     }),
     [
       chatId,
@@ -282,6 +287,7 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
       votes,
       currentModelId,
       showCreditCardAlert,
+      attachedFileTextsRef,
     ]
   );
 

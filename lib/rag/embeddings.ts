@@ -30,6 +30,38 @@ export async function embedText(input: string): Promise<number[]> {
   return embedding;
 }
 
+/**
+ * Батчевая функция для эмбеддинга нескольких текстов за один вызов
+ */
+export async function embedTexts(inputs: string[]): Promise<number[][]> {
+  if (inputs.length === 0) return [];
+
+  const response = await fetch(`${embeddingBase}/embeddings`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      model: embeddingModel,
+      input: inputs,
+    }),
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(`Embedding request failed: ${response.status}`);
+  }
+
+  const json = (await response.json()) as EmbeddingResponse;
+  const embeddings = json.data?.map((item) => item.embedding).filter((e): e is number[] => e !== undefined);
+
+  if (!embeddings || embeddings.length !== inputs.length) {
+    throw new Error(
+      `Expected ${inputs.length} embeddings, got ${embeddings?.length ?? 0}`
+    );
+  }
+
+  return embeddings;
+}
+
 export function cosineSimilarity(a: number[], b: number[]) {
   if (a.length !== b.length || a.length === 0) {
     return 0;

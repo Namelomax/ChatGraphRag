@@ -12,7 +12,7 @@ function stripFences(code: string): string {
 
 export const codeDocumentHandler = createDocumentHandler<"code">({
   kind: "code",
-  onCreateDocument: async ({ title, dataStream, modelId }) => {
+  onCreateDocument: async ({ title, dataStream, modelId, ragContext: _, chatMessages: __ }) => {
     let draftContent = "";
 
     const { fullStream } = streamText({

@@ -17,6 +17,7 @@ export async function GET(request: Request) {
 
   try {
     const documents = await getDocumentsByChat(chatId);
+    console.log(`[RAG-documents] chatId=${chatId}, found ${documents?.length ?? 0} documents:`, documents);
     return NextResponse.json({ documents });
   } catch (error) {
     console.error("Failed to get RAG documents:", error);

@@ -151,27 +151,28 @@ export async function saveChat({
   visibility: VisibilityType;
 }) {
   try {
-    console.log("saveChat called with:", { id, userId, title, visibility });
-    const result = await surrealQuery(
+    // Strip "chat:" prefix to avoid double-wrapping in SurrealDB
+    const rawId = id.startsWith("chat:") ? id.slice(5) : id;
+    return await surrealQuery(
       "CREATE chat CONTENT { id: $id, createdAt: time::now(), userId: $userId, title: $title, visibility: $visibility };",
-      { id, userId, title, visibility }
+      { id: rawId, userId, title, visibility }
     );
-    console.log("saveChat result:", JSON.stringify(result));
-    return result;
-  } catch (error) {
-    console.error("saveChat error:", error);
+  } catch (_error) {
     throw new ChatbotError("bad_request:database", "Failed to save chat");
   }
 }
 
 export async function deleteChatById({ id }: { id: string }) {
   try {
-    await surrealQuery("DELETE vote WHERE chatId = $id;", { id });
-    await surrealQuery("DELETE message WHERE chatId = $id;", { id });
-    await surrealQuery("DELETE stream WHERE chatId = $id;", { id });
+    const rawId = id.startsWith("chat:") ? id.slice(5) : id;
+    const chatIdStr = `chat:${rawId}`;
+    await surrealQuery(`DELETE vote WHERE chatId = "${chatIdStr}";`, {});
+    await surrealQuery(`DELETE message WHERE chatId = "${chatIdStr}";`, {});
+    await surrealQuery(`DELETE stream WHERE chatId = "${chatIdStr}";`, {});
+    await surrealQuery(`DELETE rag_chunk WHERE chatId = "${chatIdStr}";`, {});
     const deleted = await surrealQuery<Array<{ result?: Chat[] }>>(
-      "DELETE chat WHERE id = $id RETURN BEFORE;",
-      { id }
+      `DELETE chat:${rawId} RETURN BEFORE;`,
+      {}
     );
     return deleted[0]?.result?.[0] ?? null;
   } catch (_error) {
@@ -234,9 +235,12 @@ export async function getChatsByUserId({
 
 export async function getChatById({ id }: { id: string }) {
   try {
+    // Strip "chat:" prefix to match SurrealDB record ID
+    const rawId = id.startsWith("chat:") ? id.slice(5) : id;
+    // Use table:id syntax directly (IDs from generateUUID are safe hex strings)
     const result = await surrealQuery<Array<{ result?: Chat[] }>>(
-      "SELECT * FROM chat WHERE id = $id LIMIT 1;",
-      { id }
+      `SELECT * FROM chat:${rawId};`,
+      {}
     );
     const selectedChat = result[0]?.result?.[0];
     if (!selectedChat) {
@@ -252,10 +256,15 @@ export async function getChatById({ id }: { id: string }) {
 export async function saveMessages({ messages }: { messages: DBMessage[] }) {
   try {
     for (const item of messages) {
+      // Ensure chatId is stored with "chat:" prefix for consistent queries
+      const rawChatId = item.chatId.startsWith("chat:") ? item.chatId.slice(5) : item.chatId;
+      const chatIdStr = `chat:${rawChatId}`;
+      
       await surrealQuery(
         "CREATE message CONTENT { id: $id, chatId: $chatId, userId: $userId, role: $role, parts: $parts, attachments: $attachments, createdAt: $createdAt };",
         {
           ...item,
+          chatId: chatIdStr,
           userId: item.userId ?? "",
           createdAt: item.createdAt.toISOString(),
         }
@@ -275,10 +284,11 @@ export async function updateMessage({
   parts: DBMessage["parts"];
 }) {
   try {
-    return await surrealQuery("UPDATE message SET parts = $parts WHERE id = $id;", {
-      id,
-      parts,
-    });
+    const rawId = id.startsWith("message:") ? id.slice(8) : id;
+    return await surrealQuery(
+      `UPDATE message:${rawId} SET parts = $parts;`,
+      { parts }
+    );
   } catch (_error) {
     throw new ChatbotError("bad_request:database", "Failed to update message");
   }
@@ -286,9 +296,11 @@ export async function updateMessage({
 
 export async function getMessagesByChatId({ id }: { id: string }) {
   try {
+    const rawId = id.startsWith("chat:") ? id.slice(5) : id;
+    const chatIdStr = `chat:${rawId}`;
     const result = await surrealQuery<Array<{ result?: DBMessage[] }>>(
-      "SELECT * FROM message WHERE chatId = $id ORDER BY createdAt ASC;",
-      { id }
+      `SELECT * FROM message WHERE chatId = "${chatIdStr}" ORDER BY createdAt ASC;`,
+      {}
     );
     return (result[0]?.result ?? []).map((message) => ({
       ...message,
@@ -312,9 +324,11 @@ export async function voteMessage({
   type: "up" | "down";
 }) {
   try {
+    const rawChatId = chatId.startsWith("chat:") ? chatId.slice(5) : chatId;
+    const chatIdStr = `chat:${rawChatId}`;
     return await surrealQuery(
       "UPSERT vote:$id CONTENT { chatId: $chatId, messageId: $messageId, isUpvoted: $isUpvoted };",
-      { id: `${chatId}-${messageId}`, chatId, messageId, isUpvoted: type === "up" }
+      { id: `${rawChatId}-${messageId}`, chatId: chatIdStr, messageId, isUpvoted: type === "up" }
     );
   } catch (_error) {
     throw new ChatbotError("bad_request:database", "Failed to vote message");
@@ -323,9 +337,11 @@ export async function voteMessage({
 
 export async function getVotesByChatId({ id }: { id: string }) {
   try {
+    const rawId = id.startsWith("chat:") ? id.slice(5) : id;
+    const chatIdStr = `chat:${rawId}`;
     const result = await surrealQuery<Array<{ result?: unknown[] }>>(
-      "SELECT * FROM vote WHERE chatId = $id;",
-      { id }
+      `SELECT * FROM vote WHERE chatId = "${chatIdStr}";`,
+      {}
     );
     return result[0]?.result ?? [];
   } catch (_error) {
@@ -350,11 +366,20 @@ export async function saveDocument({
   userId: string;
 }) {
   try {
+    // UPSERT: если документ существует — обновляем, иначе создаём
     return await surrealQuery(
-      "CREATE document CONTENT { id: $id, title: $title, kind: $kind, content: $content, userId: $userId, createdAt: time::now() };",
+      `UPSERT type::thing('document', $id) CONTENT { 
+        id: $id,
+        title: $title, 
+        kind: $kind, 
+        content: $content, 
+        userId: $userId, 
+        createdAt: time::now() 
+      };`,
       { id, title, kind, content, userId }
     );
   } catch (_error) {
+    console.error("[saveDocument] Error:", _error);
     throw new ChatbotError("bad_request:database", "Failed to save document");
   }
 }
@@ -391,7 +416,7 @@ export async function updateDocumentContent({
 export async function getDocumentsById({ id }: { id: string }) {
   try {
     const result = await surrealQuery<Array<{ result?: DocumentRecord[] }>>(
-      "SELECT * FROM document WHERE id = $id ORDER BY createdAt ASC;",
+      "SELECT * FROM document WHERE id = $id ORDER BY createdAt DESC;",
       { id }
     );
     return (result[0]?.result ?? []).map((doc) => ({
@@ -488,9 +513,10 @@ export async function getSuggestionsByDocumentId({
 
 export async function getMessageById({ id }: { id: string }) {
   try {
+    const rawId = id.startsWith("message:") ? id.slice(8) : id;
     const result = await surrealQuery<Array<{ result?: DBMessage[] }>>(
-      "SELECT * FROM message WHERE id = $id LIMIT 1;",
-      { id }
+      `SELECT * FROM message:${rawId} LIMIT 1;`,
+      {}
     );
     return (result[0]?.result ?? []).map((message) => ({
       ...message,
@@ -512,13 +538,15 @@ export async function deleteMessagesByChatIdAfterTimestamp({
   timestamp: Date;
 }) {
   try {
+    const rawId = chatId.startsWith("chat:") ? chatId.slice(5) : chatId;
+    const chatIdStr = `chat:${rawId}`;
     await surrealQuery(
-      "DELETE vote WHERE chatId = $chatId;",
-      { chatId }
+      `DELETE vote WHERE chatId = "${chatIdStr}";`,
+      {}
     );
     return await surrealQuery(
-      "DELETE message WHERE chatId = $chatId AND createdAt >= $timestamp;",
-      { chatId, timestamp: timestamp.toISOString() }
+      `DELETE message WHERE chatId = "${chatIdStr}" AND createdAt >= "${timestamp.toISOString()}";`,
+      {}
     );
   } catch (_error) {
     throw new ChatbotError(
@@ -536,9 +564,10 @@ export async function updateChatVisibilityById({
   visibility: "private" | "public";
 }) {
   try {
+    const rawId = chatId.startsWith("chat:") ? chatId.slice(5) : chatId;
     return await surrealQuery(
-      "UPDATE chat SET visibility = $visibility WHERE id = $chatId;",
-      { chatId, visibility }
+      `UPDATE chat:${rawId} SET visibility = "${visibility}";`,
+      {}
     );
   } catch (_error) {
     throw new ChatbotError(
@@ -556,9 +585,10 @@ export async function updateChatTitleById({
   title: string;
 }) {
   try {
-    return await surrealQuery(
-      "UPDATE chat SET title = $title WHERE id = $chatId;",
-      { chatId, title }
+    const rawId = chatId.startsWith("chat:") ? chatId.slice(5) : chatId;
+    await surrealQuery(
+      `UPDATE chat:${rawId} SET title = "${title.replace(/"/g, '\\"')}";`,
+      {}
     );
   } catch (_error) {
     return;
@@ -595,9 +625,11 @@ export async function createStreamId({
   chatId: string;
 }) {
   try {
+    const rawId = chatId.startsWith("chat:") ? chatId.slice(5) : chatId;
+    const chatIdStr = `chat:${rawId}`;
     await surrealQuery(
       "CREATE stream CONTENT { id: $streamId, chatId: $chatId, createdAt: time::now() };",
-      { streamId, chatId }
+      { streamId, chatId: chatIdStr }
     );
   } catch (_error) {
     throw new ChatbotError(
@@ -609,9 +641,11 @@ export async function createStreamId({
 
 export async function getStreamIdsByChatId({ chatId }: { chatId: string }) {
   try {
+    const rawId = chatId.startsWith("chat:") ? chatId.slice(5) : chatId;
+    const chatIdStr = `chat:${rawId}`;
     const result = await surrealQuery<Array<{ result?: Array<{ id: string }> }>>(
-      "SELECT id FROM stream WHERE chatId = $chatId ORDER BY createdAt ASC;",
-      { chatId }
+      `SELECT id FROM stream WHERE chatId = "${chatIdStr}" ORDER BY createdAt ASC;`,
+      {}
     );
     return (result[0]?.result ?? []).map(({ id }) => id);
   } catch (_error) {
@@ -622,16 +656,61 @@ export async function getStreamIdsByChatId({ chatId }: { chatId: string }) {
   }
 }
 
+async function surrealQuerySafe<T>(query: string, vars: Record<string, unknown>) {
+  const interpolated = query.replace(/\$([a-zA-Z_]\w*)/g, (_, key) =>
+    JSON.stringify(vars[key])
+  );
+  const body = `USE NS ${surrealNamespace}; USE DB ${surrealDatabase}; ${interpolated}`;
+  const response = await fetch(surrealUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain",
+      Accept: "application/json",
+      Authorization: `Basic ${Buffer.from(`${surrealUser}:${surrealPass}`).toString("base64")}`,
+    },
+    body,
+    cache: "no-store",
+  });
+  if (!response.ok) {
+    throw new Error(`SurrealDB query failed: ${response.status}`);
+  }
+  return (await response.json()) as Array<{ status?: string; result?: unknown; detail?: string }>;
+}
+
+function isAlreadyExistsError(json: Array<{ status?: string; detail?: string }>) {
+  for (const entry of json) {
+    if (entry.status === "ERR") {
+      const detail = entry.detail ?? "";
+      if (
+        detail.includes("AlreadyExists") ||
+        detail.includes("already exists")
+      ) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 export async function ensureSchema() {
-  try {
-    await surrealQuery("DEFINE TABLE user SCHEMALESS;", {});
-    await surrealQuery("DEFINE TABLE chat SCHEMALESS;", {});
-    await surrealQuery("DEFINE TABLE message SCHEMALESS;", {});
-    await surrealQuery("DEFINE TABLE vote SCHEMALESS;", {});
-    await surrealQuery("DEFINE TABLE document SCHEMALESS;", {});
-    await surrealQuery("DEFINE TABLE suggestion SCHEMALESS;", {});
-    await surrealQuery("DEFINE TABLE stream SCHEMALESS;", {});
-  } catch (_error) {
-    // Tables may already exist; ignore errors
+  const tables = [
+    "DEFINE TABLE user SCHEMALESS;",
+    "DEFINE TABLE chat SCHEMALESS;",
+    "DEFINE TABLE message SCHEMALESS;",
+    "DEFINE TABLE vote SCHEMALESS;",
+    "DEFINE TABLE document SCHEMALESS;",
+    "DEFINE TABLE suggestion SCHEMALESS;",
+    "DEFINE TABLE stream SCHEMALESS;",
+  ];
+  for (const stmt of tables) {
+    try {
+      const json = await surrealQuerySafe(stmt, {});
+      if (isAlreadyExistsError(json)) {
+        // Table already exists, skip
+        continue;
+      }
+    } catch (error) {
+      // Ignore errors during schema creation
+    }
   }
 }
