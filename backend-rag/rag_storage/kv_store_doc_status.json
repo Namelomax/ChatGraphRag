@@ -1,0 +1,405 @@
+{
+  "doc-46af38d2d24af329cc1489e64ffc20d3": {
+    "status": "processed",
+    "chunks_count": 12,
+    "chunks_list": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99",
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8",
+      "chunk-b0c3079db7831a11a99d3914988b59cb",
+      "chunk-a9c11e3be7004e005cff116becaaf334",
+      "chunk-98ed998bba253bb64419418a25b74c96",
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d",
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd",
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22",
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3",
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97"
+    ],
+    "content_summary": "Запись\\_Форус\\_Встреча\\_интервью\\_Baikal\\_Code\\_Hackathon.mp4\n\nСпикер 4:\n\n00:00:23 — Коллеги, всем привет Добрый день, Роман.\n\nСпикер 5:\n\n00:00:28 — Здравствуйте.\n\nСпикер 4:\n\n00:00:31 — Так-так-так, у нас сейчас ещё пару человек чуть-чуть подождем бу...",
+    "content_length": 73719,
+    "created_at": "2026-04-24T07:29:02.504183+00:00",
+    "updated_at": "2026-04-24T17:49:30+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_152902_570bf2cf",
+    "metadata": {
+      "processing_start_time": 1777021930,
+      "processing_end_time": 1777022982
+    },
+    "multimodal_processed": true
+  },
+  "dup-97ab53a4d59c61118376900fcc660860": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T07:32:46.634212+00:00",
+    "updated_at": "2026-04-24T07:32:46.634217+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_153246_c0cfe953",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: failed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-8a75c24f28468e45e8a2b30a9da19538": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T07:43:08.034386+00:00",
+    "updated_at": "2026-04-24T07:43:08.034393+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_154308_39d5f34b",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: failed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-b00d384bce38bc3af7df9023393de5c6": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T07:47:46.283484+00:00",
+    "updated_at": "2026-04-24T07:47:46.283488+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_154746_4f07db09",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processing",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-3f5ea1529136cd04c75f3c2678ddc99a": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T07:51:16.731013+00:00",
+    "updated_at": "2026-04-24T07:51:16.731018+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_155116_49e854e6",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: failed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-cfd3572e3c2ede4ee08d64e3a39a67be": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T07:56:07.075158+00:00",
+    "updated_at": "2026-04-24T07:56:07.075164+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_155607_3bef3a30",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processing",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-05a9e7c473c4f35c74fce52e7b874f92": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T07:56:45.190792+00:00",
+    "updated_at": "2026-04-24T07:56:45.190797+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_155645_4bfc7ed5",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processing",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-87048e50215607532ae1d139513666cb": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:05:53.211318+00:00",
+    "updated_at": "2026-04-24T08:05:53.211323+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_160553_5f2a0a42",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: failed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-f481429fcb03f45b4c7bf73e46949242": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:06:50.898256+00:00",
+    "updated_at": "2026-04-24T08:06:50.898261+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_160650_b118634f",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processing",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-75a1faac9f767e937ee32a124b7bb49f": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:13:27.883381+00:00",
+    "updated_at": "2026-04-24T08:13:27.883386+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_161327_ac96205f",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processing",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-5dc2e02d1ac3868ffa8d855bfbf45675": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:19:57.991691+00:00",
+    "updated_at": "2026-04-24T08:19:57.991696+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_161957_1d50ab44",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processing",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-70baa145b05523e6fae9f5ea36eb4fc1": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:20:33.332796+00:00",
+    "updated_at": "2026-04-24T08:20:33.332802+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_162033_97de1969",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: failed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-8f00cd6ba9b5f1deda4dbb37b9ad8f81": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:25:07.391880+00:00",
+    "updated_at": "2026-04-24T08:25:07.391884+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_162507_d5cda775",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: failed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-43fc03de4613a784b4664719b2ab4259": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:28:17.595904+00:00",
+    "updated_at": "2026-04-24T08:28:17.595908+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_162817_64badbc2",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: failed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-dd1140b3f34530dbe358d73062dc6ce1": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:31:38.319690+00:00",
+    "updated_at": "2026-04-24T08:31:38.319695+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_163138_bd6acc7d",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: failed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-0b50588c0d6f9cf9feefdf2fa4337100": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:34:29.153701+00:00",
+    "updated_at": "2026-04-24T08:34:29.153705+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_163429_538900fb",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: failed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-6cdb70b4dc37328581f47bc51e186a1f": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T08:57:06.943432+00:00",
+    "updated_at": "2026-04-24T08:57:06.943438+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_165706_cc8b7a42",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processing",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-55b09b8c4356b4e553d16009a7b2ef63": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T09:12:10.769026+00:00",
+    "updated_at": "2026-04-24T09:12:10.769030+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_171210_13f5ae79",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processing",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-f997d81757d21fad9f4eb83b68599556": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T09:35:11.363501+00:00",
+    "updated_at": "2026-04-24T09:35:11.363507+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_173511_51483bfc",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-00a2d74dc147c0c93b95d85e394d06d8": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T09:44:41.295905+00:00",
+    "updated_at": "2026-04-24T09:44:41.295909+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_174441_0987dd52",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-4f14e290690d1d8ecf5c99d6fb73f02f": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T09:46:53.046315+00:00",
+    "updated_at": "2026-04-24T09:46:53.046319+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_174653_3dfd9cb2",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-0a88c7dc1ac7a978468dcf867a75dc9f": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T09:47:51.726513+00:00",
+    "updated_at": "2026-04-24T09:47:51.726517+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_174751_c3911f67",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-677c9fc30c4168ebf28c6f4e634ab588": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-04-24T09:49:30.786507+00:00",
+    "updated_at": "2026-04-24T09:49:30.786512+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260424_174930_12d5e9fb",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  }
+}

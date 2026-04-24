@@ -1,0 +1,1601 @@
+{
+  "Speech To Text Ru": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97"
+    ],
+    "count": 1,
+    "create_time": 1777022927,
+    "update_time": 1777022927,
+    "_id": "Speech To Text Ru"
+  },
+  "Speaker 1": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97",
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22",
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8",
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3",
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 7,
+    "create_time": 1777022927,
+    "update_time": 1777022927,
+    "_id": "Speaker 1"
+  },
+  "Speaker 2": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97",
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22",
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3",
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 6,
+    "create_time": 1777022928,
+    "update_time": 1777022928,
+    "_id": "Speaker 2"
+  },
+  "Speaker 4": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97",
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22",
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3",
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d",
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 7,
+    "update_time": 1777022955,
+    "_id": "Speaker 4"
+  },
+  "Meeting Transcript": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 2,
+    "create_time": 1777022928,
+    "update_time": 1777022928,
+    "_id": "Meeting Transcript"
+  },
+  "Baikal Code Hackathon": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022928,
+    "update_time": 1777022928,
+    "_id": "Baikal Code Hackathon"
+  },
+  "Roman": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99",
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 5,
+    "create_time": 1777022928,
+    "update_time": 1777022928,
+    "_id": "Roman"
+  },
+  "Katya": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022929,
+    "update_time": 1777022929,
+    "_id": "Katya"
+  },
+  "Nikita Kasyanov": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022929,
+    "update_time": 1777022929,
+    "_id": "Nikita Kasyanov"
+  },
+  "Forus Group Companies": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022929,
+    "update_time": 1777022929,
+    "_id": "Forus Group Companies"
+  },
+  "Nikita Gritsanyuk": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022929,
+    "update_time": 1777022929,
+    "_id": "Nikita Gritsanyuk"
+  },
+  "Dream Team": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99",
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 2,
+    "update_time": 1777022980,
+    "_id": "Dream Team"
+  },
+  "KFK Team": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022929,
+    "update_time": 1777022929,
+    "_id": "KFK Team"
+  },
+  "Ekaterina": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99",
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 3,
+    "create_time": 1777022930,
+    "update_time": 1777022930,
+    "_id": "Ekaterina"
+  },
+  "Optima Team": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 2,
+    "create_time": 1777022930,
+    "update_time": 1777022930,
+    "_id": "Optima Team"
+  },
+  "Yakov Vaygus": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022930,
+    "update_time": 1777022930,
+    "_id": "Yakov Vaygus"
+  },
+  "Junior System Analyst": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99",
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 3,
+    "create_time": 1777022930,
+    "update_time": 1777022930,
+    "_id": "Junior System Analyst"
+  },
+  "Senior System Analyst": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99",
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 3,
+    "create_time": 1777022930,
+    "update_time": 1777022930,
+    "_id": "Senior System Analyst"
+  },
+  "Meeting Protocol Preparation Process": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022930,
+    "update_time": 1777022930,
+    "_id": "Meeting Protocol Preparation Process"
+  },
+  "Video Conference Recordings": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022931,
+    "update_time": 1777022931,
+    "_id": "Video Conference Recordings"
+  },
+  "MTR Block": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022931,
+    "update_time": 1777022931,
+    "_id": "MTR Block"
+  },
+  "Tigran": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022931,
+    "update_time": 1777022931,
+    "_id": "Tigran"
+  },
+  "Форус": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022931,
+    "update_time": 1777022931,
+    "_id": "Форус"
+  },
+  "Никита": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022931,
+    "update_time": 1777022931,
+    "_id": "Никита"
+  },
+  "Спикер 1": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022931,
+    "update_time": 1777022931,
+    "_id": "Спикер 1"
+  },
+  "Спикер 3": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022932,
+    "update_time": 1777022932,
+    "_id": "Спикер 3"
+  },
+  "Спикер 7": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022932,
+    "update_time": 1777022932,
+    "_id": "Спикер 7"
+  },
+  "Екатерина": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022932,
+    "update_time": 1777022932,
+    "_id": "Екатерина"
+  },
+  "LM-ка": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022932,
+    "update_time": 1777022932,
+    "_id": "LM-ка"
+  },
+  "1С Sphere": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022932,
+    "update_time": 1777022932,
+    "_id": "1С Sphere"
+  },
+  "Conceptual Dictionary": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022932,
+    "update_time": 1777022932,
+    "_id": "Conceptual Dictionary"
+  },
+  "Access Rights Management": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022933,
+    "update_time": 1777022933,
+    "_id": "Access Rights Management"
+  },
+  "IT Support Assistant": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022933,
+    "update_time": 1777022933,
+    "_id": "IT Support Assistant"
+  },
+  "Chat GPT": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022933,
+    "update_time": 1777022933,
+    "_id": "Chat GPT"
+  },
+  "Laboratory": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334",
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 2,
+    "create_time": 1777022933,
+    "update_time": 1777022933,
+    "_id": "Laboratory"
+  },
+  "Video Meeting Recording": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022933,
+    "update_time": 1777022933,
+    "_id": "Video Meeting Recording"
+  },
+  "Protocol": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334",
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 2,
+    "create_time": 1777022933,
+    "update_time": 1777022933,
+    "_id": "Protocol"
+  },
+  "AI Agent": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022934,
+    "update_time": 1777022934,
+    "_id": "AI Agent"
+  },
+  "Junior Analyst": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334",
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 2,
+    "create_time": 1777022934,
+    "update_time": 1777022934,
+    "_id": "Junior Analyst"
+  },
+  "IVE": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022934,
+    "update_time": 1777022934,
+    "_id": "IVE"
+  },
+  "ZOOM": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022934,
+    "update_time": 1777022934,
+    "_id": "ZOOM"
+  },
+  "Telemost": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022934,
+    "update_time": 1777022934,
+    "_id": "Telemost"
+  },
+  "Chatbot": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022934,
+    "update_time": 1777022934,
+    "_id": "Chatbot"
+  },
+  "GigaChat": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022935,
+    "update_time": 1777022935,
+    "_id": "GigaChat"
+  },
+  "Yandex Models": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022935,
+    "update_time": 1777022935,
+    "_id": "Yandex Models"
+  },
+  "Open II": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022935,
+    "update_time": 1777022935,
+    "_id": "Open II"
+  },
+  "Federal Laws (FZ)": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022935,
+    "update_time": 1777022935,
+    "_id": "Federal Laws (FZ)"
+  },
+  "NDA Agreement": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022935,
+    "update_time": 1777022935,
+    "_id": "NDA Agreement"
+  },
+  "Project Documentation": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22",
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 2,
+    "create_time": 1777022935,
+    "update_time": 1777022935,
+    "_id": "Project Documentation"
+  },
+  "Context Accumulation": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022936,
+    "update_time": 1777022936,
+    "_id": "Context Accumulation"
+  },
+  "APIs": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022936,
+    "update_time": 1777022936,
+    "_id": "APIs"
+  },
+  "Information Technology Department": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022936,
+    "update_time": 1777022936,
+    "_id": "Information Technology Department"
+  },
+  "Accuracy Requirement": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022936,
+    "update_time": 1777022936,
+    "_id": "Accuracy Requirement"
+  },
+  "Speaker 6": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 2,
+    "create_time": 1777022936,
+    "update_time": 1777022936,
+    "_id": "Speaker 6"
+  },
+  "Nikita": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3",
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 5,
+    "create_time": 1777022936,
+    "update_time": 1777022936,
+    "_id": "Nikita"
+  },
+  "Functional Customer": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022937,
+    "update_time": 1777022937,
+    "_id": "Functional Customer"
+  },
+  "IT Department": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022937,
+    "update_time": 1777022937,
+    "_id": "IT Department"
+  },
+  "1C RP": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022937,
+    "update_time": 1777022937,
+    "_id": "1C RP"
+  },
+  "Center For Automation And Support": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022937,
+    "update_time": 1777022937,
+    "_id": "Center For Automation And Support"
+  },
+  "Document Review Process": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022937,
+    "update_time": 1777022937,
+    "_id": "Document Review Process"
+  },
+  "Scalability": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022937,
+    "update_time": 1777022937,
+    "_id": "Scalability"
+  },
+  "Video Recording": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 2,
+    "create_time": 1777022938,
+    "update_time": 1777022938,
+    "_id": "Video Recording"
+  },
+  "System Analyst": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 2,
+    "create_time": 1777022938,
+    "update_time": 1777022938,
+    "_id": "System Analyst"
+  },
+  "Accountant": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022938,
+    "update_time": 1777022938,
+    "_id": "Accountant"
+  },
+  "Director": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022938,
+    "update_time": 1777022938,
+    "_id": "Director"
+  },
+  "Bakery Owner": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022938,
+    "update_time": 1777022938,
+    "_id": "Bakery Owner"
+  },
+  "Pirog": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022938,
+    "update_time": 1777022938,
+    "_id": "Pirog"
+  },
+  "Customer": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 2,
+    "update_time": 1777022969,
+    "_id": "Customer"
+  },
+  "Project Team Members": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022939,
+    "update_time": 1777022939,
+    "_id": "Project Team Members"
+  },
+  "Meeting Protocol": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 2,
+    "create_time": 1777022939,
+    "update_time": 1777022939,
+    "_id": "Meeting Protocol"
+  },
+  "Analytical Note": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8",
+      "chunk-98ed998bba253bb64419418a25b74c96",
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3",
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 6,
+    "create_time": 1777022939,
+    "update_time": 1777022939,
+    "_id": "Analytical Note"
+  },
+  "Survey Report": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 2,
+    "create_time": 1777022939,
+    "update_time": 1777022939,
+    "_id": "Survey Report"
+  },
+  "1C Object Terminology": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022939,
+    "update_time": 1777022939,
+    "_id": "1C Object Terminology"
+  },
+  "Meeting Recording Assistant": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022940,
+    "update_time": 1777022940,
+    "_id": "Meeting Recording Assistant"
+  },
+  "Forest": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022940,
+    "update_time": 1777022940,
+    "_id": "Forest"
+  },
+  "47-Page Document": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022940,
+    "update_time": 1777022940,
+    "_id": "47-Page Document"
+  },
+  "Functional Requirements Registry": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022940,
+    "update_time": 1777022940,
+    "_id": "Functional Requirements Registry"
+  },
+  "Business Process Description": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022940,
+    "update_time": 1777022940,
+    "_id": "Business Process Description"
+  },
+  "MTR File": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022941,
+    "update_time": 1777022941,
+    "_id": "MTR File"
+  },
+  "Project Charter": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8",
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 2,
+    "create_time": 1777022941,
+    "update_time": 1777022941,
+    "_id": "Project Charter"
+  },
+  "PPM Scheme": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022941,
+    "update_time": 1777022941,
+    "_id": "PPM Scheme"
+  },
+  "Assistant": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022941,
+    "update_time": 1777022941,
+    "_id": "Assistant"
+  },
+  "1C ERP": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022941,
+    "update_time": 1777022941,
+    "_id": "1C ERP"
+  },
+  "Russian Classifier": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022941,
+    "update_time": 1777022941,
+    "_id": "Russian Classifier"
+  },
+  "Target Model": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022942,
+    "update_time": 1777022942,
+    "_id": "Target Model"
+  },
+  "Legacy System": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022942,
+    "update_time": 1777022942,
+    "_id": "Legacy System"
+  },
+  "Attribute Composition": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022942,
+    "update_time": 1777022942,
+    "_id": "Attribute Composition"
+  },
+  "AI Assistant": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96",
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 2,
+    "create_time": 1777022942,
+    "update_time": 1777022942,
+    "_id": "AI Assistant"
+  },
+  "Project Team Leader": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022942,
+    "update_time": 1777022942,
+    "_id": "Project Team Leader"
+  },
+  "Meeting Recording": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022942,
+    "update_time": 1777022942,
+    "_id": "Meeting Recording"
+  },
+  "Draft Protocol": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022943,
+    "update_time": 1777022943,
+    "_id": "Draft Protocol"
+  },
+  "Finalized Protocol": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022943,
+    "update_time": 1777022943,
+    "_id": "Finalized Protocol"
+  },
+  "1C Project Management System": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022943,
+    "update_time": 1777022943,
+    "_id": "1C Project Management System"
+  },
+  "Bitrix": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022943,
+    "update_time": 1777022943,
+    "_id": "Bitrix"
+  },
+  "Telegram": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022943,
+    "update_time": 1777022943,
+    "_id": "Telegram"
+  },
+  "Skype": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022944,
+    "update_time": 1777022944,
+    "_id": "Skype"
+  },
+  "Speaker 5": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 2,
+    "create_time": 1777022944,
+    "update_time": 1777022944,
+    "_id": "Speaker 5"
+  },
+  "Senior Analyst": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022944,
+    "update_time": 1777022944,
+    "_id": "Senior Analyst"
+  },
+  "Client": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd",
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 2,
+    "create_time": 1777022944,
+    "update_time": 1777022944,
+    "_id": "Client"
+  },
+  "Document System": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022944,
+    "update_time": 1777022944,
+    "_id": "Document System"
+  },
+  "Chatbot Interface": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022944,
+    "update_time": 1777022944,
+    "_id": "Chatbot Interface"
+  },
+  "Single Canvas Interface": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022945,
+    "update_time": 1777022945,
+    "_id": "Single Canvas Interface"
+  },
+  "Contradictions": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd",
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 2,
+    "update_time": 1777022981,
+    "_id": "Contradictions"
+  },
+  "Open Questions": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022945,
+    "update_time": 1777022945,
+    "_id": "Open Questions"
+  },
+  "UX (User Experience)": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022945,
+    "update_time": 1777022945,
+    "_id": "UX (User Experience)"
+  },
+  "DeepS": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022945,
+    "update_time": 1777022945,
+    "_id": "DeepS"
+  },
+  "LM Notebook": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022946,
+    "update_time": 1777022946,
+    "_id": "LM Notebook"
+  },
+  "Canva": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022946,
+    "update_time": 1777022946,
+    "_id": "Canva"
+  },
+  "Date Field": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022946,
+    "update_time": 1777022946,
+    "_id": "Date Field"
+  },
+  "Agenda": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022946,
+    "update_time": 1777022946,
+    "_id": "Agenda"
+  },
+  "Participants": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022946,
+    "update_time": 1777022946,
+    "_id": "Participants"
+  },
+  "Definitions Section": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022946,
+    "update_time": 1777022946,
+    "_id": "Definitions Section"
+  },
+  "Meeting Content Section": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022947,
+    "update_time": 1777022947,
+    "_id": "Meeting Content Section"
+  },
+  "Questions And Solutions Section": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022947,
+    "update_time": 1777022947,
+    "_id": "Questions And Solutions Section"
+  },
+  "Stamp Of Agreement": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022947,
+    "update_time": 1777022947,
+    "_id": "Stamp Of Agreement"
+  },
+  "Speaker 3": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022947,
+    "update_time": 1777022947,
+    "_id": "Speaker 3"
+  },
+  "Speaker 7": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022947,
+    "update_time": 1777022947,
+    "_id": "Speaker 7"
+  },
+  "Project Protocol": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022947,
+    "update_time": 1777022947,
+    "_id": "Project Protocol"
+  },
+  "Transcription": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3",
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 2,
+    "update_time": 1777022972,
+    "_id": "Transcription"
+  },
+  "Telegram Group": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3",
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 2,
+    "create_time": 1777022948,
+    "update_time": 1777022948,
+    "_id": "Telegram Group"
+  },
+  "Internal Project": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022948,
+    "update_time": 1777022948,
+    "_id": "Internal Project"
+  },
+  "Report On Inspection": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022948,
+    "update_time": 1777022948,
+    "_id": "Report On Inspection"
+  },
+  "Old System": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022948,
+    "update_time": 1777022948,
+    "_id": "Old System"
+  },
+  "New System (1C ERP)": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022948,
+    "update_time": 1777022948,
+    "_id": "New System (1C ERP)"
+  },
+  "Survey Stage": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022949,
+    "update_time": 1777022949,
+    "_id": "Survey Stage"
+  },
+  "Modeling Stage": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022949,
+    "update_time": 1777022949,
+    "_id": "Modeling Stage"
+  },
+  "Development Stage": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022949,
+    "update_time": 1777022949,
+    "_id": "Development Stage"
+  },
+  "Technical Specification (TZ)": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022949,
+    "update_time": 1777022949,
+    "_id": "Technical Specification (TZ)"
+  },
+  "BPMN Schema": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022949,
+    "update_time": 1777022949,
+    "_id": "BPMN Schema"
+  },
+  "Forum (Customer)": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022950,
+    "update_time": 1777022950,
+    "_id": "Forum (Customer)"
+  },
+  "1C Domain": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022950,
+    "update_time": 1777022950,
+    "_id": "1C Domain"
+  },
+  "Legal Dispute": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022950,
+    "update_time": 1777022950,
+    "_id": "Legal Dispute"
+  },
+  "Project Group": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022950,
+    "update_time": 1777022950,
+    "_id": "Project Group"
+  },
+  "External Team": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022950,
+    "update_time": 1777022950,
+    "_id": "External Team"
+  },
+  "Executor": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022950,
+    "update_time": 1777022950,
+    "_id": "Executor"
+  },
+  "Transcripts": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022951,
+    "update_time": 1777022951,
+    "_id": "Transcripts"
+  },
+  "Interviews": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022951,
+    "update_time": 1777022951,
+    "_id": "Interviews"
+  },
+  "Meeting Protocols": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022951,
+    "update_time": 1777022951,
+    "_id": "Meeting Protocols"
+  },
+  "Regulations": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022951,
+    "update_time": 1777022951,
+    "_id": "Regulations"
+  },
+  "Bot Assistant": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022951,
+    "update_time": 1777022951,
+    "_id": "Bot Assistant"
+  },
+  "Functional Template": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022952,
+    "update_time": 1777022952,
+    "_id": "Functional Template"
+  },
+  "PDF Document": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022952,
+    "update_time": 1777022952,
+    "_id": "PDF Document"
+  },
+  "Forum Project": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022952,
+    "update_time": 1777022952,
+    "_id": "Forum Project"
+  },
+  "1C System": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022952,
+    "update_time": 1777022952,
+    "_id": "1C System"
+  },
+  "Transcribed Meeting": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97"
+    ],
+    "count": 1,
+    "create_time": 1777022952,
+    "update_time": 1777022952,
+    "_id": "Transcribed Meeting"
+  },
+  "Client Users": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022955,
+    "update_time": 1777022955,
+    "_id": "Client Users"
+  },
+  "Meeting Schedule": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022956,
+    "update_time": 1777022956,
+    "_id": "Meeting Schedule"
+  },
+  "Logging Mechanism": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022957,
+    "update_time": 1777022957,
+    "_id": "Logging Mechanism"
+  },
+  "Missed Details": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022960,
+    "update_time": 1777022960,
+    "_id": "Missed Details"
+  },
+  "Encrypted Data": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022960,
+    "update_time": 1777022960,
+    "_id": "Encrypted Data"
+  },
+  "Incorrect Terms": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022960,
+    "update_time": 1777022960,
+    "_id": "Incorrect Terms"
+  },
+  "Sanitized Documentation": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022961,
+    "update_time": 1777022961,
+    "_id": "Sanitized Documentation"
+  },
+  "Internal APIs": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022961,
+    "update_time": 1777022961,
+    "_id": "Internal APIs"
+  },
+  "Red Pages": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022962,
+    "update_time": 1777022962,
+    "_id": "Red Pages"
+  },
+  "Business Process": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022963,
+    "update_time": 1777022963,
+    "_id": "Business Process"
+  },
+  "Containerization": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022964,
+    "update_time": 1777022964,
+    "_id": "Containerization"
+  },
+  "Accuracy Calculation": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022964,
+    "update_time": 1777022964,
+    "_id": "Accuracy Calculation"
+  },
+  "Internal Projects": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022967,
+    "update_time": 1777022967,
+    "_id": "Internal Projects"
+  },
+  "New System": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022969,
+    "update_time": 1777022969,
+    "_id": "New System"
+  },
+  "Project Context": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022969,
+    "update_time": 1777022969,
+    "_id": "Project Context"
+  },
+  "Client Requirements": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022971,
+    "update_time": 1777022971,
+    "_id": "Client Requirements"
+  },
+  "Architecture Details": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022972,
+    "update_time": 1777022972,
+    "_id": "Architecture Details"
+  },
+  "Model": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022973,
+    "update_time": 1777022973,
+    "_id": "Model"
+  },
+  "Model Training": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022975,
+    "update_time": 1777022975,
+    "_id": "Model Training"
+  },
+  "Meeting Session": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022976,
+    "update_time": 1777022976,
+    "_id": "Meeting Session"
+  },
+  "Technical Specification": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022977,
+    "update_time": 1777022977,
+    "_id": "Technical Specification"
+  },
+  "Research Phase": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022978,
+    "update_time": 1777022978,
+    "_id": "Research Phase"
+  },
+  "Preparation Of TZ": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022978,
+    "update_time": 1777022978,
+    "_id": "Preparation Of TZ"
+  },
+  "Design Phase": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022979,
+    "update_time": 1777022979,
+    "_id": "Design Phase"
+  },
+  "Analyst": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022981,
+    "update_time": 1777022981,
+    "_id": "Analyst"
+  },
+  "Product Specifications": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022981,
+    "update_time": 1777022981,
+    "_id": "Product Specifications"
+  },
+  "Output Document": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022982,
+    "update_time": 1777022982,
+    "_id": "Output Document"
+  }
+}

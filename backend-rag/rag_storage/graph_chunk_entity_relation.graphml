@@ -1,0 +1,2797 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d13" for="edge" attr.name="truncate" attr.type="string"/>
+<key id="d12" for="edge" attr.name="created_at" attr.type="long"/>
+<key id="d11" for="edge" attr.name="file_path" attr.type="string"/>
+<key id="d10" for="edge" attr.name="source_id" attr.type="string"/>
+<key id="d9" for="edge" attr.name="keywords" attr.type="string"/>
+<key id="d8" for="edge" attr.name="description" attr.type="string"/>
+<key id="d7" for="edge" attr.name="weight" attr.type="double"/>
+<key id="d6" for="node" attr.name="truncate" attr.type="string"/>
+<key id="d5" for="node" attr.name="created_at" attr.type="long"/>
+<key id="d4" for="node" attr.name="file_path" attr.type="string"/>
+<key id="d3" for="node" attr.name="source_id" attr.type="string"/>
+<key id="d2" for="node" attr.name="description" attr.type="string"/>
+<key id="d1" for="node" attr.name="entity_type" attr.type="string"/>
+<key id="d0" for="node" attr.name="entity_id" attr.type="string"/>
+<graph edgedefault="undirected"><node id="Speech To Text Ru">
+  <data key="d0">Speech To Text Ru</data>
+  <data key="d1">organization</data>
+  <data key="d2">Speech To Text Ru is the service used to transcribe the meeting audio into text, as indicated by the footer of the document.</data>
+  <data key="d3">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022927</data>
+  <data key="d6"></data>
+</node>
+<node id="Speaker 1">
+  <data key="d0">Speaker 1</data>
+  <data key="d1">person</data>
+  <data key="d2">Speaker 1 explains the differences, structure, and requirements of analytical notes and survey reports.&lt;SEP&gt;Speaker 1 discusses the limitations of human error in reports compared to AI, emphasizing the need for the bot to handle decision contradictions.&lt;SEP&gt;Speaker 1 is a participant in the discussion who proposes ideas for document structure and chat-bot functionality.&lt;SEP&gt;Speaker 1 describes the functional requirements of the chatbot, emphasizing context accumulation and document retrieval capabilities.&lt;SEP&gt;Speaker 1 is a participant in the discussion who acts as both a functional customer and an IT specialist, explaining project requirements and roles.&lt;SEP&gt;Speaker 1 is a representative or expert who discusses video recording availability, transcription requirements, and the generation of analytical reports with the team.&lt;SEP&gt;Speaker 1 expresses satisfaction with the meeting's productivity and bids farewell to the group.</data>
+  <data key="d3">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97&lt;SEP&gt;chunk-00f42c5674c08d1c4bf50e1bd4cb1b22&lt;SEP&gt;chunk-8e4b2511c293a18a34a2f9ee769dfe73&lt;SEP&gt;chunk-f945ba35b34fd5e6c69d4966bc1515c8&lt;SEP&gt;chunk-4c017a0092c0a18048d7d3c36d14b3bd&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3&lt;SEP&gt;chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022927</data>
+  <data key="d6"></data>
+</node>
+<node id="Speaker 2">
+  <data key="d0">Speaker 2</data>
+  <data key="d1">person</data>
+  <data key="d2">Speaker 2 proposes using a functional template and explains how the system should handle conditional document sections based on project requirements.&lt;SEP&gt;Speaker 2 discusses interface design preferences, specifically suggesting a single canvas with editing capabilities similar to Canva.&lt;SEP&gt;Speaker 2 inquires about the scope of context accumulation across projects and clarifies the distinction between model selection and legislative constraints.&lt;SEP&gt;Speaker 2 is a participant asking questions about scaling, document details, and meeting recordings.&lt;SEP&gt;Speaker 2 acts as a facilitator, summarizing meeting modes and clarifying mandatory fields for document generation like protocols and analytical notes.&lt;SEP&gt;Speaker 2 exchanges farewells with Speaker 1 at the conclusion of the meeting.</data>
+  <data key="d3">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97&lt;SEP&gt;chunk-00f42c5674c08d1c4bf50e1bd4cb1b22&lt;SEP&gt;chunk-8e4b2511c293a18a34a2f9ee769dfe73&lt;SEP&gt;chunk-4c017a0092c0a18048d7d3c36d14b3bd&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3&lt;SEP&gt;chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022928</data>
+  <data key="d6"></data>
+</node>
+<node id="Speaker 4">
+  <data key="d0">Speaker 4</data>
+  <data key="d1">person</data>
+  <data key="d2">Speaker 4 clarifies that a functional template defines the structure of output documents without fixed content, allowing for dynamic generation.&lt;SEP&gt;Speaker 4 emphasizes the importance of UX and configuring output formats for quick user perception by analysts.&lt;SEP&gt;Speaker 4 questions the relevance of national legislation (FZ) to the chatbot's underlying language models, suggesting internal tools may have fewer restrictions.&lt;SEP&gt;Speaker 4 intervenes to suggest taking a pause and allowing others to speak.&lt;SEP&gt;Speaker 4 proposes concluding the meeting, organizing a video group for transcription practice, and scheduling a follow-up session by the end of the week.&lt;SEP&gt;Speaker 4 makes a closing remark about adding punctuation and thanks the group before continuing work in the group.</data>
+  <data key="d3">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97&lt;SEP&gt;chunk-00f42c5674c08d1c4bf50e1bd4cb1b22&lt;SEP&gt;chunk-8e4b2511c293a18a34a2f9ee769dfe73&lt;SEP&gt;chunk-4c017a0092c0a18048d7d3c36d14b3bd&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3&lt;SEP&gt;chunk-bd5a47bfb7955d73a940c4b7e3d4379d&lt;SEP&gt;chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022928</data>
+  <data key="d6"></data>
+</node>
+<node id="Meeting Transcript">
+  <data key="d0">Meeting Transcript</data>
+  <data key="d1">content</data>
+  <data key="d2">The Meeting Transcript refers to the text generated from the meeting recording, which Speaker 1 promises to provide as a reference example for the team's testing and practice.&lt;SEP&gt;The Meeting Transcript is a record of a productive meeting where participants discussed protocols, added punctuation, and exchanged farewells.</data>
+  <data key="d3">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022928</data>
+  <data key="d6"></data>
+</node>
+<node id="Baikal Code Hackathon">
+  <data key="d0">Baikal Code Hackathon</data>
+  <data key="d1">event</data>
+  <data key="d2">The Baikal Code Hackathon is the event associated with the interview recording file mentioned in the text.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022928</data>
+  <data key="d6"></data>
+</node>
+<node id="Roman">
+  <data key="d0">Roman</data>
+  <data key="d1">person</data>
+  <data key="d2">Roman is a participant addressed as "Colleague" by Speaker 4 at the beginning of the meeting.&lt;SEP&gt;Roman is a person who contributed an important detail regarding the distinction between the Analytical Note and the Survey Report, which caused the primary speaker to briefly digress.&lt;SEP&gt;Roman is a participant who contributed an important detail to the discussion regarding document types.&lt;SEP&gt;Roman is a participant mentioned alongside Nikita in the context of pausing for questions.&lt;SEP&gt;Roman correctly identified that the current session serves as a test for the participants in their role as analysts with a client.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99&lt;SEP&gt;chunk-8e4b2511c293a18a34a2f9ee769dfe73&lt;SEP&gt;chunk-b81f88fd1f77db0dbb394dd66a377029&lt;SEP&gt;chunk-f945ba35b34fd5e6c69d4966bc1515c8&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022928</data>
+  <data key="d6"></data>
+</node>
+<node id="Katya">
+  <data key="d0">Katya</data>
+  <data key="d1">person</data>
+  <data key="d2">Katya is confirmed to have connected to the team and is present on the call.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022929</data>
+  <data key="d6"></data>
+</node>
+<node id="Nikita Kasyanov">
+  <data key="d0">Nikita Kasyanov</data>
+  <data key="d1">person</data>
+  <data key="d2">Nikita Kasyanov is a representative of the Forus Group Companies participating in the meeting to discuss project tasks.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022929</data>
+  <data key="d6"></data>
+</node>
+<node id="Forus Group Companies">
+  <data key="d0">Forus Group Companies</data>
+  <data key="d1">organization</data>
+  <data key="d2">The Forus Group Companies is the organization represented by Nikita Kasyanov, for whom the project teams are working.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022929</data>
+  <data key="d6"></data>
+</node>
+<node id="Nikita Gritsanyuk">
+  <data key="d0">Nikita Gritsanyuk</data>
+  <data key="d1">person</data>
+  <data key="d2">Nikita Gritsanyuk is identified as the captain of the Dream Team.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022929</data>
+  <data key="d6"></data>
+</node>
+<node id="Dream Team">
+  <data key="d0">Dream Team</data>
+  <data key="d1">organization</data>
+  <data key="d2">The Dream Team is one of three teams assigned to work on the task, led by Captain Nikita Gritsanyuk.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99&lt;SEP&gt;chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022929</data>
+  <data key="d6"></data>
+</node>
+<node id="KFK Team">
+  <data key="d0">KFK Team</data>
+  <data key="d1">organization</data>
+  <data key="d2">The KFK Team is one of the three project teams represented at the meeting by Ekaterina.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022929</data>
+  <data key="d6"></data>
+</node>
+<node id="Ekaterina">
+  <data key="d0">Ekaterina</data>
+  <data key="d1">person</data>
+  <data key="d2">Ekaterina represents the KFK team during this session, confirming her presence on behalf of the group.&lt;SEP&gt;Ekaterina is a participant waiting to ask a question about video recording availability.&lt;SEP&gt;Ekaterina is a participant who has been waiting to ask a question during the meeting.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99&lt;SEP&gt;chunk-8e4b2511c293a18a34a2f9ee769dfe73&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022930</data>
+  <data key="d6"></data>
+</node>
+<node id="Optima Team">
+  <data key="d0">Optima Team</data>
+  <data key="d1">organization</data>
+  <data key="d2">The Optima Team is one of the three project teams assigned to the task, with Captain Yakov Vaygus.&lt;SEP&gt;The Optima Team is a group of participants whose inputs and questions are sought by Speaker 1 regarding their perspective on the project.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022930</data>
+  <data key="d6"></data>
+</node>
+<node id="Yakov Vaygus">
+  <data key="d0">Yakov Vaygus</data>
+  <data key="d1">person</data>
+  <data key="d2">Yakov Vaygus is identified as the captain of the Optima team.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022930</data>
+  <data key="d6"></data>
+</node>
+<node id="Junior System Analyst">
+  <data key="d0">Junior System Analyst</data>
+  <data key="d1">person</data>
+  <data key="d2">The Junior System Analyst is a role responsible for preparing meeting protocols, listening to recordings, and documenting details.&lt;SEP&gt;The Junior System Analyst prepares the initial protocol draft but may miss details, misrepresent answers, or fail to recall specific responsibilities agreed upon with the customer.&lt;SEP&gt;The Junior System Analyst reviews the AI-generated draft protocol, resolves inaccuracies, and adds content before passing it to the Senior System Analyst.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99&lt;SEP&gt;chunk-b81f88fd1f77db0dbb394dd66a377029&lt;SEP&gt;chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022930</data>
+  <data key="d6"></data>
+</node>
+<node id="Senior System Analyst">
+  <data key="d0">Senior System Analyst</data>
+  <data key="d1">person</data>
+  <data key="d2">The Senior System Analyst reviews the work of the junior analyst to identify missed details or incorrect information in the protocol.&lt;SEP&gt;The Senior System Analyst reviews the meeting recording to identify details missed by the junior analyst, corrects formulations, and ensures accurate reflection of responsibilities and agreements.&lt;SEP&gt;The Senior System Analyst verifies terminology, performs a full document proofread, corrects issues, and ensures the document meets analytical standards.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99&lt;SEP&gt;chunk-b81f88fd1f77db0dbb394dd66a377029&lt;SEP&gt;chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022930</data>
+  <data key="d6"></data>
+</node>
+<node id="Meeting Protocol Preparation Process">
+  <data key="d0">Meeting Protocol Preparation Process</data>
+  <data key="d1">method</data>
+  <data key="d2">This method involves listening to video conference recordings, transcribing discussions, extracting open questions and decisions, and documenting them in a formal protocol document.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022930</data>
+  <data key="d6"></data>
+</node>
+<node id="Video Conference Recordings">
+  <data key="d0">Video Conference Recordings</data>
+  <data key="d1">content</data>
+  <data key="d2">Video conference recordings are the primary source material used by analysts to review meetings and extract details for protocols.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022931</data>
+  <data key="d6"></data>
+</node>
+<node id="MTR Block">
+  <data key="d0">MTR Block</data>
+  <data key="d1">concept</data>
+  <data key="d2">The MTR block is a specific topic discussed in a meeting example, involving various tabs with differing content.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022931</data>
+  <data key="d6"></data>
+</node>
+<node id="Tigran">
+  <data key="d0">Tigran</data>
+  <data key="d1">person</data>
+  <data key="d2">Tigran is a person who was asked if he plans to join the meeting connection but his status remains uncertain or negative based on the context of waiting for others.</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022931</data>
+  <data key="d6"></data>
+</node>
+<node id="Форус">
+  <data key="d0">Форус</data>
+  <data key="d1">organization</data>
+  <data key="d2">Форус is the organization where the solution will be deployed internally and which defines specific terminology for its sphere.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022931</data>
+  <data key="d6"></data>
+</node>
+<node id="Никита">
+  <data key="d0">Никита</data>
+  <data key="d1">person</data>
+  <data key="d2">Никита demonstrated conceptual dictionaries and terminologies relevant to the project during a previous presentation.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022931</data>
+  <data key="d6"></data>
+</node>
+<node id="Спикер 1">
+  <data key="d0">Спикер 1</data>
+  <data key="d1">person</data>
+  <data key="d2">Спикер 1 discusses the internal deployment of the solution, access rights management, and the workflow for meeting prototyping.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022931</data>
+  <data key="d6"></data>
+</node>
+<node id="Спикер 3">
+  <data key="d0">Спикер 3</data>
+  <data key="d1">person</data>
+  <data key="d2">Спикер 3 is a learner at IVE who inquires about local access restrictions, documentation requirements, and logging mechanisms.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022932</data>
+  <data key="d6"></data>
+</node>
+<node id="Спикер 7">
+  <data key="d0">Спикер 7</data>
+  <data key="d1">person</data>
+  <data key="d2">Спикер 7 asks questions regarding the transcription of online video meetings and the inclusion of time-codes in protocols.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022932</data>
+  <data key="d6"></data>
+</node>
+<node id="Екатерина">
+  <data key="d0">Екатерина</data>
+  <data key="d1">person</data>
+  <data key="d2">Екатерина is a participant who raises a question about meeting transcripts and their integration into the system.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022932</data>
+  <data key="d6"></data>
+</node>
+<node id="LM-ка">
+  <data key="d0">LM-ка</data>
+  <data key="d1">concept</data>
+  <data key="d2">LM-ка refers to an AI model or language machine that must adhere strictly to the client's conceptual framework and terminology when generating results.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022932</data>
+  <data key="d6"></data>
+</node>
+<node id="1С Sphere">
+  <data key="d0">1С Sphere</data>
+  <data key="d1">concept</data>
+  <data key="d2">The 1С sphere is a specific industry domain characterized by a large volume of unique concepts and terms requiring precise handling.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022932</data>
+  <data key="d6"></data>
+</node>
+<node id="Conceptual Dictionary">
+  <data key="d0">Conceptual Dictionary</data>
+  <data key="d1">content</data>
+  <data key="d2">A conceptual dictionary containing specific concepts and terms for the project, which serves as a critical component in prompt design to prevent ambiguity.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022932</data>
+  <data key="d6"></data>
+</node>
+<node id="Access Rights Management">
+  <data key="d0">Access Rights Management</data>
+  <data key="d1">method</data>
+  <data key="d2">Access rights management involves restricting access to the solution based on projects, potentially delegating permissions through an external information system.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022933</data>
+  <data key="d6"></data>
+</node>
+<node id="IT Support Assistant">
+  <data key="d0">IT Support Assistant</data>
+  <data key="d1">artifact</data>
+  <data key="d2">An internal assistant developed by Форус that helps employees submit requests for IT services such as software installation or hardware issues.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022933</data>
+  <data key="d6"></data>
+</node>
+<node id="Chat GPT">
+  <data key="d0">Chat GPT</data>
+  <data key="d1">content</data>
+  <data key="d2">Employees use Chat GPT for general tasks unrelated to project activities, specifically where personal data is not involved.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022933</data>
+  <data key="d6"></data>
+</node>
+<node id="Laboratory">
+  <data key="d0">Laboratory</data>
+  <data key="d1">organization</data>
+  <data key="d2">The Laboratory at Форус periodically implements new tools and assistants like the IT support agent.&lt;SEP&gt;The Laboratory is a resource within the organization capable of integrating the chatbot with internal APIs and systems.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334&lt;SEP&gt;chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022933</data>
+  <data key="d6"></data>
+</node>
+<node id="Video Meeting Recording">
+  <data key="d0">Video Meeting Recording</data>
+  <data key="d1">content</data>
+  <data key="d2">A recording of an online meeting that serves as a primary source for creating protocols, with transcription being a potential secondary step.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022933</data>
+  <data key="d6"></data>
+</node>
+<node id="Protocol">
+  <data key="d0">Protocol</data>
+  <data key="d1">content</data>
+  <data key="d2">Protocols are raw records of meeting discussions that serve as the primary source for extracting information to create analytical notes and survey reports.&lt;SEP&gt;A protocol is a document prepared by the junior analyst following a meeting, which may include time-codes for verification before being processed by an AI agent.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334&lt;SEP&gt;chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022933</data>
+  <data key="d6"></data>
+</node>
+<node id="AI Agent">
+  <data key="d0">AI Agent</data>
+  <data key="d1">concept</data>
+  <data key="d2">An AI agent that processes verified protocols containing time-codes to generate analytical notes.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022934</data>
+  <data key="d6"></data>
+</node>
+<node id="Junior Analyst">
+  <data key="d0">Junior Analyst</data>
+  <data key="d1">person</data>
+  <data key="d2">The Junior Analyst is responsible for preparing the meeting protocol immediately after a survey or meeting concludes.&lt;SEP&gt;The Junior Analyst is a potential end-user of the system, capable of modifying documents and identifying open questions.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334&lt;SEP&gt;chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022934</data>
+  <data key="d6"></data>
+</node>
+<node id="IVE">
+  <data key="d0">IVE</data>
+  <data key="d1">organization</data>
+  <data key="d2">IVE is an educational institution where Спикер 3 is currently studying.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022934</data>
+  <data key="d6"></data>
+</node>
+<node id="ZOOM">
+  <data key="d0">ZOOM</data>
+  <data key="d1">platform</data>
+  <data key="d2">Zoom is a video conferencing platform mentioned as having built-in agents capable of recording and transcribing meetings automatically.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022934</data>
+  <data key="d6"></data>
+</node>
+<node id="Telemost">
+  <data key="d0">Telemost</data>
+  <data key="d1">platform</data>
+  <data key="d2">Telemost is the primary communication tool used by the organization for online meetings, where external cloud-based transcription services are unavailable due to security constraints.</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022934</data>
+  <data key="d6"></data>
+</node>
+<node id="Chatbot">
+  <data key="d0">Chatbot</data>
+  <data key="d1">method</data>
+  <data key="d2">The Chatbot is designed to act as a navigator for documents and meetings, retrieving information about past discussions and details without editing the source material.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022934</data>
+  <data key="d6"></data>
+</node>
+<node id="GigaChat">
+  <data key="d0">GigaChat</data>
+  <data key="d1">content</data>
+  <data key="d2">GigaChat is a specific language model mentioned as an option compliant with Russian federal laws if such compliance is required.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022935</data>
+  <data key="d6"></data>
+</node>
+<node id="Yandex Models">
+  <data key="d0">Yandex Models</data>
+  <data key="d1">content</data>
+  <data key="d2">Models from Yandex are identified as alternatives that may be considered depending on the necessity to adhere to specific regulations.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022935</data>
+  <data key="d6"></data>
+</node>
+<node id="Open II">
+  <data key="d0">Open II</data>
+  <data key="d1">content</data>
+  <data key="d2">Open source models (referred to as Open II) are suggested as viable options if legislative constraints are not a priority for the project.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022935</data>
+  <data key="d6"></data>
+</node>
+<node id="Federal Laws (FZ)">
+  <data key="d0">Federal Laws (FZ)</data>
+  <data key="d1">data</data>
+  <data key="d2">Federal laws represent regulatory frameworks that might limit the choice of language models or require specific data handling protocols within the system.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022935</data>
+  <data key="d6"></data>
+</node>
+<node id="NDA Agreement">
+  <data key="d0">NDA Agreement</data>
+  <data key="d1">content</data>
+  <data key="d2">The Non-Disclosure Agreement serves as a binding constraint preventing data transfer outside the company unless encrypted.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022935</data>
+  <data key="d6"></data>
+</node>
+<node id="Project Documentation">
+  <data key="d0">Project Documentation</data>
+  <data key="d1">data</data>
+  <data key="d2">Project Documentation refers to materials received from the customer, including a 36-page dictionary regulation and an analytical note, used during the survey stage.&lt;SEP&gt;Project documentation is uploaded to the chatbot to establish context, with versions being fixed and used for querying rather than editing.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22&lt;SEP&gt;chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022935</data>
+  <data key="d6"></data>
+</node>
+<node id="Context Accumulation">
+  <data key="d0">Context Accumulation</data>
+  <data key="d1">concept</data>
+  <data key="d2">Context accumulation refers to the process of storing and retrieving information from current or related projects to improve the chatbot's responses.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022936</data>
+  <data key="d6"></data>
+</node>
+<node id="APIs">
+  <data key="d0">APIs</data>
+  <data key="d1">method</data>
+  <data key="d2">APIs are used in the initial phase to interact with various external models, allowing for flexibility before potential integration with internal systems.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022936</data>
+  <data key="d6"></data>
+</node>
+<node id="Information Technology Department">
+  <data key="d0">Information Technology Department</data>
+  <data key="d1">organization</data>
+  <data key="d2">The Information Technology Department is responsible for potentially connecting the chatbot's API to internal company systems upon successful development.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022936</data>
+  <data key="d6"></data>
+</node>
+<node id="Accuracy Requirement">
+  <data key="d0">Accuracy Requirement</data>
+  <data key="d1">concept</data>
+  <data key="d2">The accuracy requirement specifies that the model must correctly reflect meeting discussions, including capturing missed details or correcting misinterpretations, targeting 97%+ precision.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022936</data>
+  <data key="d6"></data>
+</node>
+<node id="Speaker 6">
+  <data key="d0">Speaker 6</data>
+  <data key="d1">person</data>
+  <data key="d2">Speaker 6 provides a brief acknowledgement ("Ugu") during the discussion but does not contribute further substantive content.&lt;SEP&gt;Speaker 6 acknowledges the proposal to continue working in the group and potentially schedule a follow-up meeting.</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022936</data>
+  <data key="d6"></data>
+</node>
+<node id="Nikita">
+  <data key="d0">Nikita</data>
+  <data key="d1">person</data>
+  <data key="d2">Nikita is a speaker who interrupts to clarify whether the Analytical Note and Survey Report are identical documents or distinct ones.&lt;SEP&gt;Nikita is a participant in the discussion who asks for permission to interrupt and clarifies the distinction between documents.&lt;SEP&gt;Nikita is a project participant who provided insights on the importance of clear terminology and emphasized that developers rarely participate in the survey phase except for expert opinions.&lt;SEP&gt;Nikita is a participant whose name is called out by Speaker 1 during the discussion.&lt;SEP&gt;Nikita is an individual whose approval or availability is required to schedule another meeting before the end of the week.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73&lt;SEP&gt;chunk-b81f88fd1f77db0dbb394dd66a377029&lt;SEP&gt;chunk-f945ba35b34fd5e6c69d4966bc1515c8&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3&lt;SEP&gt;chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022936</data>
+  <data key="d6"></data>
+</node>
+<node id="Functional Customer">
+  <data key="d0">Functional Customer</data>
+  <data key="d1">concept</data>
+  <data key="d2">The Functional Customer is defined as the role responsible for defining business requirements, such as processes for coal or oil processing, distinct from IT specialists.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022937</data>
+  <data key="d6"></data>
+</node>
+<node id="IT Department">
+  <data key="d0">IT Department</data>
+  <data key="d1">organization</data>
+  <data key="d2">The IT Department refers to a company's internal service responsible for technical support, software installation, and infrastructure maintenance.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022937</data>
+  <data key="d6"></data>
+</node>
+<node id="1C RP">
+  <data key="d0">1C RP</data>
+  <data key="d1">artifact</data>
+  <data key="d2">1C RP is described as a large-scale enterprise product implemented by companies that may exceed the capabilities of their internal IT staff.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022937</data>
+  <data key="d6"></data>
+</node>
+<node id="Center For Automation And Support">
+  <data key="d0">Center For Automation And Support</data>
+  <data key="d1">organization</data>
+  <data key="d2">The Center For Automation And Support is an organization with approximately 200 employees, including 50-60 analysts who handle high loads.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022937</data>
+  <data key="d6"></data>
+</node>
+<node id="Document Review Process">
+  <data key="d0">Document Review Process</data>
+  <data key="d1">concept</data>
+  <data key="d2">The Document Review Process involves analyzing a document's structure and content to identify misinterpretations or incorrect terms, calculated by the ratio of correct pages to total pages.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022937</data>
+  <data key="d6"></data>
+</node>
+<node id="Scalability">
+  <data key="d0">Scalability</data>
+  <data key="d1">concept</data>
+  <data key="d2">Scalability refers to the system's ability to handle increased load, potentially through monolithic expansion or horizontal scaling with containerization support.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022937</data>
+  <data key="d6"></data>
+</node>
+<node id="Video Recording">
+  <data key="d0">Video Recording</data>
+  <data key="d1">content</data>
+  <data key="d2">A video recording of the meeting is a potential resource requested by participants for verifying transcription accuracy during development.&lt;SEP&gt;The Video Recording refers to the captured footage of the meeting, sought by developers for testing transcription accuracy and system validation.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022938</data>
+  <data key="d6"></data>
+</node>
+<node id="System Analyst">
+  <data key="d0">System Analyst</data>
+  <data key="d1">person</data>
+  <data key="d2">The System Analyst (Junior or Senior) is the specialist responsible for creating PPM schemes and refining details in analytical notes.&lt;SEP&gt;A junior or senior system analyst who works with the tool and may also serve as a functional customer.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73&lt;SEP&gt;chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022938</data>
+  <data key="d6"></data>
+</node>
+<node id="Accountant">
+  <data key="d0">Accountant</data>
+  <data key="d1">person</data>
+  <data key="d2">An accountant identified as an example of a user who would work within the 1C RP product rather than the IT department.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022938</data>
+  <data key="d6"></data>
+</node>
+<node id="Director">
+  <data key="d0">Director</data>
+  <data key="d1">person</data>
+  <data key="d2">A director mentioned as another potential user who might access the 1C RP system for management purposes.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022938</data>
+  <data key="d6"></data>
+</node>
+<node id="Bakery Owner">
+  <data key="d0">Bakery Owner</data>
+  <data key="d1">person</data>
+  <data key="d2">An example of a business owner (e.g., of a bakery) who understands product details like pirog pricing but lacks IT knowledge.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022938</data>
+  <data key="d6"></data>
+</node>
+<node id="Pirog">
+  <data key="d0">Pirog</data>
+  <data key="d1">naturalobject</data>
+  <data key="d2">A type of food item used as an example for inventory tracking and cost calculation in non-IT projects.</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022938</data>
+  <data key="d6"></data>
+</node>
+<node id="Customer">
+  <data key="d0">Customer</data>
+  <data key="d1">person</data>
+  <data key="d2">The Customer is a stakeholder who agrees on responsibilities and answers; their feedback is crucial for correcting misunderstandings and ensuring protocols match actual discussions.</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029&lt;SEP&gt;chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022939</data>
+  <data key="d6"></data>
+</node>
+<node id="Project Team Members">
+  <data key="d0">Project Team Members</data>
+  <data key="d1">group</data>
+  <data key="d2">Members of the project team may inadvertently record assumptions made before or after meetings as facts within the protocol, leading to inaccuracies if not verified with the customer.</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022939</data>
+  <data key="d6"></data>
+</node>
+<node id="Meeting Protocol">
+  <data key="d0">Meeting Protocol</data>
+  <data key="d1">document</data>
+  <data key="d2">The Meeting Protocol is a document intended to accurately capture discussion details, responsibilities, and agreements; it often suffers from delays in preparation due to analyst workload and context switching.&lt;SEP&gt;A document recording meeting details, including mandatory fields like date, agenda, participants, and optional sections like open questions or stamps.</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029&lt;SEP&gt;chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022939</data>
+  <data key="d6"></data>
+</node>
+<node id="Analytical Note">
+  <data key="d0">Analytical Note</data>
+  <data key="d1">content</data>
+  <data key="d2">The Analytical Note is a summary document combining information from all meeting protocols, typically ranging up to 50 pages, prepared at the end of the survey phase.&lt;SEP&gt;An analytical note is typically a structured document with a volume of up to 50 pages, containing processed information from protocols including functional requirements and process models.&lt;SEP&gt;The Analytical Note is a document prepared by analysts based on project documentation to define requirements and scope.&lt;SEP&gt;A document prepared after all meeting protocols are finalized and approved by the client, based on the collected documentation.&lt;SEP&gt;A generated document that can be refined by analysts and used to retrain the underlying model based on new data.&lt;SEP&gt;The Analytical Note is a final document that requires at least one protocol as a mandatory field for generation.</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029&lt;SEP&gt;chunk-f945ba35b34fd5e6c69d4966bc1515c8&lt;SEP&gt;chunk-98ed998bba253bb64419418a25b74c96&lt;SEP&gt;chunk-4c017a0092c0a18048d7d3c36d14b3bd&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3&lt;SEP&gt;chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022939</data>
+  <data key="d6"></data>
+</node>
+<node id="Survey Report">
+  <data key="d0">Survey Report</data>
+  <data key="d1">document</data>
+  <data key="d2">The Survey Report is a comprehensive document exceeding 50 pages in length, distinct from the Analytical Note but serving a similar purpose of summarizing the survey results.&lt;SEP&gt;A survey report is a larger document ranging from 50 to over 200 pages, often detailing extensive findings and current state descriptions.</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029&lt;SEP&gt;chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022939</data>
+  <data key="d6"></data>
+</node>
+<node id="1C Object Terminology">
+  <data key="d0">1C Object Terminology</data>
+  <data key="d1">concept</data>
+  <data key="d2">1C Object Terminology refers to specific professional terms used by analysts (e.g., 'nomenclature catalog') instead of simple language when documenting product details like goods and services.</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022939</data>
+  <data key="d6"></data>
+</node>
+<node id="Meeting Recording Assistant">
+  <data key="d0">Meeting Recording Assistant</data>
+  <data key="d1">artifact</data>
+  <data key="d2">The Meeting Recording Assistant is a proposed AI tool designed to process meeting recordings or transcripts to generate draft protocols, saving time for analysts by highlighting unclear sections.</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022940</data>
+  <data key="d6"></data>
+</node>
+<node id="Forest">
+  <data key="d0">Forest</data>
+  <data key="d1">organization</data>
+  <data key="d2">Forest is an internal company where the speakers work and which has conducted internal projects involving automation and analytical note creation.</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022940</data>
+  <data key="d6"></data>
+</node>
+<node id="47-Page Document">
+  <data key="d0">47-Page Document</data>
+  <data key="d1">document</data>
+  <data key="d2">A specific example of an internal analytical note mentioned by the speaker, consisting of 47 pages, which is currently being edited before it can be shared.</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022940</data>
+  <data key="d6"></data>
+</node>
+<node id="Functional Requirements Registry">
+  <data key="d0">Functional Requirements Registry</data>
+  <data key="d1">content</data>
+  <data key="d2">A registry listing functional requirements, categorized by classes such as data migration or integrations, with links to specific protocols where they were discussed.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022940</data>
+  <data key="d6"></data>
+</node>
+<node id="Business Process Description">
+  <data key="d0">Business Process Description</data>
+  <data key="d1">content</data>
+  <data key="d2">A section in the analytical note describing current business processes, often presented in table format or indicated for PPM scheme creation.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022940</data>
+  <data key="d6"></data>
+</node>
+<node id="MTR File">
+  <data key="d0">MTR File</data>
+  <data key="d1">data</data>
+  <data key="d2">An external document used as a source of information regarding current data views and naming conventions within the project context.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022941</data>
+  <data key="d6"></data>
+</node>
+<node id="Project Charter">
+  <data key="d0">Project Charter</data>
+  <data key="d1">content</data>
+  <data key="d2">A foundational project document that may contain additional information included in the analytical note.&lt;SEP&gt;The Project Charter is a document containing terminology and details (e.g., regulations, clauses) used as context for protocol generation.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8&lt;SEP&gt;chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022941</data>
+  <data key="d6"></data>
+</node>
+<node id="PPM Scheme">
+  <data key="d0">PPM Scheme</data>
+  <data key="d1">artifact</data>
+  <data key="d2">A visual representation of processes that is complex enough to require manual preparation by a system analyst rather than an automated assistant.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022941</data>
+  <data key="d6"></data>
+</node>
+<node id="Assistant">
+  <data key="d0">Assistant</data>
+  <data key="d1">concept</data>
+  <data key="d2">An automated tool discussed as a potential aid to highlight where analysts should work, but not capable of drawing complex schemes itself.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022941</data>
+  <data key="d6"></data>
+</node>
+<node id="1C ERP">
+  <data key="d0">1C ERP</data>
+  <data key="d1">system</data>
+  <data key="d2">1C ERP is a target system mentioned where data from the new system is sent for catalog updates.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022941</data>
+  <data key="d6"></data>
+</node>
+<node id="Russian Classifier">
+  <data key="d0">Russian Classifier</data>
+  <data key="d1">data</data>
+  <data key="d2">The Russian Classifier is identified as a specific group of catalogs within the project context.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022941</data>
+  <data key="d6"></data>
+</node>
+<node id="Target Model">
+  <data key="d0">Target Model</data>
+  <data key="d1">content</data>
+  <data key="d2">The Target Model represents how the customer views the data and system state after implementation.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022942</data>
+  <data key="d6"></data>
+</node>
+<node id="Legacy System">
+  <data key="d0">Legacy System</data>
+  <data key="d1">system</data>
+  <data key="d2">The Legacy System is an existing system that will remain in operation even after new implementation, receiving some data transfers.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022942</data>
+  <data key="d6"></data>
+</node>
+<node id="Attribute Composition">
+  <data key="d0">Attribute Composition</data>
+  <data key="d1">content</data>
+  <data key="d2">Attribute composition is a specific section of the analytical note detailing data fields and structures, noted as project-specific.</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022942</data>
+  <data key="d6"></data>
+</node>
+<node id="AI Assistant">
+  <data key="d0">AI Assistant</data>
+  <data key="d1">method</data>
+  <data key="d2">The AI Assistant is a tool intended to handle monotonous routine tasks, generate protocols, and suggest process descriptions or schemas.&lt;SEP&gt;The AI Assistant is a tool that processes meeting recordings to generate draft protocols, providing timestamps and confidence levels for uncertain sections.</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96&lt;SEP&gt;chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022942</data>
+  <data key="d6"></data>
+</node>
+<node id="Project Team Leader">
+  <data key="d0">Project Team Leader</data>
+  <data key="d1">person</data>
+  <data key="d2">The Project Team Leader oversees the protocol's compliance with client formatting requirements and general structure, focusing on client communication rather than technical architecture.</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022942</data>
+  <data key="d6"></data>
+</node>
+<node id="Meeting Recording">
+  <data key="d0">Meeting Recording</data>
+  <data key="d1">content</data>
+  <data key="d2">A recording of a meeting that serves as the primary source material for generating draft protocols due to its reliability compared to transcriptions.</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022942</data>
+  <data key="d6"></data>
+</node>
+<node id="Draft Protocol">
+  <data key="d0">Draft Protocol</data>
+  <data key="d1">content</data>
+  <data key="d2">An initial output generated by the AI Assistant containing potential inaccuracies, timestamps for review areas, and confidence indicators.</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022943</data>
+  <data key="d6"></data>
+</node>
+<node id="Finalized Protocol">
+  <data key="d0">Finalized Protocol</data>
+  <data key="d1">content</data>
+  <data key="d2">The complete, reviewed, and agreed-upon document resulting from the collaborative work of the project team members.</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022943</data>
+  <data key="d6"></data>
+</node>
+<node id="1C Project Management System">
+  <data key="d0">1C Project Management System</data>
+  <data key="d1">organization</data>
+  <data key="d2">An internal project management system used to store final versions of analytical notes, technical specifications, and protocols.</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022943</data>
+  <data key="d6"></data>
+</node>
+<node id="Bitrix">
+  <data key="d0">Bitrix</data>
+  <data key="d1">content</data>
+  <data key="d2">A communication platform previously used for Skype and currently utilized for private messages and chat interactions within the project team.</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022943</data>
+  <data key="d6"></data>
+</node>
+<node id="Telegram">
+  <data key="d0">Telegram</data>
+  <data key="d1">organization</data>
+  <data key="d2">A messaging application used by the teams for direct communication, group chats, and coordination between client and contractor sides.</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022943</data>
+  <data key="d6"></data>
+</node>
+<node id="Skype">
+  <data key="d0">Skype</data>
+  <data key="d1">method</data>
+  <data key="d2">A communication platform that was used by the team until recently but has since been disconnected.</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022944</data>
+  <data key="d6"></data>
+</node>
+<node id="Speaker 5">
+  <data key="d0">Speaker 5</data>
+  <data key="d1">person</data>
+  <data key="d2">Speaker 5 is a participant who briefly checks audio connectivity during the meeting.&lt;SEP&gt;Speaker 5 provides brief acknowledgments during the discussion about mandatory protocols.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022944</data>
+  <data key="d6"></data>
+</node>
+<node id="Senior Analyst">
+  <data key="d0">Senior Analyst</data>
+  <data key="d1">person</data>
+  <data key="d2">The Senior Analyst is a potential end-user who needs to quickly perceive contradictions and nuances in the document output.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022944</data>
+  <data key="d6"></data>
+</node>
+<node id="Client">
+  <data key="d0">Client</data>
+  <data key="d1">person</data>
+  <data key="d2">The Client participates in the external group and provides documentation such as project charters, regulations, and product specifications.&lt;SEP&gt;The Client is a stakeholder that analysts can contact via chat if they encounter open questions or contradictions in the documents.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd&lt;SEP&gt;chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022944</data>
+  <data key="d6"></data>
+</node>
+<node id="Document System">
+  <data key="d0">Document System</data>
+  <data key="d1">concept</data>
+  <data key="d2">A proposed system for creating, analyzing, and storing meeting protocols with features to detect contradictions and support user interaction.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022944</data>
+  <data key="d6"></data>
+</node>
+<node id="Chatbot Interface">
+  <data key="d0">Chatbot Interface</data>
+  <data key="d1">method</data>
+  <data key="d2">An interface design concept where users interact via a chat window (like ChatGPT) while viewing documents on the side or below.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022944</data>
+  <data key="d6"></data>
+</node>
+<node id="Single Canvas Interface">
+  <data key="d0">Single Canvas Interface</data>
+  <data key="d1">method</data>
+  <data key="d2">An alternative interface design featuring one unified document area for editing and a separate chat area for instructions.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022945</data>
+  <data key="d6"></data>
+</node>
+<node id="Contradictions">
+  <data key="d0">Contradictions</data>
+  <data key="d1">concept</data>
+  <data key="d2">Conflicting information within documents that the system must detect, highlight, or report as open questions.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd&lt;SEP&gt;chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022945</data>
+  <data key="d6"></data>
+</node>
+<node id="Open Questions">
+  <data key="d0">Open Questions</data>
+  <data key="d1">concept</data>
+  <data key="d2">Unresolved issues identified in documents that require clarification from the client or further discussion.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022945</data>
+  <data key="d6"></data>
+</node>
+<node id="UX (User Experience)">
+  <data key="d0">UX (User Experience)</data>
+  <data key="d1">concept</data>
+  <data key="d2">A design principle focused on making document outputs readable and meaningful for users like analysts.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022945</data>
+  <data key="d6"></data>
+</node>
+<node id="DeepS">
+  <data key="d0">DeepS</data>
+  <data key="d1">artifact</data>
+  <data key="d2">An example of a chatbot interface mentioned by Speaker 1 as a potential model for the system's design.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022945</data>
+  <data key="d6"></data>
+</node>
+<node id="LM Notebook">
+  <data key="d0">LM Notebook</data>
+  <data key="d1">artifact</data>
+  <data key="d2">An existing application referenced by Speaker 1 that features a layout with documentation on the left, a chat in the center, and output options on the right.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022946</data>
+  <data key="d6"></data>
+</node>
+<node id="Canva">
+  <data key="d0">Canva</data>
+  <data key="d1">organization</data>
+  <data key="d2">A platform mentioned as an example of a tool where users can edit documents directly within a single canvas view.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022946</data>
+  <data key="d6"></data>
+</node>
+<node id="Date Field">
+  <data key="d0">Date Field</data>
+  <data key="d1">concept</data>
+  <data key="d2">A mandatory field within the meeting protocol structure used to record the date of the meeting.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022946</data>
+  <data key="d6"></data>
+</node>
+<node id="Agenda">
+  <data key="d0">Agenda</data>
+  <data key="d1">concept</data>
+  <data key="d2">A mandatory component of the meeting protocol that outlines the topics for discussion.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022946</data>
+  <data key="d6"></data>
+</node>
+<node id="Participants">
+  <data key="d0">Participants</data>
+  <data key="d1">concept</data>
+  <data key="d2">Mandatory information in the protocol listing the individuals who attended the meeting.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022946</data>
+  <data key="d6"></data>
+</node>
+<node id="Definitions Section">
+  <data key="d0">Definitions Section</data>
+  <data key="d1">content</data>
+  <data key="d2">An optional section containing terms, definitions, abbreviations, and notations that may be included if necessary.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022946</data>
+  <data key="d6"></data>
+</node>
+<node id="Meeting Content Section">
+  <data key="d0">Meeting Content Section</data>
+  <data key="d1">content</data>
+  <data key="d2">A mandatory section of the protocol detailing the substance of the meeting discussions.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022947</data>
+  <data key="d6"></data>
+</node>
+<node id="Questions And Solutions Section">
+  <data key="d0">Questions And Solutions Section</data>
+  <data key="d1">content</data>
+  <data key="d2">A section often combining questions and solutions, though it can be split or omitted depending on clarity.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022947</data>
+  <data key="d6"></data>
+</node>
+<node id="Stamp Of Agreement">
+  <data key="d0">Stamp Of Agreement</data>
+  <data key="d1">artifact</data>
+  <data key="d2">A standard element in protocols indicating approval, typically marked with a stamp.</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022947</data>
+  <data key="d6"></data>
+</node>
+<node id="Speaker 3">
+  <data key="d0">Speaker 3</data>
+  <data key="d1">person</data>
+  <data key="d2">Speaker 3 asks questions regarding the public placement of links for testing purposes.</data>
+  <data key="d3">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022947</data>
+  <data key="d6"></data>
+</node>
+<node id="Speaker 7">
+  <data key="d0">Speaker 7</data>
+  <data key="d1">person</data>
+  <data key="d2">Speaker 7 asks if a video recording of the meeting exists for use in development and verification processes.</data>
+  <data key="d3">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022947</data>
+  <data key="d6"></data>
+</node>
+<node id="Project Protocol">
+  <data key="d0">Project Protocol</data>
+  <data key="d1">concept</data>
+  <data key="d2">The Project Protocol is a document generated from meeting discussions, which must be agreed upon by the user before generating an analytical note.</data>
+  <data key="d3">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022947</data>
+  <data key="d6"></data>
+</node>
+<node id="Transcription">
+  <data key="d0">Transcription</data>
+  <data key="d1">method</data>
+  <data key="d2">Transcription is the process of converting video recordings into text, considered an essential requirement for generating protocols in this system.</data>
+  <data key="d3">chunk-6018f1dfef436c4620437f8b9e42abc3&lt;SEP&gt;chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022948</data>
+  <data key="d6"></data>
+</node>
+<node id="Telegram Group">
+  <data key="d0">Telegram Group</data>
+  <data key="d1">organization</data>
+  <data key="d2">A Telegram group is used by the executor's team (e.g., Dream Team or Optima) for internal communication separate from the main project group.&lt;SEP&gt;The Telegram Group is a digital communication channel created by Speaker 4 where meeting videos and subsequent questions will be shared.</data>
+  <data key="d3">chunk-6018f1dfef436c4620437f8b9e42abc3&lt;SEP&gt;chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022948</data>
+  <data key="d6"></data>
+</node>
+<node id="Internal Project">
+  <data key="d0">Internal Project</data>
+  <data key="d1">concept</data>
+  <data key="d2">An Internal Project refers to confidential company projects from which usable video recordings for testing can be sourced, unlike external client projects.</data>
+  <data key="d3">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022948</data>
+  <data key="d6"></data>
+</node>
+<node id="Report On Inspection">
+  <data key="d0">Report On Inspection</data>
+  <data key="d1">concept</data>
+  <data key="d2">A Report on Inspection is a document type similar to an analytical note that requires protocols as mandatory fields for generation.</data>
+  <data key="d3">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022948</data>
+  <data key="d6"></data>
+</node>
+<node id="Old System">
+  <data key="d0">Old System</data>
+  <data key="d1">system</data>
+  <data key="d2">The Old System is a legacy system that continues to receive some data during the transition phase.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022948</data>
+  <data key="d6"></data>
+</node>
+<node id="New System (1C ERP)">
+  <data key="d0">New System (1C ERP)</data>
+  <data key="d1">system</data>
+  <data key="d2">The New System, specifically 1C ERP, is the target platform where updated reference book data is sent from the current operations.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022948</data>
+  <data key="d6"></data>
+</node>
+<node id="Survey Stage">
+  <data key="d0">Survey Stage</data>
+  <data key="d1">phase</data>
+  <data key="d2">The Survey Stage involves thoroughly investigating the customer's problems, needs, and situation (Ziz) and accounts for 30-40% of total project time.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022949</data>
+  <data key="d6"></data>
+</node>
+<node id="Modeling Stage">
+  <data key="d0">Modeling Stage</data>
+  <data key="d1">phase</data>
+  <data key="d2">The Modeling Stage encompasses preparation of technical specifications and system design, which follows the survey stage.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022949</data>
+  <data key="d6"></data>
+</node>
+<node id="Development Stage">
+  <data key="d0">Development Stage</data>
+  <data key="d1">phase</data>
+  <data key="d2">The Development Stage involves programmers creating system objects based on previous analysis; errors here can lead to significant financial risks if not properly surveyed.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022949</data>
+  <data key="d6"></data>
+</node>
+<node id="Technical Specification (TZ)">
+  <data key="d0">Technical Specification (TZ)</data>
+  <data key="d1">content</data>
+  <data key="d2">The Technical Specification is a detailed document (sometimes up to 120 pages) containing requirements and object definitions, formed after modeling and surveying.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022949</data>
+  <data key="d6"></data>
+</node>
+<node id="BPMN Schema">
+  <data key="d0">BPMN Schema</data>
+  <data key="d1">artifact</data>
+  <data key="d2">A BPMN schema is a visual representation of business processes that may be recommended by an AI assistant for analysts to create.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022949</data>
+  <data key="d6"></data>
+</node>
+<node id="Forum (Customer)">
+  <data key="d0">Forum (Customer)</data>
+  <data key="d1">organization</data>
+  <data key="d2">The Forum represents the customer whose specific terminology and conceptual framework must be strictly adhered to in project deliverables.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022950</data>
+  <data key="d6"></data>
+</node>
+<node id="1C Domain">
+  <data key="d0">1C Domain</data>
+  <data key="d1">concept</data>
+  <data key="d2">The 1C Domain refers to a specific industry sector with a large volume of unique concepts and terminology that AI systems must understand.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022950</data>
+  <data key="d6"></data>
+</node>
+<node id="Legal Dispute">
+  <data key="d0">Legal Dispute</data>
+  <data key="d1">event</data>
+  <data key="d2">A Legal Dispute is a potential negative outcome where the executor and customer argue in court over unclear requirements stemming from poor surveying.</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022950</data>
+  <data key="d6"></data>
+</node>
+<node id="Project Group">
+  <data key="d0">Project Group</data>
+  <data key="d1">organization</data>
+  <data key="d2">The Project Group is an internal team consisting only of the executor's representatives, used for specific project discussions.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022950</data>
+  <data key="d6"></data>
+</node>
+<node id="External Team">
+  <data key="d0">External Team</data>
+  <data key="d1">organization</data>
+  <data key="d2">The External Team includes both the client and the executors, serving as a broader group for project collaboration.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022950</data>
+  <data key="d6"></data>
+</node>
+<node id="Executor">
+  <data key="d0">Executor</data>
+  <data key="d1">person</data>
+  <data key="d2">The Executor is responsible for implementing the project and uses internal groups to manage their specific tasks.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022950</data>
+  <data key="d6"></data>
+</node>
+<node id="Transcripts">
+  <data key="d0">Transcripts</data>
+  <data key="d1">data</data>
+  <data key="d2">Transcripts are recordings of interviews with the client that are uploaded into a system for processing.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022951</data>
+  <data key="d6"></data>
+</node>
+<node id="Interviews">
+  <data key="d0">Interviews</data>
+  <data key="d1">event</data>
+  <data key="d2">Interviews with the client generate data (transcripts and context) used to create meeting protocols.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022951</data>
+  <data key="d6"></data>
+</node>
+<node id="Meeting Protocols">
+  <data key="d0">Meeting Protocols</data>
+  <data key="d1">content</data>
+  <data key="d2">Meeting Protocols are documents generated from interviews that summarize discussions, decisions, and questions.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022951</data>
+  <data key="d6"></data>
+</node>
+<node id="Regulations">
+  <data key="d0">Regulations</data>
+  <data key="d1">document</data>
+  <data key="d2">Regulations are reference documents consulted by analysts to find specific answers during meetings or documentation work.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022951</data>
+  <data key="d6"></data>
+</node>
+<node id="Bot Assistant">
+  <data key="d0">Bot Assistant</data>
+  <data key="d1">artifact</data>
+  <data key="d2">The Bot Assistant is an AI tool designed to learn from context, generate interview protocols, and identify potential contradictions in project decisions.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022951</data>
+  <data key="d6"></data>
+</node>
+<node id="Functional Template">
+  <data key="d0">Functional Template</data>
+  <data key="d1">method</data>
+  <data key="d2">A Functional Template defines the structure (sections) for output documents without fixed content, allowing for dynamic generation based on project requirements.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022952</data>
+  <data key="d6"></data>
+</node>
+<node id="PDF Document">
+  <data key="d0">PDF Document</data>
+  <data key="d1">content</data>
+  <data key="d2">The PDF document contains the general assignment and goals for the project, including the objective to eliminate human errors in reporting.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022952</data>
+  <data key="d6"></data>
+</node>
+<node id="Forum Project">
+  <data key="d0">Forum Project</data>
+  <data key="d1">event</data>
+  <data key="d2">The Forum Project is a specific instance where the client requirements dictate that some report sections may be optional or conditional.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022952</data>
+  <data key="d6"></data>
+</node>
+<node id="1C System">
+  <data key="d0">1C System</data>
+  <data key="d1">artifact</data>
+  <data key="d2">The 1C system is a source for data exports and product specifications used to provide context to the bot assistant.</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022952</data>
+  <data key="d6"></data>
+</node>
+<node id="Transcribed Meeting">
+  <data key="d0">Transcribed Meeting</data>
+  <data key="d3">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97</data>
+  <data key="d2">The content of the meeting transcript was generated using the Speech To Text Ru service.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022952</data>
+  <data key="d6"></data>
+</node>
+<node id="Client Users">
+  <data key="d0">Client Users</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d2">The availability of end users (clients) directly influences the scheduling gaps and delays between meetings in the project plan.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022955</data>
+  <data key="d6"></data>
+</node>
+<node id="Meeting Schedule">
+  <data key="d0">Meeting Schedule</data>
+  <data key="d3">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d2">The availability of end users (clients) directly influences the scheduling gaps and delays between meetings in the project plan.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022956</data>
+  <data key="d6"></data>
+</node>
+<node id="Logging Mechanism">
+  <data key="d0">Logging Mechanism</data>
+  <data key="d3">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d2">Спикер 3 questions whether logging mechanisms need to be configured to ensure proper product usage tracking.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022957</data>
+  <data key="d6"></data>
+</node>
+<node id="Missed Details">
+  <data key="d0">Missed Details</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d2">The system is designed to identify and quantify missed details in meeting discussions as part of its accuracy validation process.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022960</data>
+  <data key="d6"></data>
+</node>
+<node id="Encrypted Data">
+  <data key="d0">Encrypted Data</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d2">Speaker 1 specifies that external data transfer is permitted only if the data is encrypted to satisfy security constraints.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022960</data>
+  <data key="d6"></data>
+</node>
+<node id="Incorrect Terms">
+  <data key="d0">Incorrect Terms</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d2">The system checks for misinterpreted concepts or incorrectly selected terms within the document context.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022960</data>
+  <data key="d6"></data>
+</node>
+<node id="Sanitized Documentation">
+  <data key="d0">Sanitized Documentation</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d2">Speaker 1 provided anonymized documentation examples to ensure no personal or organizational data leaks during the task demonstration.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022961</data>
+  <data key="d6"></data>
+</node>
+<node id="Internal APIs">
+  <data key="d0">Internal APIs</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d2">The Chatbot is designed to replace current API connections with internal company APIs upon final system implementation.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022961</data>
+  <data key="d6"></data>
+</node>
+<node id="Red Pages">
+  <data key="d0">Red Pages</data>
+  <data key="d3">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d2">The system evaluates performance by counting "red pages" (pages with significant errors) as a metric of incorrect interpretations.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022962</data>
+  <data key="d6"></data>
+</node>
+<node id="Business Process">
+  <data key="d0">Business Process</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d2">Functional customers provide critical details about business processes (e.g., coal burning efficiency) that IT staff may not know.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022963</data>
+  <data key="d6"></data>
+</node>
+<node id="Containerization">
+  <data key="d0">Containerization</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d2">Horizontal scalability is discussed as a potential technical solution involving containerization support.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022964</data>
+  <data key="d6"></data>
+</node>
+<node id="Accuracy Calculation">
+  <data key="d0">Accuracy Calculation</data>
+  <data key="d3">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d2">The accuracy of the document review is calculated by comparing incorrect pages to total pages (e.g., 1 red page out of 4 equals 75% accuracy).</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022964</data>
+  <data key="d6"></data>
+</node>
+<node id="Internal Projects">
+  <data key="d0">Internal Projects</data>
+  <data key="d3">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d2">The company Forest conducts internal projects focused on automation where analytical notes are generated as part of the process.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022967</data>
+  <data key="d6"></data>
+</node>
+<node id="New System">
+  <data key="d0">New System</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d2">Data flows from the new system into 1C ERP specifically for updating catalog information.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022969</data>
+  <data key="d6"></data>
+</node>
+<node id="Project Context">
+  <data key="d0">Project Context</data>
+  <data key="d3">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d2">The Russian Classifier constitutes a distinct category of catalogs that were highlighted in the project requirements.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022969</data>
+  <data key="d6"></data>
+</node>
+<node id="Client Requirements">
+  <data key="d0">Client Requirements</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d2">The Project Team Leader ensures the protocol aligns with client requirements and maintains the correct document structure based on client communication.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022971</data>
+  <data key="d6"></data>
+</node>
+<node id="Architecture Details">
+  <data key="d0">Architecture Details</data>
+  <data key="d3">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d2">The Project Team Leader is noted to lack deep understanding of technical architecture details, focusing instead on client requirements and general structure.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022972</data>
+  <data key="d6"></data>
+</node>
+<node id="Model">
+  <data key="d0">Model</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d2">Refined analytical notes can be fed back into the model to train it on new data and improve performance.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022973</data>
+  <data key="d6"></data>
+</node>
+<node id="Model Training">
+  <data key="d0">Model Training</data>
+  <data key="d3">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d2">The analytical note serves as training data that can be fed back into the model to improve its future performance and accuracy.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022975</data>
+  <data key="d6"></data>
+</node>
+<node id="Meeting Session">
+  <data key="d0">Meeting Session</data>
+  <data key="d3">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d2">Roman identifies that the current meeting session functions as a practical test where participants act as analysts interacting with a client representative.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022976</data>
+  <data key="d6"></data>
+</node>
+<node id="Technical Specification">
+  <data key="d0">Technical Specification</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d2">The Modeling Stage utilizes survey data to prepare the Technical Specification (TZ) for developers.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022977</data>
+  <data key="d6"></data>
+</node>
+<node id="Research Phase">
+  <data key="d0">Research Phase</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d2">The Survey Stage is also referred to as the Research Phase; they are synonyms used interchangeably by project members to describe the investigation of customer needs and problems (Ziz).</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022978</data>
+  <data key="d6"></data>
+</node>
+<node id="Preparation Of TZ">
+  <data key="d0">Preparation Of TZ</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d2">The Modeling Stage is divided into two distinct sub-sectors: the Preparation of Technical Specifications (TZ) and the Design phase.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022978</data>
+  <data key="d6"></data>
+</node>
+<node id="Design Phase">
+  <data key="d0">Design Phase</data>
+  <data key="d3">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d2">The Modeling Stage includes a specific section called the Design Phase, which focuses on creating the future system's architecture for developers.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022979</data>
+  <data key="d6"></data>
+</node>
+<node id="Analyst">
+  <data key="d0">Analyst</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d2">Analysts consult Regulations to find answers and resolve questions during meetings or documentation work.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022981</data>
+  <data key="d6"></data>
+</node>
+<node id="Product Specifications">
+  <data key="d0">Product Specifications</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d2">The Client provides product specifications (e.g., from 1C) as additional context for the project.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022981</data>
+  <data key="d6"></data>
+</node>
+<node id="Output Document">
+  <data key="d0">Output Document</data>
+  <data key="d3">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d2">Speaker 4 defines that the output document requires a fixed structural template (functional sections) but flexible internal content.</data>
+  <data key="d1">UNKNOWN</data>
+  <data key="d4">MeetTest.docx</data>
+  <data key="d5">1777022982</data>
+  <data key="d6"></data>
+</node>
+<edge source="Speech To Text Ru" target="Transcribed Meeting">
+  <data key="d7">1.0</data>
+  <data key="d8">The content of the meeting transcript was generated using the Speech To Text Ru service.</data>
+  <data key="d9">tool usage,transcription service</data>
+  <data key="d10">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022953</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Meeting Transcript">
+  <data key="d7">2.0</data>
+  <data key="d8">Speaker 1 offers a transcript from an internal project as a practical example of good protocol generation for the team to study.&lt;SEP&gt;Speaker 1 contributed to the meeting transcript by expressing satisfaction with the outcome and bidding farewell.</data>
+  <data key="d9">participant contribution,positive feedback,reference material,testing example</data>
+  <data key="d10">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022952</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Chatbot">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 defines the intended behavior and scope of the Chatbot as a non-editing navigator for documents.</data>
+  <data key="d9">design specification,functional requirement</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022958</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="NDA Agreement">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 states that the NDA agreement prevents external data transfer without encryption.</data>
+  <data key="d9">compliance constraint,data security</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022959</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Information Technology Department">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 notes that the Information Technology Department can handle API integration into internal systems later in the process.</data>
+  <data key="d9">future development,integration capability</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022960</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Accuracy Requirement">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 defines the Accuracy Requirement as a measure of how well the model reflects meeting details and avoids misinterpretations.</data>
+  <data key="d9">performance metric,validation criteria</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022960</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Encrypted Data">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 specifies that external data transfer is permitted only if the data is encrypted to satisfy security constraints.</data>
+  <data key="d9">data transfer constraint,security protocol</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022961</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Sanitized Documentation">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 provided anonymized documentation examples to ensure no personal or organizational data leaks during the task demonstration.</data>
+  <data key="d9">data preparation,privacy protection</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022962</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Functional Customer">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 acts as both a functional customer and an IT specialist within the project context.</data>
+  <data key="d9">dual responsibility,role definition</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022962</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Center For Automation And Support">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 represents the Center For Automation And Support and discusses its operational capacity.</data>
+  <data key="d9">affiliation,leadership</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022963</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Analytical Note">
+  <data key="d7">2.0</data>
+  <data key="d8">Speaker 1 defines the Analytical Note as a document typically under 50 pages that structures information from protocols.&lt;SEP&gt;Speaker 1 emphasizes that a protocol must be agreed upon with the client before an Analytical Note can be generated by the system.</data>
+  <data key="d9">document definition,generation requirement,structure,user agreement</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8&lt;SEP&gt;chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022967</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Survey Report">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 contrasts the Survey Report with the Analytical Note, noting it is significantly larger (50-200+ pages).</data>
+  <data key="d9">document comparison,volume difference</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022967</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Roman">
+  <data key="d7">1.0</data>
+  <data key="d8">Roman contributed a key detail that helped clarify the distinction between document types in the discussion.</data>
+  <data key="d9">discussion contribution</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022968</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Chatbot Interface">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 proposes a chatbot interface similar to ChatGPT or DeepS for interacting with documents and querying past discussions.</data>
+  <data key="d9">design proposal,functionality</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022973</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="LM Notebook">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 compares the proposed system's potential layout (left docs, center chat, right outputs) to the design used in LM Notebook.</data>
+  <data key="d9">design inspiration,layout comparison</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022974</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Internal Project">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 indicates that video recordings can be obtained from internal projects because external client data cannot be shared.</data>
+  <data key="d9">confidentiality,resource sourcing</data>
+  <data key="d10">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022976</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Transcription">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 asserts that working with recordings to generate protocols is an essential task, whereas text-only input is not sufficient for the core function.</data>
+  <data key="d9">data dependency,system requirement</data>
+  <data key="d10">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022976</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 1" target="Bot Assistant">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 1 argues that while humans make errors in reports, the bot must be designed to detect contradictions arising from changing decisions within a meeting.</data>
+  <data key="d9">human error analysis,system limitation</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022982</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 2" target="Meeting Transcript">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 2 participated in the meeting transcript by exchanging farewells with Speaker 1.</data>
+  <data key="d9">closing remarks,participant interaction</data>
+  <data key="d10">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022953</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 2" target="Federal Laws (FZ)">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 2 discusses how Federal Laws might restrict the choice of language models to specific domestic options like GigaChat.</data>
+  <data key="d9">model selection criteria,regulatory inquiry</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022959</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 2" target="Single Canvas Interface">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 2 advocates for a single canvas approach that allows direct document editing, similar to Canva's functionality.</data>
+  <data key="d9">design preference,editing capability</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022973</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 2" target="Project Protocol">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 2 clarifies that Project Protocols are mandatory inputs required to generate an Analytical Note or Report on Inspection.</data>
+  <data key="d9">mandatory field definition</data>
+  <data key="d10">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022976</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 2" target="Report On Inspection">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 2 confirms that protocols are mandatory requirements for generating both Analytical Notes and Reports on Inspection.</data>
+  <data key="d9">mandatory field definition</data>
+  <data key="d10">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022977</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 2" target="Functional Template">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 2 suggests using a functional template with floating sections to accommodate varying project requirements like those in the Forum Project.</data>
+  <data key="d9">conditional logic,template design</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022982</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 4" target="Meeting Transcript">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 4 contributed to the transcript by noting a punctuation update and transitioning the group back to work.</data>
+  <data key="d9">administrative action,workflow transition</data>
+  <data key="d10">chunk-e5298ef65e8ebb5fb4ead41ff7e57d97</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022953</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 4" target="Tigran">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 4 inquires whether Tigran plans to connect to the meeting.</data>
+  <data key="d9">inquiry,participation status</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022955</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 4" target="GigaChat">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 4 questions if legislative constraints are necessary for an internal tool, contrasting with the need for models like GigaChat.</data>
+  <data key="d9">internal tool context,legislative constraint</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022959</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 4" target="Junior Analyst">
+  <data key="d7">1.0</data>
+  <data key="d8">The system should be configured to allow Junior Analysts to quickly perceive contradictions and nuances in the document output.</data>
+  <data key="d9">target audience,user experience</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022972</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 4" target="Senior Analyst">
+  <data key="d7">1.0</data>
+  <data key="d8">The system must enable Senior Analysts to rapidly understand document content through effective configuration.</data>
+  <data key="d9">target audience,user experience</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022973</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 4" target="Optima Team">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 4 organizes the Optima Team for transcription practice via a shared group and proposes a follow-up meeting to resolve questions by Saturday.</data>
+  <data key="d9">collaborative learning,follow-up planning</data>
+  <data key="d10">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022976</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 4" target="Output Document">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 4 defines that the output document requires a fixed structural template (functional sections) but flexible internal content.</data>
+  <data key="d9">format specification,structural definition</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022982</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Roman" target="Nikita">
+  <data key="d7">2.0</data>
+  <data key="d8">Nikita and Roman engage in a dialogue to clarify definitions, with Roman subsequently contributing key information that prompts a response from the main speaker.&lt;SEP&gt;Nikita and Roman are colleagues present in the discussion who are asked to wait for their turn to speak.</data>
+  <data key="d9">clarification exchange,collaboration,collaborative discussion,meeting participants</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73&lt;SEP&gt;chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022963</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Roman" target="Survey Report">
+  <data key="d7">1.0</data>
+  <data key="d8">Roman provides a crucial clarification regarding the definition of the Survey Report in relation to the Analytical Note.</data>
+  <data key="d9">clarification,contribution</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022966</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Roman" target="Meeting Session">
+  <data key="d7">1.0</data>
+  <data key="d8">Roman identifies that the current meeting session functions as a practical test where participants act as analysts interacting with a client representative.</data>
+  <data key="d9">role definition,testing context</data>
+  <data key="d10">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022977</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Nikita Kasyanov" target="Forus Group Companies">
+  <data key="d7">1.0</data>
+  <data key="d8">Nikita Kasyanov acts as the representative for the Forus Group Companies during the meeting.</data>
+  <data key="d9">employment,representation</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022953</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Nikita Kasyanov" target="Dream Team">
+  <data key="d7">1.0</data>
+  <data key="d8">Nikita Kasyanov discusses the task with the Dream Team captain regarding their assigned work for Forus Group Companies.</data>
+  <data key="d9">client relation,project assignment</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022954</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Nikita Kasyanov" target="Meeting Protocol Preparation Process">
+  <data key="d7">1.0</data>
+  <data key="d8">Nikita Kasyanov is the client stakeholder for whom the protocol preparation challenges and process are being discussed as a problem statement to be solved.</data>
+  <data key="d9">client concern,project context</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022955</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Nikita Gritsanyuk" target="Dream Team">
+  <data key="d7">1.0</data>
+  <data key="d8">Nikita Gritsanyuk serves as the captain of the Dream Team.</data>
+  <data key="d9">leadership,team membership</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022953</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Dream Team" target="Telegram Group">
+  <data key="d7">1.0</data>
+  <data key="d8">The Dream Team (or Optima) utilizes a dedicated Telegram group for their specific team activities.</data>
+  <data key="d9">internal channel,team identification</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022980</data>
+  <data key="d13"></data>
+</edge>
+<edge source="KFK Team" target="Ekaterina">
+  <data key="d7">1.0</data>
+  <data key="d8">Ekaterina attends the meeting on behalf of the KFK Team.</data>
+  <data key="d9">representation,team membership</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022954</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Ekaterina" target="Video Recording">
+  <data key="d7">1.0</data>
+  <data key="d8">Ekaterina inquires about the existence of a video recording to assist with transcription verification.</data>
+  <data key="d9">development verification,inquiry</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022963</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Optima Team" target="Yakov Vaygus">
+  <data key="d7">1.0</data>
+  <data key="d8">Yakov Vaygus serves as the captain of the Optima Team.</data>
+  <data key="d9">leadership,team membership</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022954</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Junior System Analyst" target="Meeting Protocol Preparation Process">
+  <data key="d7">1.0</data>
+  <data key="d8">The Junior System Analyst is responsible for executing the protocol preparation process by listening to recordings and drafting documents.</data>
+  <data key="d9">execution,responsibility</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022954</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Junior System Analyst" target="Senior System Analyst">
+  <data key="d7">3.0</data>
+  <data key="d8">The Junior System Analyst produces initial drafts which are subsequently reviewed by the Senior System Analyst to catch missed details.&lt;SEP&gt;The Senior System Analyst reviews the work of the Junior System Analyst to catch missed details and correct inaccuracies in the protocol draft.&lt;SEP&gt;The Junior System Analyst passes the refined draft to the Senior System Analyst for terminology verification and comprehensive proofreading.</data>
+  <data key="d9">hierarchy,quality assurance,quality control,review relationship,sequential workflow,supervision</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99&lt;SEP&gt;chunk-b81f88fd1f77db0dbb394dd66a377029&lt;SEP&gt;chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022955</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Junior System Analyst" target="Analytical Note">
+  <data key="d7">1.0</data>
+  <data key="d8">The Junior System Analyst contributes information from meeting protocols that is consolidated into the Analytical Note.</data>
+  <data key="d9">documentation flow,input source</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022965</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Junior System Analyst" target="AI Assistant">
+  <data key="d7">1.0</data>
+  <data key="d8">The AI Assistant generates a draft protocol that serves as the starting point for the Junior System Analyst to refine and verify content.</data>
+  <data key="d9">review process,workflow handoff</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022970</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Junior System Analyst" target="Draft Protocol">
+  <data key="d7">1.0</data>
+  <data key="d8">The Junior System Analyst addresses specific inaccuracies and reviews uncertain sections marked by timestamps within the draft protocol.</data>
+  <data key="d9">error correction,timestamp review</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022971</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Junior System Analyst" target="Bitrix">
+  <data key="d7">1.0</data>
+  <data key="d8">The Junior System Analyst utilizes Bitrix for private messaging or chat-based interactions to exchange documents and questions with team members.</data>
+  <data key="d9">collaboration tool,communication channel</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022971</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Senior System Analyst" target="Meeting Protocol Preparation Process">
+  <data key="d7">1.0</data>
+  <data key="d8">The Senior System Analyst reviews the work of the junior analyst to ensure no details were missed or incorrectly recorded in the protocol.</data>
+  <data key="d9">quality assurance,review</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022954</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Senior System Analyst" target="Analytical Note">
+  <data key="d7">1.0</data>
+  <data key="d8">The Senior System Analyst oversees the creation of the Analytical Note, ensuring it accurately reflects the survey findings derived from protocols.</data>
+  <data key="d9">finalization,oversight</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022966</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Senior System Analyst" target="Project Team Leader">
+  <data key="d7">1.0</data>
+  <data key="d8">The Senior System Analyst ensures technical accuracy while the Project Team Leader monitors adherence to client-specific formatting and structural requirements.</data>
+  <data key="d9">client compliance,hierarchical oversight</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022970</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocol Preparation Process" target="Video Conference Recordings">
+  <data key="d7">1.0</data>
+  <data key="d8">Video conference recordings serve as the essential input for the protocol preparation process conducted by analysts.</data>
+  <data key="d9">input data,source material</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022954</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Форус" target="Спикер 1">
+  <data key="d7">1.0</data>
+  <data key="d8">Спикер 1 indicates that the solution will be deployed within the internal network of Форус.</data>
+  <data key="d9">deployment location,organizational affiliation</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022956</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Никита" target="Conceptual Dictionary">
+  <data key="d7">1.0</data>
+  <data key="d8">Никита presented conceptual dictionaries containing specific terms to the group.</data>
+  <data key="d9">presentation,terminology display</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022956</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Спикер 1" target="Chat GPT">
+  <data key="d7">1.0</data>
+  <data key="d8">Employees at Форус utilize Chat GPT for non-project tasks where personal data is not a concern.</data>
+  <data key="d9">personal use,tool utilization</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022957</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Спикер 1" target="Telemost">
+  <data key="d7">1.0</data>
+  <data key="d8">The organization primarily operates within Telemost for meetings, which prevents the use of external cloud-based transcription tools due to data privacy concerns.</data>
+  <data key="d9">security constraint,tool usage</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022958</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Спикер 3" target="Logging Mechanism">
+  <data key="d7">1.0</data>
+  <data key="d8">Спикер 3 questions whether logging mechanisms need to be configured to ensure proper product usage tracking.</data>
+  <data key="d9">implementation requirement,system monitoring</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022957</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Спикер 3" target="IVE">
+  <data key="d7">1.0</data>
+  <data key="d8">Спикер 3 is a student at IVE and seeks guidance on technical implementation details like logging.</data>
+  <data key="d9">affiliation,education</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022958</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Спикер 7" target="Video Meeting Recording">
+  <data key="d7">1.0</data>
+  <data key="d8">Спикер 7 inquires whether the team must manually transcribe video meeting recordings or if it will be provided automatically.</data>
+  <data key="d9">transcription inquiry,workflow dependency</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022957</data>
+  <data key="d13"></data>
+</edge>
+<edge source="LM-ка" target="1С Sphere">
+  <data key="d7">1.0</data>
+  <data key="d8">The LM-ка must strictly adhere to the specific concepts and terminology defined within the 1С sphere as per the client's requirements.</data>
+  <data key="d9">constraint adherence,domain specificity</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022956</data>
+  <data key="d13"></data>
+</edge>
+<edge source="IT Support Assistant" target="Laboratory">
+  <data key="d7">1.0</data>
+  <data key="d8">The Laboratory developed and implemented the internal IT support assistant for employee use.</data>
+  <data key="d9">development,implementation</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022958</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Video Meeting Recording" target="Junior Analyst">
+  <data key="d7">1.0</data>
+  <data key="d8">The Junior Analyst relies on the meeting recording to recall discussion details and prepare the protocol.</data>
+  <data key="d9">information retrieval,task responsibility</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022957</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Video Meeting Recording" target="ZOOM">
+  <data key="d7">1.0</data>
+  <data key="d8">Platforms like ZOOM offer agents that can automatically generate transcripts from video recordings, contrasting with the organization's current limitations.</data>
+  <data key="d9">automated transcription,platform capability</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022958</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Protocol" target="AI Agent">
+  <data key="d7">1.0</data>
+  <data key="d8">The Protocol serves as the input for the AI agent, which transforms it into an analytical note after verification.</data>
+  <data key="d9">automated processing,data input</data>
+  <data key="d10">chunk-a9c11e3be7004e005cff116becaaf334</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022957</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Protocol" target="Functional Requirements Registry">
+  <data key="d7">1.0</data>
+  <data key="d8">The Functional Requirements Registry must include links to specific protocols where requirements were discussed for verification.</data>
+  <data key="d9">source linkage,traceability</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022968</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Junior Analyst" target="Client">
+  <data key="d7">1.0</data>
+  <data key="d8">Analysts can contact the Client via chat if they identify open questions or contradictions within the documents.</data>
+  <data key="d9">escalation path,resolution</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022973</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Junior Analyst" target="Definitions Section">
+  <data key="d7">1.0</data>
+  <data key="d8">Junior analysts have the discretion to omit the definitions section if they determine it is not necessary for a specific protocol.</data>
+  <data key="d9">conditional logic,content creation</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022975</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Chatbot" target="Project Documentation">
+  <data key="d7">1.0</data>
+  <data key="d8">The Chatbot utilizes Project Documentation to accumulate context and answer queries about past discussions.</data>
+  <data key="d9">context building,data source</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022959</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Chatbot" target="Context Accumulation">
+  <data key="d7">1.0</data>
+  <data key="d8">The Chatbot's functionality relies on Context Accumulation, which can be scoped to a single project or extended to related projects.</data>
+  <data key="d9">operational logic,scope definition</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022959</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Chatbot" target="APIs">
+  <data key="d7">1.0</data>
+  <data key="d8">The Chatbot currently utilizes APIs to connect with various models, allowing for future replacement with internal APIs.</data>
+  <data key="d9">flexibility,integration method</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022960</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Chatbot" target="Missed Details">
+  <data key="d7">1.0</data>
+  <data key="d8">The system is designed to identify and quantify missed details in meeting discussions as part of its accuracy validation process.</data>
+  <data key="d9">error checking,validation criteria</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022960</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Chatbot" target="Incorrect Terms">
+  <data key="d7">1.0</data>
+  <data key="d8">The system checks for misinterpreted concepts or incorrectly selected terms within the document context.</data>
+  <data key="d9">terminology check,validation criteria</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022961</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Chatbot" target="Internal APIs">
+  <data key="d7">1.0</data>
+  <data key="d8">The Chatbot is designed to replace current API connections with internal company APIs upon final system implementation.</data>
+  <data key="d9">future configuration,system integration</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022962</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Chatbot" target="Red Pages">
+  <data key="d7">1.0</data>
+  <data key="d8">The system evaluates performance by counting "red pages" (pages with significant errors) as a metric of incorrect interpretations.</data>
+  <data key="d9">error metric,quality assessment</data>
+  <data key="d10">chunk-00f42c5674c08d1c4bf50e1bd4cb1b22</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022962</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Nikita" target="Analytical Note">
+  <data key="d7">1.0</data>
+  <data key="d8">Nikita questions whether the Analytical Note and Survey Report are the same entity or different deliverables.</data>
+  <data key="d9">clarification inquiry,document distinction</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022966</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Functional Customer" target="Business Process">
+  <data key="d7">1.0</data>
+  <data key="d8">Functional customers provide critical details about business processes (e.g., coal burning efficiency) that IT staff may not know.</data>
+  <data key="d9">domain knowledge,requirements gathering</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022963</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Functional Customer" target="System Analyst">
+  <data key="d7">1.0</data>
+  <data key="d8">Junior system analysts are explicitly identified as potential functional customers within the organization.</data>
+  <data key="d9">dual capacity,role overlap</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022964</data>
+  <data key="d13"></data>
+</edge>
+<edge source="IT Department" target="1C RP">
+  <data key="d7">2.0</data>
+  <data key="d8">The IT Department may lack the resources to implement large products like 1C RP independently, necessitating external help or functional customers.&lt;SEP&gt;The IT department often lacks the internal resources to implement large products like 1C RP independently.</data>
+  <data key="d9">implementation challenge,implementation gap,resource gap,resource limitation</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022963</data>
+  <data key="d13"></data>
+</edge>
+<edge source="1C RP" target="Accountant">
+  <data key="d7">1.0</data>
+  <data key="d8">Accountants are primary users of 1C RP for accounting tasks, distinct from IT staff who implement it.</data>
+  <data key="d9">domain operation,end user</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022965</data>
+  <data key="d13"></data>
+</edge>
+<edge source="1C RP" target="Director">
+  <data key="d7">1.0</data>
+  <data key="d8">Directors may access the system to view reports or manage operations, serving as functional customers.</data>
+  <data key="d9">access rights,management use</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022965</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Document Review Process" target="Accuracy Calculation">
+  <data key="d7">1.0</data>
+  <data key="d8">The accuracy of the document review is calculated by comparing incorrect pages to total pages (e.g., 1 red page out of 4 equals 75% accuracy).</data>
+  <data key="d9">error analysis,metric evaluation</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022964</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Scalability" target="Containerization">
+  <data key="d7">1.0</data>
+  <data key="d8">Horizontal scalability is discussed as a potential technical solution involving containerization support.</data>
+  <data key="d9">infrastructure,technical requirement</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022964</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Video Recording" target="Speaker 7">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 7 inquires about the existence of a meeting recording to use as a reference for developing and verifying system features like transcription.</data>
+  <data key="d9">development support,information request</data>
+  <data key="d10">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022975</data>
+  <data key="d13"></data>
+</edge>
+<edge source="System Analyst" target="Functional Requirements Registry">
+  <data key="d7">1.0</data>
+  <data key="d8">The content of the registry is reviewed with clients to confirm requirements were discussed, ensuring project alignment.</data>
+  <data key="d9">client validation,review process</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022968</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Bakery Owner" target="Pirog">
+  <data key="d7">1.0</data>
+  <data key="d8">The bakery owner tracks details of pirogs (costs, sourcing) which defines their role as a functional customer for inventory systems.</data>
+  <data key="d9">domain knowledge,inventory tracking</data>
+  <data key="d10">chunk-8e4b2511c293a18a34a2f9ee769dfe73</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022965</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Customer" target="Meeting Protocol">
+  <data key="d7">1.0</data>
+  <data key="d8">The Customer must verify the Meeting Protocol to ensure responsibilities and answers are correctly recorded as agreed upon.</data>
+  <data key="d9">responsibility assignment,verification</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022965</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Customer" target="Target Model">
+  <data key="d7">1.0</data>
+  <data key="d8">The Customer validates the Target Model to confirm it aligns with their vision of the updated system.</data>
+  <data key="d9">future state definition,validation</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022970</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Project Team Members" target="Meeting Protocol">
+  <data key="d7">1.0</data>
+  <data key="d8">Project team members risk adding unverified assumptions to the Meeting Protocol if they do not confirm discussions with the customer.</data>
+  <data key="d9">assumption recording,inaccuracy risk</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022965</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocol" target="Meeting Recording Assistant">
+  <data key="d7">1.0</data>
+  <data key="d8">The Meeting Recording Assistant is intended to generate a preliminary version of the Meeting Protocol based on audio or text recordings.</data>
+  <data key="d9">automation,draft generation</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022966</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocol" target="Analytical Note">
+  <data key="d7">1.0</data>
+  <data key="d8">The Meeting Protocols serve as the primary source documents that are combined to form the final Analytical Note.</data>
+  <data key="d9">aggregation,component</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022966</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocol" target="Open Questions">
+  <data key="d7">1.0</data>
+  <data key="d8">The Meeting Protocol may include a section for Open Questions, though this section is not always present if all issues are resolved.</data>
+  <data key="d9">content inclusion,document structure</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022974</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocol" target="Date Field">
+  <data key="d7">1.0</data>
+  <data key="d8">The date field is an essential component required for every meeting protocol document.</data>
+  <data key="d9">document structure,mandatory requirement</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022974</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocol" target="Agenda">
+  <data key="d7">1.0</data>
+  <data key="d8">An agenda must be included in the protocol to define the scope of the meeting.</data>
+  <data key="d9">document structure,mandatory requirement</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022974</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocol" target="Participants">
+  <data key="d7">1.0</data>
+  <data key="d8">Listing participants is a compulsory element for validating and documenting the meeting attendees.</data>
+  <data key="d9">document structure,mandatory requirement</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022974</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocol" target="Definitions Section">
+  <data key="d7">1.0</data>
+  <data key="d8">The definitions section is an optional addition to the protocol used to clarify specific terms when needed.</data>
+  <data key="d9">optional content,terminology</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022975</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocol" target="Stamp Of Agreement">
+  <data key="d7">1.0</data>
+  <data key="d8">A stamp of agreement is typically required on protocols to signify formal approval and consensus.</data>
+  <data key="d9">standard practice,validation</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022975</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="Survey Report">
+  <data key="d7">1.0</data>
+  <data key="d8">The Analytical Note is distinguished from the Survey Report by its length, with the former being under 50 pages and the latter exceeding 50 pages.</data>
+  <data key="d9">comparison,page count distinction</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022966</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="Business Process Description">
+  <data key="d7">1.0</data>
+  <data key="d8">The Business Process Description is a key component of the Analytical Note, often formatted as tables or requiring PPM schemes.</data>
+  <data key="d9">content composition,formatting</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022968</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="MTR File">
+  <data key="d7">1.0</data>
+  <data key="d8">Data from the MTR file regarding current views and naming conventions can be included in the Analytical Note.</data>
+  <data key="d9">data extraction,information source</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022968</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="Project Charter">
+  <data key="d7">1.0</data>
+  <data key="d8">Additional details from the Project Charter may be integrated into the Analytical Note when available.</data>
+  <data key="d9">content integration,supplementary information</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022968</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="Attribute Composition">
+  <data key="d7">1.0</data>
+  <data key="d8">The Attribute Composition is included within the Analytical Note but may not be present in all projects depending on requirements.</data>
+  <data key="d9">content structure,specificity</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022970</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="Finalized Protocol">
+  <data key="d7">1.0</data>
+  <data key="d8">The Finalized Protocol is a mandatory prerequisite that must be approved before the team can begin preparing the Analytical Note.</data>
+  <data key="d9">document generation,prerequisite dependency</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022971</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="Model">
+  <data key="d7">1.0</data>
+  <data key="d8">Refined analytical notes can be fed back into the model to train it on new data and improve performance.</data>
+  <data key="d9">feedback loop,machine learning</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022973</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="Chatbot Interface">
+  <data key="d7">1.0</data>
+  <data key="d8">The chat interface allows users to request the generation of analytical notes based on meeting protocols and context.</data>
+  <data key="d9">functionality,output generation</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022974</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="Model Training">
+  <data key="d7">1.0</data>
+  <data key="d8">The analytical note serves as training data that can be fed back into the model to improve its future performance and accuracy.</data>
+  <data key="d9">data refinement,feedback mechanism</data>
+  <data key="d10">chunk-4c017a0092c0a18048d7d3c36d14b3bd</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022975</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Analytical Note" target="Survey Stage">
+  <data key="d7">1.0</data>
+  <data key="d8">The Survey Stage results in the creation of an Analytical Note which documents findings about the customer's situation.</data>
+  <data key="d9">documentation,output</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022977</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Forest" target="Internal Projects">
+  <data key="d7">1.0</data>
+  <data key="d8">The company Forest conducts internal projects focused on automation where analytical notes are generated as part of the process.</data>
+  <data key="d9">automation,organizational context</data>
+  <data key="d10">chunk-b81f88fd1f77db0dbb394dd66a377029</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022967</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Project Charter" target="Bot Assistant">
+  <data key="d7">1.0</data>
+  <data key="d8">The Bot Assistant uses the Project Charter to extract specific terminology and details for protocol generation.</data>
+  <data key="d9">contextual reference,terminology extraction</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022980</data>
+  <data key="d13"></data>
+</edge>
+<edge source="PPM Scheme" target="Assistant">
+  <data key="d7">1.0</data>
+  <data key="d8">The Assistant cannot draw PPM schemes; this task requires a System Analyst to ensure accuracy and complexity handling.</data>
+  <data key="d9">capability limitation,task delegation</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022968</data>
+  <data key="d13"></data>
+</edge>
+<edge source="1C ERP" target="New System">
+  <data key="d7">1.0</data>
+  <data key="d8">Data flows from the new system into 1C ERP specifically for updating catalog information.</data>
+  <data key="d9">data flow,integration direction</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022969</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Russian Classifier" target="Project Context">
+  <data key="d7">1.0</data>
+  <data key="d8">The Russian Classifier constitutes a distinct category of catalogs that were highlighted in the project requirements.</data>
+  <data key="d9">classification,data grouping</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022969</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Legacy System" target="New System">
+  <data key="d7">1.0</data>
+  <data key="d8">Data continues to be sent from the new system to the legacy system during the transition period.</data>
+  <data key="d9">coexistence,data migration</data>
+  <data key="d10">chunk-f945ba35b34fd5e6c69d4966bc1515c8</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022970</data>
+  <data key="d13"></data>
+</edge>
+<edge source="AI Assistant" target="Meeting Recording">
+  <data key="d7">1.0</data>
+  <data key="d8">The AI Assistant utilizes the meeting recording as its primary input to generate the draft protocol.</data>
+  <data key="d9">data processing,input source</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022971</data>
+  <data key="d13"></data>
+</edge>
+<edge source="AI Assistant" target="Survey Stage">
+  <data key="d7">1.0</data>
+  <data key="d8">The AI Assistant is proposed to automate routine tasks within the Survey Stage to reduce time consumption.</data>
+  <data key="d9">automation,efficiency</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022978</data>
+  <data key="d13"></data>
+</edge>
+<edge source="AI Assistant" target="BPMN Schema">
+  <data key="d7">1.0</data>
+  <data key="d8">The AI Assistant can recommend that an analyst create a BPMN schema based on text descriptions of processes.</data>
+  <data key="d9">guidance,suggestion</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022978</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Project Team Leader" target="Client Requirements">
+  <data key="d7">1.0</data>
+  <data key="d8">The Project Team Leader ensures the protocol aligns with client requirements and maintains the correct document structure based on client communication.</data>
+  <data key="d9">format adherence,stakeholder management</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022971</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Project Team Leader" target="Telegram">
+  <data key="d7">1.0</data>
+  <data key="d8">The Project Team Leader suggests creating a Telegram group to facilitate direct communication and query resolution among all project teams.</data>
+  <data key="d9">coordination platform,group management</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022972</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Project Team Leader" target="Architecture Details">
+  <data key="d7">1.0</data>
+  <data key="d8">The Project Team Leader is noted to lack deep understanding of technical architecture details, focusing instead on client requirements and general structure.</data>
+  <data key="d9">knowledge gap,scope limitation</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022972</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Recording" target="Transcription">
+  <data key="d7">1.0</data>
+  <data key="d8">The text discusses a comparison between meeting recordings and transcriptions, noting that recordings are more reliably available than transcriptions for analysis purposes.</data>
+  <data key="d9">data comparison,reliability assessment</data>
+  <data key="d10">chunk-98ed998bba253bb64419418a25b74c96</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022972</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Client" target="External Team">
+  <data key="d7">1.0</data>
+  <data key="d8">The External Team includes both the Client and the Executors for broader project interaction.</data>
+  <data key="d9">collaboration,external communication</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022979</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Client" target="Product Specifications">
+  <data key="d7">1.0</data>
+  <data key="d8">The Client provides product specifications (e.g., from 1C) as additional context for the project.</data>
+  <data key="d9">context supply,data provision</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022981</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Contradictions" target="Meeting Protocols">
+  <data key="d7">1.0</data>
+  <data key="d8">The system must be capable of identifying contradictions within Meeting Protocols where decisions may have changed or conflict with previous statements.</data>
+  <data key="d9">conflict detection,consistency check</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022982</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Speaker 3" target="Telegram Group">
+  <data key="d7">1.0</data>
+  <data key="d8">Speaker 3 questions the security implications of making public links available for testing on the Telegram group or similar platforms.</data>
+  <data key="d9">security concern,testing access</data>
+  <data key="d10">chunk-6018f1dfef436c4620437f8b9e42abc3</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022976</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Survey Stage" target="Development Stage">
+  <data key="d7">1.0</data>
+  <data key="d8">The quality of the Development Stage is directly dependent on the Survey Stage; poor surveys lead to incorrect development and financial losses.</data>
+  <data key="d9">dependency,risk propagation</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022977</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Survey Stage" target="Legal Dispute">
+  <data key="d7">1.0</data>
+  <data key="d8">Inadequate execution of the Survey Stage increases the likelihood of legal disputes between the executor and the customer over ambiguous requirements.</data>
+  <data key="d9">consequence,risk mitigation</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022978</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Survey Stage" target="Research Phase">
+  <data key="d7">1.0</data>
+  <data key="d8">The Survey Stage is also referred to as the Research Phase; they are synonyms used interchangeably by project members to describe the investigation of customer needs and problems (Ziz).</data>
+  <data key="d9">synonymy,terminology</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022979</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Modeling Stage" target="Technical Specification">
+  <data key="d7">1.0</data>
+  <data key="d8">The Modeling Stage utilizes survey data to prepare the Technical Specification (TZ) for developers.</data>
+  <data key="d9">input,preparation</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022977</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Modeling Stage" target="Preparation Of TZ">
+  <data key="d7">1.0</data>
+  <data key="d8">The Modeling Stage is divided into two distinct sub-sectors: the Preparation of Technical Specifications (TZ) and the Design phase.</data>
+  <data key="d9">design,phase decomposition</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022979</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Modeling Stage" target="Design Phase">
+  <data key="d7">1.0</data>
+  <data key="d8">The Modeling Stage includes a specific section called the Design Phase, which focuses on creating the future system's architecture for developers.</data>
+  <data key="d9">phase decomposition,system creation</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022979</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Forum (Customer)" target="1C Domain">
+  <data key="d7">1.0</data>
+  <data key="d8">The Forum operates within the 1C Domain, requiring strict adherence to its specific conceptual vocabulary in project documents.</data>
+  <data key="d9">context,terminology</data>
+  <data key="d10">chunk-b0c3079db7831a11a99d3914988b59cb</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022978</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Project Group" target="Executor">
+  <data key="d7">1.0</data>
+  <data key="d8">The Project Group consists solely of representatives from the Executor side.</data>
+  <data key="d9">internal collaboration,team composition</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022979</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Transcripts" target="Bot Assistant">
+  <data key="d7">1.0</data>
+  <data key="d8">The Bot Assistant processes transcribed data from client interviews to generate protocols.</data>
+  <data key="d9">data input,processing</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022980</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Meeting Protocols" target="Bot Assistant">
+  <data key="d7">1.0</data>
+  <data key="d8">The Bot Assistant generates Meeting Protocols based on interview context and project documentation.</data>
+  <data key="d9">document creation,output generation</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022980</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Regulations" target="Analyst">
+  <data key="d7">1.0</data>
+  <data key="d8">Analysts consult Regulations to find answers and resolve questions during meetings or documentation work.</data>
+  <data key="d9">decision support,information retrieval</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022981</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Bot Assistant" target="PDF Document">
+  <data key="d7">1.0</data>
+  <data key="d8">The Bot Assistant is intended to fulfill the goal in the PDF document of eliminating human errors during report creation.</data>
+  <data key="d9">error reduction,goal alignment</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022981</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Functional Template" target="Forum Project">
+  <data key="d7">1.0</data>
+  <data key="d8">The Functional Template can be designed as a "floating" template for the Forum Project to accommodate varying document section requirements.</data>
+  <data key="d9">client requirements,conditional structure</data>
+  <data key="d10">chunk-bd5a47bfb7955d73a940c4b7e3d4379d</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022980</data>
+  <data key="d13"></data>
+</edge>
+<edge source="Client Users" target="Meeting Schedule">
+  <data key="d7">1.0</data>
+  <data key="d8">The availability of end users (clients) directly influences the scheduling gaps and delays between meetings in the project plan.</data>
+  <data key="d9">availability constraint,scheduling impact</data>
+  <data key="d10">chunk-15fc522d8fcdb2ff85ecb5d791acbe99</data>
+  <data key="d11">MeetTest.docx</data>
+  <data key="d12">1777022956</data>
+  <data key="d13"></data>
+</edge>
+</graph></graphml>

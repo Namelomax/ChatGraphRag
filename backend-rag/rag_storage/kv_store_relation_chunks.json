@@ -1,0 +1,1240 @@
+{
+  "Speech To Text Ru<SEP>Transcribed Meeting": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97"
+    ],
+    "count": 1,
+    "create_time": 1777022952,
+    "update_time": 1777022952,
+    "_id": "Speech To Text Ru<SEP>Transcribed Meeting"
+  },
+  "Meeting Transcript<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 2,
+    "create_time": 1777022952,
+    "update_time": 1777022952,
+    "_id": "Meeting Transcript<SEP>Speaker 1"
+  },
+  "Meeting Transcript<SEP>Speaker 2": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97"
+    ],
+    "count": 1,
+    "create_time": 1777022953,
+    "update_time": 1777022953,
+    "_id": "Meeting Transcript<SEP>Speaker 2"
+  },
+  "Meeting Transcript<SEP>Speaker 4": {
+    "chunk_ids": [
+      "chunk-e5298ef65e8ebb5fb4ead41ff7e57d97"
+    ],
+    "count": 1,
+    "create_time": 1777022953,
+    "update_time": 1777022953,
+    "_id": "Meeting Transcript<SEP>Speaker 4"
+  },
+  "Forus Group Companies<SEP>Nikita Kasyanov": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022953,
+    "update_time": 1777022953,
+    "_id": "Forus Group Companies<SEP>Nikita Kasyanov"
+  },
+  "Dream Team<SEP>Nikita Gritsanyuk": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022953,
+    "update_time": 1777022953,
+    "_id": "Dream Team<SEP>Nikita Gritsanyuk"
+  },
+  "Ekaterina<SEP>KFK Team": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022954,
+    "update_time": 1777022954,
+    "_id": "Ekaterina<SEP>KFK Team"
+  },
+  "Optima Team<SEP>Yakov Vaygus": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022954,
+    "update_time": 1777022954,
+    "_id": "Optima Team<SEP>Yakov Vaygus"
+  },
+  "Junior System Analyst<SEP>Meeting Protocol Preparation Process": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022954,
+    "update_time": 1777022954,
+    "_id": "Junior System Analyst<SEP>Meeting Protocol Preparation Process"
+  },
+  "Meeting Protocol Preparation Process<SEP>Senior System Analyst": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022954,
+    "update_time": 1777022954,
+    "_id": "Meeting Protocol Preparation Process<SEP>Senior System Analyst"
+  },
+  "Meeting Protocol Preparation Process<SEP>Video Conference Recordings": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022954,
+    "update_time": 1777022954,
+    "_id": "Meeting Protocol Preparation Process<SEP>Video Conference Recordings"
+  },
+  "Dream Team<SEP>Nikita Kasyanov": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022954,
+    "update_time": 1777022954,
+    "_id": "Dream Team<SEP>Nikita Kasyanov"
+  },
+  "Junior System Analyst<SEP>Senior System Analyst": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99",
+      "chunk-b81f88fd1f77db0dbb394dd66a377029",
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 3,
+    "create_time": 1777022955,
+    "update_time": 1777022955,
+    "_id": "Junior System Analyst<SEP>Senior System Analyst"
+  },
+  "Speaker 4<SEP>Tigran": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022955,
+    "update_time": 1777022955,
+    "_id": "Speaker 4<SEP>Tigran"
+  },
+  "Meeting Protocol Preparation Process<SEP>Nikita Kasyanov": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022955,
+    "update_time": 1777022955,
+    "_id": "Meeting Protocol Preparation Process<SEP>Nikita Kasyanov"
+  },
+  "Client Users<SEP>Meeting Schedule": {
+    "chunk_ids": [
+      "chunk-15fc522d8fcdb2ff85ecb5d791acbe99"
+    ],
+    "count": 1,
+    "create_time": 1777022955,
+    "update_time": 1777022955,
+    "_id": "Client Users<SEP>Meeting Schedule"
+  },
+  "Спикер 1<SEP>Форус": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022956,
+    "update_time": 1777022956,
+    "_id": "Спикер 1<SEP>Форус"
+  },
+  "Conceptual Dictionary<SEP>Никита": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022956,
+    "update_time": 1777022956,
+    "_id": "Conceptual Dictionary<SEP>Никита"
+  },
+  "1С Sphere<SEP>LM-ка": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022956,
+    "update_time": 1777022956,
+    "_id": "1С Sphere<SEP>LM-ка"
+  },
+  "Video Meeting Recording<SEP>Спикер 7": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022957,
+    "update_time": 1777022957,
+    "_id": "Video Meeting Recording<SEP>Спикер 7"
+  },
+  "AI Agent<SEP>Protocol": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022957,
+    "update_time": 1777022957,
+    "_id": "AI Agent<SEP>Protocol"
+  },
+  "Logging Mechanism<SEP>Спикер 3": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022957,
+    "update_time": 1777022957,
+    "_id": "Logging Mechanism<SEP>Спикер 3"
+  },
+  "Chat GPT<SEP>Спикер 1": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022957,
+    "update_time": 1777022957,
+    "_id": "Chat GPT<SEP>Спикер 1"
+  },
+  "Junior Analyst<SEP>Video Meeting Recording": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022957,
+    "update_time": 1777022957,
+    "_id": "Junior Analyst<SEP>Video Meeting Recording"
+  },
+  "IT Support Assistant<SEP>Laboratory": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022958,
+    "update_time": 1777022958,
+    "_id": "IT Support Assistant<SEP>Laboratory"
+  },
+  "IVE<SEP>Спикер 3": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022958,
+    "update_time": 1777022958,
+    "_id": "IVE<SEP>Спикер 3"
+  },
+  "Video Meeting Recording<SEP>ZOOM": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022958,
+    "update_time": 1777022958,
+    "_id": "Video Meeting Recording<SEP>ZOOM"
+  },
+  "Telemost<SEP>Спикер 1": {
+    "chunk_ids": [
+      "chunk-a9c11e3be7004e005cff116becaaf334"
+    ],
+    "count": 1,
+    "create_time": 1777022958,
+    "update_time": 1777022958,
+    "_id": "Telemost<SEP>Спикер 1"
+  },
+  "Chatbot<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022958,
+    "update_time": 1777022958,
+    "_id": "Chatbot<SEP>Speaker 1"
+  },
+  "Chatbot<SEP>Project Documentation": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022959,
+    "update_time": 1777022959,
+    "_id": "Chatbot<SEP>Project Documentation"
+  },
+  "NDA Agreement<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022959,
+    "update_time": 1777022959,
+    "_id": "NDA Agreement<SEP>Speaker 1"
+  },
+  "Chatbot<SEP>Context Accumulation": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022959,
+    "update_time": 1777022959,
+    "_id": "Chatbot<SEP>Context Accumulation"
+  },
+  "Federal Laws (FZ)<SEP>Speaker 2": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022959,
+    "update_time": 1777022959,
+    "_id": "Federal Laws (FZ)<SEP>Speaker 2"
+  },
+  "GigaChat<SEP>Speaker 4": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022959,
+    "update_time": 1777022959,
+    "_id": "GigaChat<SEP>Speaker 4"
+  },
+  "Information Technology Department<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022960,
+    "update_time": 1777022960,
+    "_id": "Information Technology Department<SEP>Speaker 1"
+  },
+  "Accuracy Requirement<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022960,
+    "update_time": 1777022960,
+    "_id": "Accuracy Requirement<SEP>Speaker 1"
+  },
+  "APIs<SEP>Chatbot": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022960,
+    "update_time": 1777022960,
+    "_id": "APIs<SEP>Chatbot"
+  },
+  "Chatbot<SEP>Missed Details": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022960,
+    "update_time": 1777022960,
+    "_id": "Chatbot<SEP>Missed Details"
+  },
+  "Chatbot<SEP>Incorrect Terms": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022960,
+    "update_time": 1777022960,
+    "_id": "Chatbot<SEP>Incorrect Terms"
+  },
+  "Encrypted Data<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022960,
+    "update_time": 1777022960,
+    "_id": "Encrypted Data<SEP>Speaker 1"
+  },
+  "Chatbot<SEP>Internal APIs": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022961,
+    "update_time": 1777022961,
+    "_id": "Chatbot<SEP>Internal APIs"
+  },
+  "Sanitized Documentation<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022961,
+    "update_time": 1777022961,
+    "_id": "Sanitized Documentation<SEP>Speaker 1"
+  },
+  "Chatbot<SEP>Red Pages": {
+    "chunk_ids": [
+      "chunk-00f42c5674c08d1c4bf50e1bd4cb1b22"
+    ],
+    "count": 1,
+    "create_time": 1777022962,
+    "update_time": 1777022962,
+    "_id": "Chatbot<SEP>Red Pages"
+  },
+  "Functional Customer<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022962,
+    "update_time": 1777022962,
+    "_id": "Functional Customer<SEP>Speaker 1"
+  },
+  "Nikita<SEP>Roman": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73",
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 2,
+    "create_time": 1777022963,
+    "update_time": 1777022963,
+    "_id": "Nikita<SEP>Roman"
+  },
+  "Ekaterina<SEP>Video Recording": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022963,
+    "update_time": 1777022963,
+    "_id": "Ekaterina<SEP>Video Recording"
+  },
+  "1C RP<SEP>IT Department": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022963,
+    "update_time": 1777022963,
+    "_id": "1C RP<SEP>IT Department"
+  },
+  "Business Process<SEP>Functional Customer": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022963,
+    "update_time": 1777022963,
+    "_id": "Business Process<SEP>Functional Customer"
+  },
+  "Center For Automation And Support<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022963,
+    "update_time": 1777022963,
+    "_id": "Center For Automation And Support<SEP>Speaker 1"
+  },
+  "Containerization<SEP>Scalability": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022964,
+    "update_time": 1777022964,
+    "_id": "Containerization<SEP>Scalability"
+  },
+  "Accuracy Calculation<SEP>Document Review Process": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022964,
+    "update_time": 1777022964,
+    "_id": "Accuracy Calculation<SEP>Document Review Process"
+  },
+  "Functional Customer<SEP>System Analyst": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022964,
+    "update_time": 1777022964,
+    "_id": "Functional Customer<SEP>System Analyst"
+  },
+  "1C RP<SEP>Accountant": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022965,
+    "update_time": 1777022965,
+    "_id": "1C RP<SEP>Accountant"
+  },
+  "1C RP<SEP>Director": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022965,
+    "update_time": 1777022965,
+    "_id": "1C RP<SEP>Director"
+  },
+  "Bakery Owner<SEP>Pirog": {
+    "chunk_ids": [
+      "chunk-8e4b2511c293a18a34a2f9ee769dfe73"
+    ],
+    "count": 1,
+    "create_time": 1777022965,
+    "update_time": 1777022965,
+    "_id": "Bakery Owner<SEP>Pirog"
+  },
+  "Meeting Protocol<SEP>Project Team Members": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022965,
+    "update_time": 1777022965,
+    "_id": "Meeting Protocol<SEP>Project Team Members"
+  },
+  "Customer<SEP>Meeting Protocol": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022965,
+    "update_time": 1777022965,
+    "_id": "Customer<SEP>Meeting Protocol"
+  },
+  "Analytical Note<SEP>Junior System Analyst": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022965,
+    "update_time": 1777022965,
+    "_id": "Analytical Note<SEP>Junior System Analyst"
+  },
+  "Meeting Protocol<SEP>Meeting Recording Assistant": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022966,
+    "update_time": 1777022966,
+    "_id": "Meeting Protocol<SEP>Meeting Recording Assistant"
+  },
+  "Analytical Note<SEP>Senior System Analyst": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022966,
+    "update_time": 1777022966,
+    "_id": "Analytical Note<SEP>Senior System Analyst"
+  },
+  "Analytical Note<SEP>Meeting Protocol": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022966,
+    "update_time": 1777022966,
+    "_id": "Analytical Note<SEP>Meeting Protocol"
+  },
+  "Analytical Note<SEP>Survey Report": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022966,
+    "update_time": 1777022966,
+    "_id": "Analytical Note<SEP>Survey Report"
+  },
+  "Analytical Note<SEP>Nikita": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022966,
+    "update_time": 1777022966,
+    "_id": "Analytical Note<SEP>Nikita"
+  },
+  "Roman<SEP>Survey Report": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022966,
+    "update_time": 1777022966,
+    "_id": "Roman<SEP>Survey Report"
+  },
+  "Forest<SEP>Internal Projects": {
+    "chunk_ids": [
+      "chunk-b81f88fd1f77db0dbb394dd66a377029"
+    ],
+    "count": 1,
+    "create_time": 1777022967,
+    "update_time": 1777022967,
+    "_id": "Forest<SEP>Internal Projects"
+  },
+  "Analytical Note<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8",
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 2,
+    "create_time": 1777022967,
+    "update_time": 1777022967,
+    "_id": "Analytical Note<SEP>Speaker 1"
+  },
+  "Speaker 1<SEP>Survey Report": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022967,
+    "update_time": 1777022967,
+    "_id": "Speaker 1<SEP>Survey Report"
+  },
+  "Functional Requirements Registry<SEP>Protocol": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022968,
+    "update_time": 1777022968,
+    "_id": "Functional Requirements Registry<SEP>Protocol"
+  },
+  "Analytical Note<SEP>Business Process Description": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022968,
+    "update_time": 1777022968,
+    "_id": "Analytical Note<SEP>Business Process Description"
+  },
+  "Assistant<SEP>PPM Scheme": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022968,
+    "update_time": 1777022968,
+    "_id": "Assistant<SEP>PPM Scheme"
+  },
+  "Functional Requirements Registry<SEP>System Analyst": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022968,
+    "update_time": 1777022968,
+    "_id": "Functional Requirements Registry<SEP>System Analyst"
+  },
+  "Analytical Note<SEP>MTR File": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022968,
+    "update_time": 1777022968,
+    "_id": "Analytical Note<SEP>MTR File"
+  },
+  "Analytical Note<SEP>Project Charter": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022968,
+    "update_time": 1777022968,
+    "_id": "Analytical Note<SEP>Project Charter"
+  },
+  "Roman<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022968,
+    "update_time": 1777022968,
+    "_id": "Roman<SEP>Speaker 1"
+  },
+  "1C ERP<SEP>New System": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022969,
+    "update_time": 1777022969,
+    "_id": "1C ERP<SEP>New System"
+  },
+  "Project Context<SEP>Russian Classifier": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022969,
+    "update_time": 1777022969,
+    "_id": "Project Context<SEP>Russian Classifier"
+  },
+  "Customer<SEP>Target Model": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022969,
+    "update_time": 1777022969,
+    "_id": "Customer<SEP>Target Model"
+  },
+  "Legacy System<SEP>New System": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022970,
+    "update_time": 1777022970,
+    "_id": "Legacy System<SEP>New System"
+  },
+  "Analytical Note<SEP>Attribute Composition": {
+    "chunk_ids": [
+      "chunk-f945ba35b34fd5e6c69d4966bc1515c8"
+    ],
+    "count": 1,
+    "create_time": 1777022970,
+    "update_time": 1777022970,
+    "_id": "Analytical Note<SEP>Attribute Composition"
+  },
+  "AI Assistant<SEP>Junior System Analyst": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022970,
+    "update_time": 1777022970,
+    "_id": "AI Assistant<SEP>Junior System Analyst"
+  },
+  "Project Team Leader<SEP>Senior System Analyst": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022970,
+    "update_time": 1777022970,
+    "_id": "Project Team Leader<SEP>Senior System Analyst"
+  },
+  "AI Assistant<SEP>Meeting Recording": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022971,
+    "update_time": 1777022971,
+    "_id": "AI Assistant<SEP>Meeting Recording"
+  },
+  "Draft Protocol<SEP>Junior System Analyst": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022971,
+    "update_time": 1777022971,
+    "_id": "Draft Protocol<SEP>Junior System Analyst"
+  },
+  "Analytical Note<SEP>Finalized Protocol": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022971,
+    "update_time": 1777022971,
+    "_id": "Analytical Note<SEP>Finalized Protocol"
+  },
+  "Client Requirements<SEP>Project Team Leader": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022971,
+    "update_time": 1777022971,
+    "_id": "Client Requirements<SEP>Project Team Leader"
+  },
+  "Bitrix<SEP>Junior System Analyst": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022971,
+    "update_time": 1777022971,
+    "_id": "Bitrix<SEP>Junior System Analyst"
+  },
+  "Project Team Leader<SEP>Telegram": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022972,
+    "update_time": 1777022972,
+    "_id": "Project Team Leader<SEP>Telegram"
+  },
+  "Meeting Recording<SEP>Transcription": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022972,
+    "update_time": 1777022972,
+    "_id": "Meeting Recording<SEP>Transcription"
+  },
+  "Architecture Details<SEP>Project Team Leader": {
+    "chunk_ids": [
+      "chunk-98ed998bba253bb64419418a25b74c96"
+    ],
+    "count": 1,
+    "create_time": 1777022972,
+    "update_time": 1777022972,
+    "_id": "Architecture Details<SEP>Project Team Leader"
+  },
+  "Junior Analyst<SEP>Speaker 4": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022972,
+    "update_time": 1777022972,
+    "_id": "Junior Analyst<SEP>Speaker 4"
+  },
+  "Senior Analyst<SEP>Speaker 4": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022973,
+    "update_time": 1777022973,
+    "_id": "Senior Analyst<SEP>Speaker 4"
+  },
+  "Client<SEP>Junior Analyst": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022973,
+    "update_time": 1777022973,
+    "_id": "Client<SEP>Junior Analyst"
+  },
+  "Analytical Note<SEP>Model": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022973,
+    "update_time": 1777022973,
+    "_id": "Analytical Note<SEP>Model"
+  },
+  "Chatbot Interface<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022973,
+    "update_time": 1777022973,
+    "_id": "Chatbot Interface<SEP>Speaker 1"
+  },
+  "Single Canvas Interface<SEP>Speaker 2": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022973,
+    "update_time": 1777022973,
+    "_id": "Single Canvas Interface<SEP>Speaker 2"
+  },
+  "Meeting Protocol<SEP>Open Questions": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022974,
+    "update_time": 1777022974,
+    "_id": "Meeting Protocol<SEP>Open Questions"
+  },
+  "Analytical Note<SEP>Chatbot Interface": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022974,
+    "update_time": 1777022974,
+    "_id": "Analytical Note<SEP>Chatbot Interface"
+  },
+  "LM Notebook<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022974,
+    "update_time": 1777022974,
+    "_id": "LM Notebook<SEP>Speaker 1"
+  },
+  "Date Field<SEP>Meeting Protocol": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022974,
+    "update_time": 1777022974,
+    "_id": "Date Field<SEP>Meeting Protocol"
+  },
+  "Agenda<SEP>Meeting Protocol": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022974,
+    "update_time": 1777022974,
+    "_id": "Agenda<SEP>Meeting Protocol"
+  },
+  "Meeting Protocol<SEP>Participants": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022974,
+    "update_time": 1777022974,
+    "_id": "Meeting Protocol<SEP>Participants"
+  },
+  "Definitions Section<SEP>Meeting Protocol": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022975,
+    "update_time": 1777022975,
+    "_id": "Definitions Section<SEP>Meeting Protocol"
+  },
+  "Meeting Protocol<SEP>Stamp Of Agreement": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022975,
+    "update_time": 1777022975,
+    "_id": "Meeting Protocol<SEP>Stamp Of Agreement"
+  },
+  "Definitions Section<SEP>Junior Analyst": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022975,
+    "update_time": 1777022975,
+    "_id": "Definitions Section<SEP>Junior Analyst"
+  },
+  "Analytical Note<SEP>Model Training": {
+    "chunk_ids": [
+      "chunk-4c017a0092c0a18048d7d3c36d14b3bd"
+    ],
+    "count": 1,
+    "create_time": 1777022975,
+    "update_time": 1777022975,
+    "_id": "Analytical Note<SEP>Model Training"
+  },
+  "Speaker 7<SEP>Video Recording": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022975,
+    "update_time": 1777022975,
+    "_id": "Speaker 7<SEP>Video Recording"
+  },
+  "Internal Project<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022976,
+    "update_time": 1777022976,
+    "_id": "Internal Project<SEP>Speaker 1"
+  },
+  "Speaker 3<SEP>Telegram Group": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022976,
+    "update_time": 1777022976,
+    "_id": "Speaker 3<SEP>Telegram Group"
+  },
+  "Project Protocol<SEP>Speaker 2": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022976,
+    "update_time": 1777022976,
+    "_id": "Project Protocol<SEP>Speaker 2"
+  },
+  "Optima Team<SEP>Speaker 4": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022976,
+    "update_time": 1777022976,
+    "_id": "Optima Team<SEP>Speaker 4"
+  },
+  "Meeting Session<SEP>Roman": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022976,
+    "update_time": 1777022976,
+    "_id": "Meeting Session<SEP>Roman"
+  },
+  "Speaker 1<SEP>Transcription": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022976,
+    "update_time": 1777022976,
+    "_id": "Speaker 1<SEP>Transcription"
+  },
+  "Report On Inspection<SEP>Speaker 2": {
+    "chunk_ids": [
+      "chunk-6018f1dfef436c4620437f8b9e42abc3"
+    ],
+    "count": 1,
+    "create_time": 1777022977,
+    "update_time": 1777022977,
+    "_id": "Report On Inspection<SEP>Speaker 2"
+  },
+  "Analytical Note<SEP>Survey Stage": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022977,
+    "update_time": 1777022977,
+    "_id": "Analytical Note<SEP>Survey Stage"
+  },
+  "Modeling Stage<SEP>Technical Specification": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022977,
+    "update_time": 1777022977,
+    "_id": "Modeling Stage<SEP>Technical Specification"
+  },
+  "Development Stage<SEP>Survey Stage": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022977,
+    "update_time": 1777022977,
+    "_id": "Development Stage<SEP>Survey Stage"
+  },
+  "AI Assistant<SEP>Survey Stage": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022978,
+    "update_time": 1777022978,
+    "_id": "AI Assistant<SEP>Survey Stage"
+  },
+  "AI Assistant<SEP>BPMN Schema": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022978,
+    "update_time": 1777022978,
+    "_id": "AI Assistant<SEP>BPMN Schema"
+  },
+  "1C Domain<SEP>Forum (Customer)": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022978,
+    "update_time": 1777022978,
+    "_id": "1C Domain<SEP>Forum (Customer)"
+  },
+  "Legal Dispute<SEP>Survey Stage": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022978,
+    "update_time": 1777022978,
+    "_id": "Legal Dispute<SEP>Survey Stage"
+  },
+  "Research Phase<SEP>Survey Stage": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022978,
+    "update_time": 1777022978,
+    "_id": "Research Phase<SEP>Survey Stage"
+  },
+  "Modeling Stage<SEP>Preparation Of TZ": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022978,
+    "update_time": 1777022978,
+    "_id": "Modeling Stage<SEP>Preparation Of TZ"
+  },
+  "Design Phase<SEP>Modeling Stage": {
+    "chunk_ids": [
+      "chunk-b0c3079db7831a11a99d3914988b59cb"
+    ],
+    "count": 1,
+    "create_time": 1777022979,
+    "update_time": 1777022979,
+    "_id": "Design Phase<SEP>Modeling Stage"
+  },
+  "Executor<SEP>Project Group": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022979,
+    "update_time": 1777022979,
+    "_id": "Executor<SEP>Project Group"
+  },
+  "Client<SEP>External Team": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022979,
+    "update_time": 1777022979,
+    "_id": "Client<SEP>External Team"
+  },
+  "Dream Team<SEP>Telegram Group": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022980,
+    "update_time": 1777022980,
+    "_id": "Dream Team<SEP>Telegram Group"
+  },
+  "Bot Assistant<SEP>Transcripts": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022980,
+    "update_time": 1777022980,
+    "_id": "Bot Assistant<SEP>Transcripts"
+  },
+  "Bot Assistant<SEP>Project Charter": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022980,
+    "update_time": 1777022980,
+    "_id": "Bot Assistant<SEP>Project Charter"
+  },
+  "Bot Assistant<SEP>Meeting Protocols": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022980,
+    "update_time": 1777022980,
+    "_id": "Bot Assistant<SEP>Meeting Protocols"
+  },
+  "Forum Project<SEP>Functional Template": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022980,
+    "update_time": 1777022980,
+    "_id": "Forum Project<SEP>Functional Template"
+  },
+  "Bot Assistant<SEP>PDF Document": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022981,
+    "update_time": 1777022981,
+    "_id": "Bot Assistant<SEP>PDF Document"
+  },
+  "Analyst<SEP>Regulations": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022981,
+    "update_time": 1777022981,
+    "_id": "Analyst<SEP>Regulations"
+  },
+  "Client<SEP>Product Specifications": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022981,
+    "update_time": 1777022981,
+    "_id": "Client<SEP>Product Specifications"
+  },
+  "Contradictions<SEP>Meeting Protocols": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022981,
+    "update_time": 1777022981,
+    "_id": "Contradictions<SEP>Meeting Protocols"
+  },
+  "Bot Assistant<SEP>Speaker 1": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022982,
+    "update_time": 1777022982,
+    "_id": "Bot Assistant<SEP>Speaker 1"
+  },
+  "Functional Template<SEP>Speaker 2": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022982,
+    "update_time": 1777022982,
+    "_id": "Functional Template<SEP>Speaker 2"
+  },
+  "Output Document<SEP>Speaker 4": {
+    "chunk_ids": [
+      "chunk-bd5a47bfb7955d73a940c4b7e3d4379d"
+    ],
+    "count": 1,
+    "create_time": 1777022982,
+    "update_time": 1777022982,
+    "_id": "Output Document<SEP>Speaker 4"
+  }
+}

@@ -1,0 +1,558 @@
+{
+  "doc-46af38d2d24af329cc1489e64ffc20d3": {
+    "relation_pairs": [
+      [
+        "Customer",
+        "Meeting Protocol"
+      ],
+      [
+        "Bakery Owner",
+        "Pirog"
+      ],
+      [
+        "Analytical Note",
+        "Survey Stage"
+      ],
+      [
+        "Analytical Note",
+        "Nikita"
+      ],
+      [
+        "Accuracy Requirement",
+        "Speaker 1"
+      ],
+      [
+        "Functional Customer",
+        "Speaker 1"
+      ],
+      [
+        "Modeling Stage",
+        "Preparation Of TZ"
+      ],
+      [
+        "IVE",
+        "Спикер 3"
+      ],
+      [
+        "Chatbot",
+        "Project Documentation"
+      ],
+      [
+        "Project Context",
+        "Russian Classifier"
+      ],
+      [
+        "Meeting Protocol",
+        "Participants"
+      ],
+      [
+        "Agenda",
+        "Meeting Protocol"
+      ],
+      [
+        "Encrypted Data",
+        "Speaker 1"
+      ],
+      [
+        "Functional Customer",
+        "System Analyst"
+      ],
+      [
+        "Meeting Protocol",
+        "Open Questions"
+      ],
+      [
+        "Center For Automation And Support",
+        "Speaker 1"
+      ],
+      [
+        "Junior System Analyst",
+        "Senior System Analyst"
+      ],
+      [
+        "Forum Project",
+        "Functional Template"
+      ],
+      [
+        "AI Assistant",
+        "BPMN Schema"
+      ],
+      [
+        "Bot Assistant",
+        "PDF Document"
+      ],
+      [
+        "AI Assistant",
+        "Survey Stage"
+      ],
+      [
+        "AI Agent",
+        "Protocol"
+      ],
+      [
+        "Sanitized Documentation",
+        "Speaker 1"
+      ],
+      [
+        "Meeting Transcript",
+        "Speaker 4"
+      ],
+      [
+        "Accuracy Calculation",
+        "Document Review Process"
+      ],
+      [
+        "Federal Laws (FZ)",
+        "Speaker 2"
+      ],
+      [
+        "Analytical Note",
+        "Attribute Composition"
+      ],
+      [
+        "APIs",
+        "Chatbot"
+      ],
+      [
+        "Analyst",
+        "Regulations"
+      ],
+      [
+        "Junior Analyst",
+        "Speaker 4"
+      ],
+      [
+        "Project Protocol",
+        "Speaker 2"
+      ],
+      [
+        "Video Meeting Recording",
+        "Спикер 7"
+      ],
+      [
+        "Telemost",
+        "Спикер 1"
+      ],
+      [
+        "Project Team Leader",
+        "Telegram"
+      ],
+      [
+        "Meeting Protocol Preparation Process",
+        "Senior System Analyst"
+      ],
+      [
+        "Legal Dispute",
+        "Survey Stage"
+      ],
+      [
+        "Bot Assistant",
+        "Transcripts"
+      ],
+      [
+        "Definitions Section",
+        "Junior Analyst"
+      ],
+      [
+        "1C Domain",
+        "Forum (Customer)"
+      ],
+      [
+        "Chatbot",
+        "Missed Details"
+      ],
+      [
+        "Architecture Details",
+        "Project Team Leader"
+      ],
+      [
+        "Speech To Text Ru",
+        "Transcribed Meeting"
+      ],
+      [
+        "Functional Template",
+        "Speaker 2"
+      ],
+      [
+        "Analytical Note",
+        "Model"
+      ],
+      [
+        "Analytical Note",
+        "Senior System Analyst"
+      ],
+      [
+        "Meeting Transcript",
+        "Speaker 2"
+      ],
+      [
+        "Chatbot",
+        "Red Pages"
+      ],
+      [
+        "Definitions Section",
+        "Meeting Protocol"
+      ],
+      [
+        "Draft Protocol",
+        "Junior System Analyst"
+      ],
+      [
+        "Nikita",
+        "Roman"
+      ],
+      [
+        "Chatbot Interface",
+        "Speaker 1"
+      ],
+      [
+        "Спикер 1",
+        "Форус"
+      ],
+      [
+        "Research Phase",
+        "Survey Stage"
+      ],
+      [
+        "Internal Project",
+        "Speaker 1"
+      ],
+      [
+        "Client",
+        "Product Specifications"
+      ],
+      [
+        "Containerization",
+        "Scalability"
+      ],
+      [
+        "1C RP",
+        "Accountant"
+      ],
+      [
+        "Speaker 1",
+        "Transcription"
+      ],
+      [
+        "Bot Assistant",
+        "Project Charter"
+      ],
+      [
+        "Analytical Note",
+        "MTR File"
+      ],
+      [
+        "Meeting Session",
+        "Roman"
+      ],
+      [
+        "Customer",
+        "Target Model"
+      ],
+      [
+        "Forest",
+        "Internal Projects"
+      ],
+      [
+        "Meeting Protocol",
+        "Project Team Members"
+      ],
+      [
+        "Analytical Note",
+        "Business Process Description"
+      ],
+      [
+        "Meeting Protocol",
+        "Meeting Recording Assistant"
+      ],
+      [
+        "Speaker 7",
+        "Video Recording"
+      ],
+      [
+        "Dream Team",
+        "Telegram Group"
+      ],
+      [
+        "Forus Group Companies",
+        "Nikita Kasyanov"
+      ],
+      [
+        "Chatbot",
+        "Internal APIs"
+      ],
+      [
+        "Optima Team",
+        "Yakov Vaygus"
+      ],
+      [
+        "Report On Inspection",
+        "Speaker 2"
+      ],
+      [
+        "Analytical Note",
+        "Model Training"
+      ],
+      [
+        "Meeting Transcript",
+        "Speaker 1"
+      ],
+      [
+        "Analytical Note",
+        "Project Charter"
+      ],
+      [
+        "Ekaterina",
+        "Video Recording"
+      ],
+      [
+        "Ekaterina",
+        "KFK Team"
+      ],
+      [
+        "Contradictions",
+        "Meeting Protocols"
+      ],
+      [
+        "Speaker 4",
+        "Tigran"
+      ],
+      [
+        "1C RP",
+        "IT Department"
+      ],
+      [
+        "Client Users",
+        "Meeting Schedule"
+      ],
+      [
+        "GigaChat",
+        "Speaker 4"
+      ],
+      [
+        "Logging Mechanism",
+        "Спикер 3"
+      ],
+      [
+        "Dream Team",
+        "Nikita Gritsanyuk"
+      ],
+      [
+        "Analytical Note",
+        "Chatbot Interface"
+      ],
+      [
+        "Project Team Leader",
+        "Senior System Analyst"
+      ],
+      [
+        "Chatbot",
+        "Speaker 1"
+      ],
+      [
+        "Analytical Note",
+        "Meeting Protocol"
+      ],
+      [
+        "1C RP",
+        "Director"
+      ],
+      [
+        "Meeting Protocol Preparation Process",
+        "Video Conference Recordings"
+      ],
+      [
+        "Video Meeting Recording",
+        "ZOOM"
+      ],
+      [
+        "Single Canvas Interface",
+        "Speaker 2"
+      ],
+      [
+        "Junior System Analyst",
+        "Meeting Protocol Preparation Process"
+      ],
+      [
+        "Client",
+        "External Team"
+      ],
+      [
+        "Roman",
+        "Survey Report"
+      ],
+      [
+        "Functional Requirements Registry",
+        "Protocol"
+      ],
+      [
+        "Bot Assistant",
+        "Speaker 1"
+      ],
+      [
+        "Speaker 1",
+        "Survey Report"
+      ],
+      [
+        "AI Assistant",
+        "Junior System Analyst"
+      ],
+      [
+        "Optima Team",
+        "Speaker 4"
+      ],
+      [
+        "Analytical Note",
+        "Survey Report"
+      ],
+      [
+        "Legacy System",
+        "New System"
+      ],
+      [
+        "Dream Team",
+        "Nikita Kasyanov"
+      ],
+      [
+        "Meeting Recording",
+        "Transcription"
+      ],
+      [
+        "Chatbot",
+        "Incorrect Terms"
+      ],
+      [
+        "AI Assistant",
+        "Meeting Recording"
+      ],
+      [
+        "LM Notebook",
+        "Speaker 1"
+      ],
+      [
+        "Bot Assistant",
+        "Meeting Protocols"
+      ],
+      [
+        "Roman",
+        "Speaker 1"
+      ],
+      [
+        "Chat GPT",
+        "Спикер 1"
+      ],
+      [
+        "Output Document",
+        "Speaker 4"
+      ],
+      [
+        "Modeling Stage",
+        "Technical Specification"
+      ],
+      [
+        "IT Support Assistant",
+        "Laboratory"
+      ],
+      [
+        "Meeting Protocol Preparation Process",
+        "Nikita Kasyanov"
+      ],
+      [
+        "Analytical Note",
+        "Speaker 1"
+      ],
+      [
+        "Senior Analyst",
+        "Speaker 4"
+      ],
+      [
+        "Analytical Note",
+        "Junior System Analyst"
+      ],
+      [
+        "Functional Requirements Registry",
+        "System Analyst"
+      ],
+      [
+        "Development Stage",
+        "Survey Stage"
+      ],
+      [
+        "Meeting Protocol",
+        "Stamp Of Agreement"
+      ],
+      [
+        "1С Sphere",
+        "LM-ка"
+      ],
+      [
+        "Chatbot",
+        "Context Accumulation"
+      ],
+      [
+        "Assistant",
+        "PPM Scheme"
+      ],
+      [
+        "Conceptual Dictionary",
+        "Никита"
+      ],
+      [
+        "Business Process",
+        "Functional Customer"
+      ],
+      [
+        "Design Phase",
+        "Modeling Stage"
+      ],
+      [
+        "Junior Analyst",
+        "Video Meeting Recording"
+      ],
+      [
+        "Client",
+        "Junior Analyst"
+      ],
+      [
+        "Bitrix",
+        "Junior System Analyst"
+      ],
+      [
+        "1C ERP",
+        "New System"
+      ],
+      [
+        "NDA Agreement",
+        "Speaker 1"
+      ],
+      [
+        "Information Technology Department",
+        "Speaker 1"
+      ],
+      [
+        "Analytical Note",
+        "Finalized Protocol"
+      ],
+      [
+        "Speaker 3",
+        "Telegram Group"
+      ],
+      [
+        "Client Requirements",
+        "Project Team Leader"
+      ],
+      [
+        "Date Field",
+        "Meeting Protocol"
+      ],
+      [
+        "Executor",
+        "Project Group"
+      ]
+    ],
+    "count": 137,
+    "create_time": 1777022982,
+    "update_time": 1777022982,
+    "_id": "doc-46af38d2d24af329cc1489e64ffc20d3"
+  }
+}
