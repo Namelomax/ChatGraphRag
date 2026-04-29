@@ -23,7 +23,7 @@ async def main():
     # 2. LLM (локальный!)
     def llm_model_func(prompt, system_prompt=None, history_messages=[], **kwargs):
         return openai_complete_if_cache(
-            "qwen",  # имя модели в LM Studio
+            "qwen",
             prompt,
             system_prompt=system_prompt,
             history_messages=history_messages,
@@ -34,7 +34,7 @@ async def main():
 
     # 3. embeddings
     embedding_func = EmbeddingFunc(
-        embedding_dim=768,  # ⚠️ важно под nomic
+        embedding_dim=768,
         max_token_size=2000,
         func=lambda texts: openai_embed.func(
             texts,
