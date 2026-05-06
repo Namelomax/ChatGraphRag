@@ -36,9 +36,14 @@
 
 ## Model Providers
 
-This template uses the [Vercel AI Gateway](https://vercel.com/docs/ai-gateway) to access multiple AI models through a unified interface. Models are configured in `lib/ai/models.ts` with per-model provider routing. Included models: Mistral, Moonshot, DeepSeek, OpenAI, and xAI.
+This template supports two provider modes:
 
-### AI Gateway Authentication
+- **Local OpenAI-compatible endpoint** (recommended for fully local setup), e.g. LM Studio
+- **Vercel AI Gateway** (optional)
+
+Models are configured in `lib/ai/models.ts`.
+
+### AI Gateway Authentication (Optional)
 
 **For Vercel deployments**: Authentication is handled automatically via OIDC tokens.
 
@@ -54,13 +59,21 @@ You can deploy your own version of Chatbot to Vercel with one click:
 
 ## Running locally
 
-You will need to use the environment variables [defined in `.env.example`](.env.example) to run Chatbot. It's recommended you use [Vercel Environment Variables](https://vercel.com/docs/projects/environment-variables) for this, but a `.env` file is all that is necessary.
+You will need to use the environment variables [defined in `.env.example`](.env.example) to run Chatbot. A `.env.local` file is enough.
 
 > Note: You should not commit your `.env` file or it will expose secrets that will allow others to control access to your various AI and authentication provider accounts.
 
-1. Install Vercel CLI: `npm i -g vercel`
-2. Link local instance with Vercel and GitHub accounts (creates `.vercel` directory): `vercel link`
-3. Download your environment variables: `vercel env pull`
+1. Create `.env.local` based on `.env.example`
+2. Configure these values for a fully local setup:
+   - `LOCAL_OPENAI_BASE_URL=http://127.0.0.1:1234/v1`
+   - `LOCAL_OPENAI_MODEL=qwen/qwen3.5-35b-a3b`
+   - `POSTGRES_URL=postgres://...`
+   - `REDIS_URL=redis://127.0.0.1:6379`
+   - `AUTH_SECRET=<random-secret>`
+3. Ensure local services are running:
+   - LM Studio local server at `http://127.0.0.1:1234`
+   - PostgreSQL
+   - Redis (optional, but recommended)
 
 ```bash
 pnpm install

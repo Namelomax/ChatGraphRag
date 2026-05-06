@@ -1,52 +1,150 @@
-from fastapi import FastAPI
+import os
+import uuid
+import shutil
 import asyncio
+from contextlib import asynccontextmanager
+from typing import List, Optional
 
-from raganything import RAGAnything, RAGAnythingConfig
-from lightrag.llm.openai import openai_complete_if_cache, openai_embed
-from lightrag.utils import EmbeddingFunc
+from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel, Field
+import aiofiles
 
-app = FastAPI()
+from rag_service import RAGService
 
-# LM Studio config
-BASE_URL = "http://127.0.0.1:1234/v1"
-API_KEY = "lm-studio"
+# Модели данных для API
+class QueryRequest(BaseModel):
+    question: str
+    mode: Optional[str] = Field(default="hybrid", description="Режим поиска: hybrid, local, global")
 
-# RAG config
-config = RAGAnythingConfig(
-    working_dir="./rag_storage",
-    parser="mineru",
+class QueryResponse(BaseModel):
+    answer: str
+    status: str = "success"
+
+class DocumentResponse(BaseModel):
+    message: str
+    filename: str
+    status: str
+
+# Жизненный цикл приложения
+rag_service = RAGService()
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Запуск: инициализация RAG
+    print("RAG service initialization...")
+    await rag_service.initialize()
+    print("RAG service ready")
+    yield
+    # Завершение: очистка
+    print("RAG service shutdown...")
+    await rag_service.cleanup()
+    print("RAG service stopped")
+
+app = FastAPI(
+    title="RAG API Service",
+    description="API для обработки документов и запросов к RAG системе",
+    version="1.0.0",
+    lifespan=lifespan
 )
 
-def llm_model_func(prompt, system_prompt=None, history_messages=[], **kwargs):
-    return openai_complete_if_cache(
-        "qwen",  # имя модели в LM Studio
-        prompt,
-        system_prompt=system_prompt,
-        history_messages=history_messages,
-        api_key=API_KEY,
-        base_url=BASE_URL,
-        **kwargs,
+# CORS для React приложения
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Адрес React приложения
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Создаём папки если их нет
+os.makedirs("uploads", exist_ok=True)
+os.makedirs("output", exist_ok=True)
+
+@app.get("/")
+async def root():
+    return {"message": "RAG API Service is running", "status": "ok"}
+
+@app.post("/upload", response_model=DocumentResponse)
+async def upload_document(file: UploadFile = File(...)):
+    """
+    Загрузка документа для обработки.
+    Поддерживаемые форматы: .doc/.docx, .xls/.xlsx, .ppt/.pptx, .pdf, .txt, .md, .rtf
+    """
+    # Проверка расширения
+    allowed_extensions = {
+        ".doc",
+        ".docx",
+        ".xls",
+        ".xlsx",
+        ".ppt",
+        ".pptx",
+        ".pdf",
+        ".txt",
+        ".md",
+        ".rtf",
+    }
+    file_ext = os.path.splitext(file.filename)[1].lower()
+    
+    if file_ext not in allowed_extensions:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Неподдерживаемый формат. Разрешены: {allowed_extensions}"
+        )
+
+    # Сохраняем файл
+    unique_filename = f"{uuid.uuid4()}_{file.filename}"
+    file_path = os.path.join("uploads", unique_filename)
+    
+    async with aiofiles.open(file_path, "wb") as out_file:
+        content = await file.read()
+        await out_file.write(content)
+
+    async def process_in_background(path_to_process: str):
+        try:
+            result = await rag_service.process_document(path_to_process)
+            if result.get("status") == "error":
+                print(f"[upload background] failed for {path_to_process}: {result.get('message')}")
+            else:
+                print(f"[upload background] success for {path_to_process}")
+        except Exception as background_error:
+            print(f"[upload background] exception for {path_to_process}: {background_error}")
+        finally:
+            # Очистка временного файла после фоновой обработки
+            if os.path.exists(path_to_process):
+                os.remove(path_to_process)
+
+    # Запускаем долгую обработку в фоне, чтобы API не таймаутился
+    asyncio.create_task(process_in_background(file_path))
+
+    return DocumentResponse(
+        message=f"Документ {file.filename} принят в обработку",
+        filename=file.filename,
+        status="queued"
     )
 
-embedding_func = EmbeddingFunc(
-    embedding_dim=768,  # ⚠️ важно под nomic
-    max_token_size=8192,
-    func=lambda texts: openai_embed.func(
-        texts,
-        model="text-embedding-nomic",
-        api_key=API_KEY,
-        base_url=BASE_URL,
-    ),
-)
+@app.post("/query", response_model=QueryResponse)
+async def query_rag(request: QueryRequest):
+    """
+    Запрос к RAG системе
+    """
+    try:
+        answer = await rag_service.query(request.question, request.mode)
+        return QueryResponse(answer=answer)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
-rag = RAGAnything(
-    config=config,
-    llm_model_func=llm_model_func,
-    embedding_func=embedding_func,
-)
+@app.get("/health")
+async def health_check():
+    """Проверка работоспособности"""
+    return {"status": "healthy"}
 
-@app.post("/query")
-async def query(data: dict):
-    q = data.get("query")
-    result = await rag.aquery(q, mode="hybrid")
-    return {"answer": result}
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(
+        app,
+        host="0.0.0.0",
+        port=8000,
+        log_level="info"
+    )

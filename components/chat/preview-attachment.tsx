@@ -28,8 +28,8 @@ export const PreviewAttachment = ({
           width={96}
         />
       ) : (
-        <div className="flex size-full items-center justify-center text-muted-foreground text-xs">
-          File
+        <div className="flex size-full items-center justify-center px-2 text-center text-muted-foreground text-xs">
+          <span className="line-clamp-3 break-all">{name ?? "file"}</span>
         </div>
       )}
 
@@ -42,7 +42,7 @@ export const PreviewAttachment = ({
         </div>
       )}
 
-      {onRemove && !isUploading && (
+      {onRemove && (
         <button
           className="absolute top-1.5 right-1.5 flex size-5 items-center justify-center rounded-full bg-black/60 text-white opacity-0 backdrop-blur-sm transition-opacity hover:bg-black/80 group-hover:opacity-100"
           onClick={onRemove}

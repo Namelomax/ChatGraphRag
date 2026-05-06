@@ -19,7 +19,7 @@
     "content_summary": "Запись\\_Форус\\_Встреча\\_интервью\\_Baikal\\_Code\\_Hackathon.mp4\n\nСпикер 4:\n\n00:00:23 — Коллеги, всем привет Добрый день, Роман.\n\nСпикер 5:\n\n00:00:28 — Здравствуйте.\n\nСпикер 4:\n\n00:00:31 — Так-так-так, у нас сейчас ещё пару человек чуть-чуть подождем бу...",
     "content_length": 73719,
     "created_at": "2026-04-24T07:29:02.504183+00:00",
-    "updated_at": "2026-04-28T16:02:58+00:00",
+    "updated_at": "2026-05-06T22:50:11+00:00",
     "file_path": "MeetTest.docx",
     "track_id": "insert_20260424_152902_570bf2cf",
     "metadata": {
@@ -446,6 +446,210 @@
     "updated_at": "2026-04-28T08:02:58.533280+00:00",
     "file_path": "MeetTest.docx",
     "track_id": "insert_20260428_160258_e5b73779",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-e1129061dbde7fe52dbb18eb732a4fd4": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-05T16:36:12.797129+00:00",
+    "updated_at": "2026-05-05T16:36:12.797133+00:00",
+    "file_path": "0aecd052-1a42-4f0d-82cc-7cdf115e39f3_MeetTest.pdf",
+    "track_id": "insert_20260506_003612_047acdf1",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-56ee8cb01c76ae2f620b0d4c232edc34": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-05T16:46:10.794983+00:00",
+    "updated_at": "2026-05-05T16:46:10.794987+00:00",
+    "file_path": "a20e3abd-90a5-486b-8878-9b4077bf7cd4_MeetTest.pdf",
+    "track_id": "insert_20260506_004610_c430f187",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-02632a56aa7a666c749fb3b7641de571": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-05T16:51:36.678456+00:00",
+    "updated_at": "2026-05-05T16:51:36.678461+00:00",
+    "file_path": "2beda8b0-22a6-4d31-9b76-9cab0bdfdc45_MeetTest.pdf",
+    "track_id": "insert_20260506_005136_d96620f3",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-f122444194c6f566251aac2136238cfb": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-05T16:55:31.097783+00:00",
+    "updated_at": "2026-05-05T16:55:31.097788+00:00",
+    "file_path": "fe47c019-52ed-4993-80ab-30378645f48d_MeetTest.pdf",
+    "track_id": "insert_20260506_005531_1accda95",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-a76d8c1a8389a5f5d3957765f7ea47d1": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-05T16:58:38.304088+00:00",
+    "updated_at": "2026-05-05T16:58:38.304093+00:00",
+    "file_path": "2c92c3b7-2825-48f8-8928-2c4059113d9e_MeetTest.pdf",
+    "track_id": "insert_20260506_005838_2956791a",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-f4e64c2badead723dd4ae35063e885df": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-05T17:04:33.164901+00:00",
+    "updated_at": "2026-05-05T17:04:33.164907+00:00",
+    "file_path": "6a2a5c17-d003-4718-b774-aae71e3d73b3_MeetTest.pdf",
+    "track_id": "insert_20260506_010433_99522686",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-86cdca880dbd7eca26209d3568e8ad18": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-05T17:16:20.762188+00:00",
+    "updated_at": "2026-05-05T17:16:20.762191+00:00",
+    "file_path": "9495eda5-e9f3-4a08-82d7-51437b32f69a_MeetTest.pdf",
+    "track_id": "insert_20260506_011620_1886feab",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-021bc4cb80b6b8ceee377936807358aa": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-05T17:21:11.025038+00:00",
+    "updated_at": "2026-05-05T17:21:11.025043+00:00",
+    "file_path": "eb6ec65e-5b05-4765-b83d-2cb3f53ccc09_MeetTest.pdf",
+    "track_id": "insert_20260506_012111_79f61325",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-b85a2cf1085053c7af19b3ceca0ccda5": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-06T10:33:19.634311+00:00",
+    "updated_at": "2026-05-06T10:33:19.634318+00:00",
+    "file_path": "MeetTest.docx",
+    "track_id": "insert_20260506_183319_325e186c",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-d5e2209d0256d28653a4d8b6dfa36cb2": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-06T11:32:54.738954+00:00",
+    "updated_at": "2026-05-06T11:32:54.738960+00:00",
+    "file_path": "rag_input_974a637927ee450a99890f7beb5e523d.pdf",
+    "track_id": "insert_20260506_193254_b561b369",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-1a0595a00ff6593fc846f433e1d4e17d": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-06T14:02:14.990097+00:00",
+    "updated_at": "2026-05-06T14:02:14.990475+00:00",
+    "file_path": "rag_input_15b4de31d1d14d20871c2b41893a0049.pdf",
+    "track_id": "insert_20260506_220214_7db5ad31",
+    "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
+    "metadata": {
+      "is_duplicate": true,
+      "original_doc_id": "doc-46af38d2d24af329cc1489e64ffc20d3",
+      "original_track_id": "insert_20260424_152902_570bf2cf"
+    }
+  },
+  "dup-5f0c8bcb1dfd0d05413497e543b27b24": {
+    "status": "failed",
+    "content_summary": "[DUPLICATE] Original document: doc-46af38d2d24af329cc1489e64ffc20d3",
+    "content_length": 73719,
+    "chunks_count": 0,
+    "chunks_list": [],
+    "created_at": "2026-05-06T14:50:11.839604+00:00",
+    "updated_at": "2026-05-06T14:50:11.839609+00:00",
+    "file_path": "rag_input_de51355fc44c4ebb8110bbe1d41e89e3.pdf",
+    "track_id": "insert_20260506_225011_b074c007",
     "error_msg": "Content already exists. Original doc_id: doc-46af38d2d24af329cc1489e64ffc20d3, Status: processed",
     "metadata": {
       "is_duplicate": true,

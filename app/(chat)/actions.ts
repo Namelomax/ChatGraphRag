@@ -4,9 +4,10 @@ import { generateText, type UIMessage } from "ai";
 import { cookies } from "next/headers";
 import { auth } from "@/app/(auth)/auth";
 import type { VisibilityType } from "@/components/chat/visibility-selector";
+import { isLocalProviderEnabled } from "@/lib/ai/models";
 import { titleModel } from "@/lib/ai/models";
 import { titlePrompt } from "@/lib/ai/prompts";
-import { getTitleModel } from "@/lib/ai/providers";
+import { getTitleModel, isGatewayProviderEnabled } from "@/lib/ai/providers";
 import {
   deleteMessagesByChatIdAfterTimestamp,
   getChatById,
@@ -14,6 +15,27 @@ import {
   updateChatVisibilityById,
 } from "@/lib/db/queries";
 import { getTextFromMessage } from "@/lib/utils";
+
+function generateLocalTitle(inputText: string): string {
+  const normalized = inputText.replace(/\s+/g, " ").trim();
+
+  if (!normalized) {
+    return "Новый чат";
+  }
+
+  const words = normalized
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .split(" ")
+    .filter(Boolean)
+    .slice(0, 5);
+
+  if (words.length === 0) {
+    return "Новый чат";
+  }
+
+  const title = words.join(" ");
+  return title.length > 48 ? `${title.slice(0, 48).trim()}...` : title;
+}
 
 export async function saveChatModelAsCookie(model: string) {
   const cookieStore = await cookies();
@@ -25,18 +47,41 @@ export async function generateTitleFromUserMessage({
 }: {
   message: UIMessage;
 }) {
+  const startedAt = Date.now();
+  const prompt = getTextFromMessage(message);
+
+  if (isLocalProviderEnabled) {
+    const title = generateLocalTitle(prompt);
+    console.info("[chat] title generated (local)", {
+      durationMs: Date.now() - startedAt,
+      title,
+    });
+    return title;
+  }
+
   const { text } = await generateText({
     model: getTitleModel(),
     system: titlePrompt,
-    prompt: getTextFromMessage(message),
-    providerOptions: {
-      gateway: { order: titleModel.gatewayOrder },
-    },
+    prompt,
+    ...(isGatewayProviderEnabled &&
+      titleModel.gatewayOrder && {
+        providerOptions: {
+          gateway: { order: titleModel.gatewayOrder },
+        },
+      }),
   });
-  return text
+
+  const title = text
     .replace(/^[#*"\s]+/, "")
     .replace(/["]+$/, "")
     .trim();
+
+  console.info("[chat] title generated", {
+    durationMs: Date.now() - startedAt,
+    title,
+  });
+
+  return title;
 }
 
 export async function deleteTrailingMessages({ id }: { id: string }) {

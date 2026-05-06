@@ -10,6 +10,8 @@ type DataStreamContextValue = {
   setDataStream: React.Dispatch<
     React.SetStateAction<DataUIPart<CustomUIDataTypes>[]>
   >;
+  chatProgress: string;
+  setChatProgress: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const DataStreamContext = createContext<DataStreamContextValue | null>(null);
@@ -22,8 +24,12 @@ export function DataStreamProvider({
   const [dataStream, setDataStream] = useState<DataUIPart<CustomUIDataTypes>[]>(
     []
   );
+  const [chatProgress, setChatProgress] = useState("");
 
-  const value = useMemo(() => ({ dataStream, setDataStream }), [dataStream]);
+  const value = useMemo(
+    () => ({ dataStream, setDataStream, chatProgress, setChatProgress }),
+    [dataStream, chatProgress]
+  );
 
   return (
     <DataStreamContext.Provider value={value}>

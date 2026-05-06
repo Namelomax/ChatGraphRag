@@ -1,20 +1,17 @@
 "use client";
 
 import { PanelLeftIcon } from "lucide-react";
-import Link from "next/link";
 import { memo } from "react";
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/ui/sidebar";
-import { VercelIcon } from "./icons";
-import { VisibilitySelector, type VisibilityType } from "./visibility-selector";
 
 function PureChatHeader({
-  chatId,
-  selectedVisibilityType,
-  isReadonly,
+  chatId: _chatId,
+  selectedVisibilityType: _selectedVisibilityType,
+  isReadonly: _isReadonly,
 }: {
   chatId: string;
-  selectedVisibilityType: VisibilityType;
+  selectedVisibilityType: "private" | "public";
   isReadonly: boolean;
 }) {
   const { state, toggleSidebar, isMobile } = useSidebar();
@@ -24,7 +21,7 @@ function PureChatHeader({
   }
 
   return (
-    <header className="sticky top-0 flex h-14 items-center gap-2 bg-sidebar px-3">
+    <header className="sticky top-0 flex h-14 items-center gap-2 bg-transparent px-3">
       <Button
         className="md:hidden"
         onClick={toggleSidebar}
@@ -32,36 +29,6 @@ function PureChatHeader({
         variant="ghost"
       >
         <PanelLeftIcon className="size-4" />
-      </Button>
-
-      <Link
-        className="flex size-8 items-center justify-center rounded-lg md:hidden"
-        href="https://vercel.com/templates/next.js/chatbot"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
-        <VercelIcon size={14} />
-      </Link>
-
-      {!isReadonly && (
-        <VisibilitySelector
-          chatId={chatId}
-          selectedVisibilityType={selectedVisibilityType}
-        />
-      )}
-
-      <Button
-        asChild
-        className="hidden rounded-lg bg-foreground px-4 text-background hover:bg-foreground/90 md:ml-auto md:flex"
-      >
-        <Link
-          href="https://vercel.com/templates/next.js/chatbot"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          <VercelIcon size={16} />
-          Deploy with Vercel
-        </Link>
       </Button>
     </header>
   );

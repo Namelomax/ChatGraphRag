@@ -9,7 +9,7 @@ import { useDataStream } from "./data-stream-provider";
 import { getChatHistoryPaginationKey } from "./sidebar-history";
 
 export function DataStreamHandler() {
-  const { dataStream, setDataStream } = useDataStream();
+  const { dataStream, setDataStream, setChatProgress } = useDataStream();
   const { mutate } = useSWRConfig();
 
   const { artifact, setArtifact, setMetadata } = useArtifact();
@@ -25,6 +25,10 @@ export function DataStreamHandler() {
     for (const delta of newDeltas) {
       if (delta.type === "data-chat-title") {
         mutate(unstable_serialize(getChatHistoryPaginationKey));
+        continue;
+      }
+      if (delta.type === "data-chat-progress") {
+        setChatProgress(delta.data ?? "");
         continue;
       }
       const artifactDefinition = artifactDefinitions.find(
@@ -85,7 +89,15 @@ export function DataStreamHandler() {
         }
       });
     }
-  }, [dataStream, setArtifact, setMetadata, artifact, setDataStream, mutate]);
+  }, [
+    dataStream,
+    setArtifact,
+    setMetadata,
+    artifact,
+    setDataStream,
+    mutate,
+    setChatProgress,
+  ]);
 
   return null;
 }

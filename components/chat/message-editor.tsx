@@ -31,3 +31,26 @@ export async function submitEditedMessage({
 
   regenerate();
 }
+
+export async function resendUserMessage({
+  message,
+  setMessages,
+  regenerate,
+}: {
+  message: ChatMessage;
+  setMessages: UseChatHelpers<ChatMessage>["setMessages"];
+  regenerate: UseChatHelpers<ChatMessage>["regenerate"];
+}) {
+  await deleteTrailingMessages({ id: message.id });
+
+  setMessages((messages) => {
+    const index = messages.findIndex((currentMessage) => currentMessage.id === message.id);
+    if (index === -1) {
+      return messages;
+    }
+
+    return [...messages.slice(0, index + 1)];
+  });
+
+  regenerate();
+}

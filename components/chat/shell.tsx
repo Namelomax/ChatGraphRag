@@ -21,8 +21,9 @@ import type { Attachment, ChatMessage } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { Artifact } from "./artifact";
 import { ChatHeader } from "./chat-header";
+import { ContextDocumentsStrip } from "./context-documents-strip";
 import { DataStreamHandler } from "./data-stream-handler";
-import { submitEditedMessage } from "./message-editor";
+import { resendUserMessage, submitEditedMessage } from "./message-editor";
 import { Messages } from "./messages";
 import { MultimodalInput } from "./multimodal-input";
 
@@ -46,6 +47,8 @@ export function ChatShell() {
     setCurrentModelId,
     showCreditCardAlert,
     setShowCreditCardAlert,
+    excludedAttachmentUrls,
+    setExcludedAttachmentUrls,
   } = useActiveChat();
 
   const [editingMessage, setEditingMessage] = useState<ChatMessage | null>(
@@ -55,14 +58,10 @@ export function ChatShell() {
   const isArtifactVisible = useArtifactSelector((state) => state.isVisible);
   const { setArtifact } = useArtifact();
 
-  const stopRef = useRef(stop);
-  stopRef.current = stop;
-
   const prevChatIdRef = useRef(chatId);
   useEffect(() => {
     if (prevChatIdRef.current !== chatId) {
       prevChatIdRef.current = chatId;
-      stopRef.current();
       setArtifact(initialArtifactData);
       setEditingMessage(null);
       setAttachments([]);
@@ -100,11 +99,36 @@ export function ChatShell() {
                 setInput(text ?? "");
                 setEditingMessage(msg);
               }}
+              onRegenerateUserMessage={async (message) => {
+                await resendUserMessage({
+                  message,
+                  setMessages,
+                  regenerate,
+                });
+              }}
               regenerate={regenerate}
               selectedModelId={currentModelId}
               setMessages={setMessages}
               status={status}
-              votes={votes}
+            />
+
+            <ContextDocumentsStrip
+              attachments={attachments}
+              excludedAttachmentUrls={excludedAttachmentUrls}
+              messages={messages}
+              onExcludeDocument={(url) => {
+                setExcludedAttachmentUrls((current) =>
+                  current.includes(url) ? current : [...current, url]
+                );
+              }}
+              onRemovePendingAttachment={(url) => {
+                setAttachments((current) => current.filter((item) => item.url !== url));
+              }}
+              onRestoreDocument={(url) => {
+                setExcludedAttachmentUrls((current) =>
+                  current.filter((item) => item !== url)
+                );
+              }}
             />
 
             <div className="sticky bottom-0 z-1 mx-auto flex w-full max-w-4xl gap-2 border-t-0 bg-background px-2 pb-3 md:px-4 md:pb-4">
@@ -177,15 +201,13 @@ export function ChatShell() {
       >
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Activate AI Gateway</AlertDialogTitle>
+            <AlertDialogTitle>Подключите AI Gateway</AlertDialogTitle>
             <AlertDialogDescription>
-              This application requires{" "}
-              {process.env.NODE_ENV === "production" ? "the owner" : "you"} to
-              activate Vercel AI Gateway.
+              Для этой функции нужно активировать Vercel AI Gateway.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>Отмена</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => {
                 window.open(
@@ -195,7 +217,7 @@ export function ChatShell() {
                 window.location.href = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/`;
               }}
             >
-              Activate
+              Активировать
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

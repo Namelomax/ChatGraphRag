@@ -1,4 +1,10 @@
-import { getAllGatewayModels, getCapabilities, isDemo } from "@/lib/ai/models";
+import {
+  getAllGatewayModels,
+  getCapabilities,
+  getActiveModels,
+  isDemo,
+  isLocalProviderEnabled,
+} from "@/lib/ai/models";
 
 export async function GET() {
   const headers = {
@@ -6,14 +12,19 @@ export async function GET() {
   };
 
   const curatedCapabilities = await getCapabilities();
+  const models = getActiveModels();
+
+  if (isLocalProviderEnabled) {
+    return Response.json({ capabilities: curatedCapabilities, models }, { headers });
+  }
 
   if (isDemo) {
-    const models = await getAllGatewayModels();
+    const gatewayModels = await getAllGatewayModels();
     const capabilities = Object.fromEntries(
-      models.map((m) => [m.id, curatedCapabilities[m.id] ?? m.capabilities])
+      gatewayModels.map((m) => [m.id, curatedCapabilities[m.id] ?? m.capabilities])
     );
 
-    return Response.json({ capabilities, models }, { headers });
+    return Response.json({ capabilities, models: gatewayModels }, { headers });
   }
 
   return Response.json(curatedCapabilities, { headers });

@@ -1,6 +1,6 @@
 "use client";
 import type { UseChatHelpers } from "@ai-sdk/react";
-import type { Vote } from "@/lib/db/schema";
+import { useEffect, useState } from "react";
 import type { ChatMessage } from "@/lib/types";
 import { cn, sanitizeText } from "@/lib/utils";
 import { MessageContent, MessageResponse } from "../ai-elements/message";
@@ -21,34 +21,60 @@ import { MessageReasoning } from "./message-reasoning";
 import { PreviewAttachment } from "./preview-attachment";
 import { Weather } from "./weather";
 
+const thinkingSteps = [
+  "Анализирую контекст встречи...",
+  "Извлекаю релевантные детали из документов...",
+  "Формирую точный ответ...",
+];
+
+function ThinkingIndicator({ progressText }: { progressText: string }) {
+  const [stepIndex, setStepIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setStepIndex((current) => (current + 1) % thinkingSteps.length);
+    }, 1800);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex h-[calc(13px*1.65)] items-center text-[13px] leading-[1.65]">
+      <Shimmer className="font-medium" duration={1}>
+        {progressText || thinkingSteps[stepIndex]}
+      </Shimmer>
+    </div>
+  );
+}
+
 const PurePreviewMessage = ({
   addToolApprovalResponse,
   chatId,
   message,
-  vote,
   isLoading,
   setMessages: _setMessages,
   regenerate: _regenerate,
   isReadonly,
   requiresScrollPadding: _requiresScrollPadding,
   onEdit,
+  onRegenerateUserMessage,
 }: {
   addToolApprovalResponse: UseChatHelpers<ChatMessage>["addToolApprovalResponse"];
   chatId: string;
   message: ChatMessage;
-  vote: Vote | undefined;
   isLoading: boolean;
   setMessages: UseChatHelpers<ChatMessage>["setMessages"];
   regenerate: UseChatHelpers<ChatMessage>["regenerate"];
   isReadonly: boolean;
   requiresScrollPadding: boolean;
   onEdit?: (message: ChatMessage) => void;
+  onRegenerateUserMessage?: (message: ChatMessage) => void;
 }) => {
   const attachmentsFromMessage = message.parts.filter(
     (part) => part.type === "file"
   );
 
-  useDataStream();
+  const { chatProgress } = useDataStream();
 
   const isUser = message.role === "user";
   const isAssistant = message.role === "assistant";
@@ -71,7 +97,10 @@ const PurePreviewMessage = ({
       {attachmentsFromMessage.map((attachment) => (
         <PreviewAttachment
           attachment={{
-            name: attachment.filename ?? "file",
+            name:
+              attachment.filename ??
+              ("name" in attachment ? String(attachment.name ?? "") : "") ??
+              "file",
             contentType: attachment.mediaType,
             url: attachment.url,
           }}
@@ -117,7 +146,7 @@ const PurePreviewMessage = ({
       return (
         <MessageContent
           className={cn("text-[13px] leading-[1.65]", {
-            "w-fit max-w-[min(80%,56ch)] overflow-hidden break-words rounded-2xl rounded-br-lg border border-border/30 bg-gradient-to-br from-secondary to-muted px-3.5 py-2 shadow-[var(--shadow-card)]":
+            "w-fit max-w-[min(80%,56ch)] overflow-hidden break-words rounded-2xl rounded-br-lg border border-border/30 bg-[#f8ca6a] px-3.5 py-2 text-black shadow-[var(--shadow-card)]":
               message.role === "user",
           })}
           data-testid="message-content"
@@ -153,7 +182,7 @@ const PurePreviewMessage = ({
               <ToolHeader state="output-denied" type="tool-getWeather" />
               <ToolContent>
                 <div className="px-4 py-3 text-muted-foreground text-sm">
-                  Weather lookup was denied.
+                  Запрос погоды отклонен.
                 </div>
               </ToolContent>
             </Tool>
@@ -196,7 +225,7 @@ const PurePreviewMessage = ({
                     }}
                     type="button"
                   >
-                    Deny
+                    Запретить
                   </button>
                   <button
                     className="rounded-md bg-primary px-3 py-1.5 text-primary-foreground text-sm transition-colors hover:bg-primary/90"
@@ -208,7 +237,7 @@ const PurePreviewMessage = ({
                     }}
                     type="button"
                   >
-                    Allow
+                    Разрешить
                   </button>
                 </div>
               )}
@@ -227,7 +256,7 @@ const PurePreviewMessage = ({
             className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-500 dark:bg-red-950/50"
             key={toolCallId}
           >
-            Error creating document: {String(part.output.error)}
+            Ошибка создания документа: {String(part.output.error)}
           </div>
         );
       }
@@ -250,7 +279,7 @@ const PurePreviewMessage = ({
             className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-500 dark:bg-red-950/50"
             key={toolCallId}
           >
-            Error updating document: {String(part.output.error)}
+            Ошибка обновления документа: {String(part.output.error)}
           </div>
         );
       }
@@ -301,26 +330,68 @@ const PurePreviewMessage = ({
       );
     }
 
+    if (type === "tool-ragQuery") {
+      const { toolCallId, state } = part;
+      const widthClass = "w-[min(100%,620px)]";
+
+      return (
+        <div className={widthClass} key={toolCallId}>
+          <Tool className="w-full" defaultOpen={true}>
+            <ToolHeader state={state} type="tool-ragQuery" />
+            <ToolContent>
+              {state === "input-available" && <ToolInput input={part.input} />}
+              {state === "output-available" && (
+                <ToolOutput
+                  errorText={undefined}
+                  output={
+                    part.output && "error" in part.output ? (
+                      <div className="rounded border p-2 text-red-500">
+                      Ошибка: {String(part.output.error)}
+                      </div>
+                    ) : (
+                      <div className="space-y-2 px-1 py-1 text-xs">
+                        <div>
+                          <span className="font-medium">Запрос: </span>
+                          <span>{String(part.output?.query ?? "")}</span>
+                        </div>
+                        <div>
+                          <span className="font-medium">Режим: </span>
+                          <span>{String(part.output?.mode ?? "hybrid")}</span>
+                        </div>
+                        <div>
+                          <span className="font-medium">Контекст (кратко): </span>
+                          <span>{String(part.output?.contextPreview ?? "")}</span>
+                        </div>
+                      </div>
+                    )
+                  }
+                />
+              )}
+            </ToolContent>
+          </Tool>
+        </div>
+      );
+    }
+
     return null;
   });
 
   const actions = !isReadonly && (
     <MessageActions
-      chatId={chatId}
       isLoading={isLoading}
       key={`action-${message.id}`}
       message={message}
       onEdit={onEdit ? () => onEdit(message) : undefined}
-      vote={vote}
+      onRegenerate={
+        message.role === "user" && onRegenerateUserMessage
+          ? () => onRegenerateUserMessage(message)
+          : undefined
+      }
     />
   );
 
   const content = isThinking ? (
-    <div className="flex h-[calc(13px*1.65)] items-center text-[13px] leading-[1.65]">
-      <Shimmer className="font-medium" duration={1}>
-        Thinking...
-      </Shimmer>
-    </div>
+    <ThinkingIndicator progressText={chatProgress} />
   ) : (
     <>
       {attachments}
@@ -363,6 +434,8 @@ const PurePreviewMessage = ({
 export const PreviewMessage = PurePreviewMessage;
 
 export const ThinkingMessage = () => {
+  const { chatProgress } = useDataStream();
+
   return (
     <div
       className="group/message w-full"
@@ -376,11 +449,7 @@ export const ThinkingMessage = () => {
           </div>
         </div>
 
-        <div className="flex h-[calc(13px*1.65)] items-center text-[13px] leading-[1.65]">
-          <Shimmer className="font-medium" duration={1}>
-            Thinking...
-          </Shimmer>
-        </div>
+        <ThinkingIndicator progressText={chatProgress} />
       </div>
     </div>
   );

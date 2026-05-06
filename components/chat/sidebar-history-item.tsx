@@ -1,15 +1,11 @@
 import Link from "next/link";
 import { memo } from "react";
-import { useChatVisibility } from "@/hooks/use-chat-visibility";
+import { toast } from "sonner";
 import type { Chat } from "@/lib/db/schema";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuPortal,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import {
@@ -18,11 +14,8 @@ import {
   SidebarMenuItem,
 } from "../ui/sidebar";
 import {
-  CheckCircleFillIcon,
-  GlobeIcon,
-  LockIcon,
   MoreHorizontalIcon,
-  ShareIcon,
+  PencilEditIcon,
   TrashIcon,
 } from "./icons";
 
@@ -37,11 +30,6 @@ const PureChatItem = ({
   onDelete: (chatId: string) => void;
   setOpenMobile: (open: boolean) => void;
 }) => {
-  const { visibilityType, setVisibilityType } = useChatVisibility({
-    chatId: chat.id,
-    initialVisibilityType: chat.visibility,
-  });
-
   return (
     <SidebarMenuItem>
       <SidebarMenuButton
@@ -49,7 +37,20 @@ const PureChatItem = ({
         className="h-8 rounded-none text-[13px] text-sidebar-foreground/50 transition-all duration-150 hover:bg-transparent hover:text-sidebar-foreground data-active:bg-transparent data-active:font-normal data-active:text-sidebar-foreground/50 data-[active=true]:text-sidebar-foreground data-[active=true]:font-medium data-[active=true]:border-b data-[active=true]:border-dashed data-[active=true]:border-sidebar-foreground/50"
         isActive={isActive}
       >
-        <Link href={`/chat/${chat.id}`} onClick={() => setOpenMobile(false)}>
+        <Link
+          href={`/chat/${chat.id}`}
+          onClick={(event) => {
+            const activeStreamChatId = window.sessionStorage.getItem(
+              "active-stream-chat-id"
+            );
+            if (activeStreamChatId && activeStreamChatId !== chat.id) {
+              event.preventDefault();
+              toast.error("Дождитесь завершения текущего ответа перед переключением чата");
+              return;
+            }
+            setOpenMobile(false);
+          }}
+        >
           <span className="truncate">{chat.title}</span>
         </Link>
       </SidebarMenuButton>
@@ -61,54 +62,35 @@ const PureChatItem = ({
             showOnHover={!isActive}
           >
             <MoreHorizontalIcon />
-            <span className="sr-only">More</span>
+            <span className="sr-only">Действия</span>
           </SidebarMenuAction>
         </DropdownMenuTrigger>
 
         <DropdownMenuContent align="end" side="bottom">
-          <DropdownMenuSub>
-            <DropdownMenuSubTrigger className="cursor-pointer">
-              <ShareIcon />
-              <span>Share</span>
-            </DropdownMenuSubTrigger>
-            <DropdownMenuPortal>
-              <DropdownMenuSubContent>
-                <DropdownMenuItem
-                  className="cursor-pointer flex-row justify-between"
-                  onClick={() => {
-                    setVisibilityType("private");
-                  }}
-                >
-                  <div className="flex flex-row items-center gap-2">
-                    <LockIcon size={12} />
-                    <span>Private</span>
-                  </div>
-                  {visibilityType === "private" ? (
-                    <CheckCircleFillIcon />
-                  ) : null}
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  className="cursor-pointer flex-row justify-between"
-                  onClick={() => {
-                    setVisibilityType("public");
-                  }}
-                >
-                  <div className="flex flex-row items-center gap-2">
-                    <GlobeIcon />
-                    <span>Public</span>
-                  </div>
-                  {visibilityType === "public" ? <CheckCircleFillIcon /> : null}
-                </DropdownMenuItem>
-              </DropdownMenuSubContent>
-            </DropdownMenuPortal>
-          </DropdownMenuSub>
+          <DropdownMenuItem
+            onSelect={async () => {
+              const nextTitle = window.prompt("Введите новое название чата", chat.title);
+              if (!nextTitle || nextTitle.trim().length === 0) {
+                return;
+              }
+              await fetch(`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/chat`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ id: chat.id, title: nextTitle.trim() }),
+              });
+              window.location.reload();
+            }}
+          >
+            <PencilEditIcon />
+            <span>Переименовать</span>
+          </DropdownMenuItem>
 
           <DropdownMenuItem
             onSelect={() => onDelete(chat.id)}
             variant="destructive"
           >
             <TrashIcon />
-            <span>Delete</span>
+            <span>Удалить</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

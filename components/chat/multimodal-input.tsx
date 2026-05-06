@@ -62,6 +62,12 @@ import {
 import { SuggestedActions } from "./suggested-actions";
 import type { VisibilityType } from "./visibility-selector";
 
+type UploadQueueItem = {
+  id: string;
+  name: string;
+  controller: AbortController;
+};
+
 function setCookie(name: string, value: string) {
   const maxAge = 60 * 60 * 24 * 365;
   // biome-ignore lint/suspicious/noDocumentCookie: needed for client-side cookie setting
@@ -176,30 +182,30 @@ function PureMultimodalInput({
         setTheme(resolvedTheme === "dark" ? "light" : "dark");
         break;
       case "delete":
-        toast("Delete this chat?", {
+        toast("Удалить этот чат?", {
           action: {
-            label: "Delete",
+            label: "Удалить",
             onClick: () => {
               fetch(
                 `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/chat?id=${chatId}`,
                 { method: "DELETE" }
               );
               router.push("/");
-              toast.success("Chat deleted");
+              toast.success("Чат удален");
             },
           },
         });
         break;
       case "purge":
-        toast("Delete all chats?", {
+        toast("Удалить все чаты?", {
           action: {
-            label: "Delete all",
+            label: "Удалить все",
             onClick: () => {
               fetch(`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/history`, {
                 method: "DELETE",
               });
               router.push("/");
-              toast.success("All chats deleted");
+              toast.success("Все чаты удалены");
             },
           },
         });
@@ -210,12 +216,48 @@ function PureMultimodalInput({
   };
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [uploadQueue, setUploadQueue] = useState<string[]>([]);
+  const [uploadQueue, setUploadQueue] = useState<UploadQueueItem[]>([]);
   const [slashOpen, setSlashOpen] = useState(false);
   const [slashQuery, setSlashQuery] = useState("");
   const [slashIndex, setSlashIndex] = useState(0);
 
   const submitForm = useCallback(() => {
+    const text = input.trim();
+    const messageParts: Array<
+      | {
+          type: "file";
+          url: string;
+          name: string;
+          filename: string;
+          mediaType: string;
+          extractedText?: string;
+        }
+      | {
+          type: "text";
+          text: string;
+        }
+    > = [
+      ...attachments.map((attachment) => ({
+        type: "file" as const,
+        url: attachment.url,
+        name: attachment.name,
+        filename: attachment.name,
+        mediaType: attachment.contentType,
+        extractedText: attachment.extractedText,
+      })),
+    ];
+
+    if (text.length > 0) {
+      messageParts.push({
+        type: "text",
+        text,
+      });
+    }
+
+    if (messageParts.length === 0) {
+      return;
+    }
+
     window.history.pushState(
       {},
       "",
@@ -224,18 +266,7 @@ function PureMultimodalInput({
 
     sendMessage({
       role: "user",
-      parts: [
-        ...attachments.map((attachment) => ({
-          type: "file" as const,
-          url: attachment.url,
-          name: attachment.name,
-          mediaType: attachment.contentType,
-        })),
-        {
-          type: "text",
-          text: input,
-        },
-      ],
+      parts: messageParts,
     });
 
     setAttachments([]);
@@ -256,7 +287,7 @@ function PureMultimodalInput({
     chatId,
   ]);
 
-  const uploadFile = useCallback(async (file: File) => {
+  const uploadFile = useCallback(async (file: File, signal?: AbortSignal) => {
     const formData = new FormData();
     formData.append("file", file);
 
@@ -266,22 +297,28 @@ function PureMultimodalInput({
         {
           method: "POST",
           body: formData,
+          signal,
         }
       );
 
       if (response.ok) {
         const data = await response.json();
-        const { url, pathname, contentType } = data;
+        const { url, pathname, contentType, displayName, extractedText } = data;
 
         return {
           url,
-          name: pathname,
+          name: displayName ?? pathname,
           contentType,
+          extractedText,
         };
       }
       const { error } = await response.json();
       toast.error(error);
     } catch (_error) {
+      if (_error instanceof Error && _error.name === "AbortError") {
+        toast.info(`Upload canceled: ${file.name}`);
+        return;
+      }
       toast.error("Failed to upload file, please try again!");
     }
   }, []);
@@ -289,15 +326,31 @@ function PureMultimodalInput({
   const handleFileChange = useCallback(
     async (event: ChangeEvent<HTMLInputElement>) => {
       const files = Array.from(event.target.files || []);
+      if (files.length === 0) {
+        return;
+      }
 
-      setUploadQueue(files.map((file) => file.name));
+      const queueItems = files.map((file) => ({
+        id: crypto.randomUUID(),
+        name: file.name,
+        controller: new AbortController(),
+      }));
+
+      setUploadQueue((current) => [...current, ...queueItems]);
 
       try {
-        const uploadPromises = files.map((file) => uploadFile(file));
+        const uploadPromises = files.map((file, index) =>
+          uploadFile(file, queueItems[index].controller.signal).finally(() => {
+            const queueId = queueItems[index].id;
+            setUploadQueue((current) =>
+              current.filter((item) => item.id !== queueId)
+            );
+          })
+        );
         const uploadedAttachments = await Promise.all(uploadPromises);
         const successfullyUploadedAttachments = uploadedAttachments.filter(
           (attachment) => attachment !== undefined
-        );
+        ) as Attachment[];
 
         setAttachments((currentAttachments) => [
           ...currentAttachments,
@@ -305,8 +358,6 @@ function PureMultimodalInput({
         ]);
       } catch (_error) {
         toast.error("Failed to upload files");
-      } finally {
-        setUploadQueue([]);
       }
     },
     [setAttachments, uploadFile]
@@ -329,13 +380,25 @@ function PureMultimodalInput({
 
       event.preventDefault();
 
-      setUploadQueue((prev) => [...prev, "Pasted image"]);
+      const queueItems = imageItems.map(() => ({
+        id: crypto.randomUUID(),
+        name: "Pasted image",
+        controller: new AbortController(),
+      }));
+      setUploadQueue((prev) => [...prev, ...queueItems]);
 
       try {
         const uploadPromises = imageItems
           .map((item) => item.getAsFile())
           .filter((file): file is File => file !== null)
-          .map((file) => uploadFile(file));
+          .map((file, index) =>
+            uploadFile(file, queueItems[index].controller.signal).finally(() => {
+              const queueId = queueItems[index].id;
+              setUploadQueue((current) =>
+                current.filter((item) => item.id !== queueId)
+              );
+            })
+          );
 
         const uploadedAttachments = await Promise.all(uploadPromises);
         const successfullyUploadedAttachments = uploadedAttachments.filter(
@@ -351,8 +414,6 @@ function PureMultimodalInput({
         ]);
       } catch (_error) {
         toast.error("Failed to upload pasted image(s)");
-      } finally {
-        setUploadQueue([]);
       }
     },
     [setAttachments, uploadFile]
@@ -381,7 +442,7 @@ function PureMultimodalInput({
             }}
             type="button"
           >
-            Cancel
+            Отмена
           </button>
         </div>
       )}
@@ -435,7 +496,7 @@ function PureMultimodalInput({
           if (status === "ready" || status === "error") {
             submitForm();
           } else {
-            toast.error("Please wait for the model to finish its response!");
+            toast.error("Дождитесь завершения ответа модели");
           }
         }}
       >
@@ -459,15 +520,21 @@ function PureMultimodalInput({
               />
             ))}
 
-            {uploadQueue.map((filename) => (
+            {uploadQueue.map((queueItem) => (
               <PreviewAttachment
                 attachment={{
                   url: "",
-                  name: filename,
+                  name: queueItem.name,
                   contentType: "",
                 }}
                 isUploading={true}
-                key={filename}
+                key={queueItem.id}
+                onRemove={() => {
+                  queueItem.controller.abort();
+                  setUploadQueue((current) =>
+                    current.filter((item) => item.id !== queueItem.id)
+                  );
+                }}
               />
             ))}
           </div>
@@ -510,7 +577,7 @@ function PureMultimodalInput({
             }
           }}
           placeholder={
-            editingMessage ? "Edit your message..." : "Ask anything..."
+            editingMessage ? "Редактируйте сообщение..." : "Напишите сообщение..."
           }
           ref={textareaRef}
           value={input}
@@ -534,12 +601,15 @@ function PureMultimodalInput({
             <PromptInputSubmit
               className={cn(
                 "h-7 w-7 rounded-xl transition-all duration-200",
-                input.trim()
-                  ? "bg-foreground text-background hover:opacity-85 active:scale-95"
+                input.trim() || attachments.length > 0
+                  ? "bg-[#f8ca6a] text-black hover:bg-[#efbd57] active:scale-95"
                   : "bg-muted text-muted-foreground/25 cursor-not-allowed"
               )}
               data-testid="send-button"
-              disabled={!input.trim() || uploadQueue.length > 0}
+              disabled={
+                (input.trim().length === 0 && attachments.length === 0) ||
+                uploadQueue.length > 0
+              }
               status={status}
               variant="secondary"
             >
@@ -602,19 +672,25 @@ function PureAttachmentsButton({
   const caps: Record<string, ModelCapabilities> | undefined =
     modelsResponse?.capabilities ?? modelsResponse;
   const hasVision = caps?.[selectedModelId]?.vision ?? false;
+  const canAttach = status === "ready";
 
   return (
     <Button
       className={cn(
         "h-7 w-7 rounded-lg border border-border/40 p-1 transition-colors",
-        hasVision
+        canAttach
           ? "text-foreground hover:border-border hover:text-foreground"
           : "text-muted-foreground/30 cursor-not-allowed"
       )}
       data-testid="attachments-button"
-      disabled={status !== "ready" || !hasVision}
+      disabled={!canAttach}
       onClick={(event) => {
         event.preventDefault();
+        if (!hasVision) {
+          toast.info(
+            "Файл прикреплен. У модели может быть ограничено распознавание изображений."
+          );
+        }
         fileInputRef.current?.click();
       }}
       variant="ghost"
@@ -814,3 +890,4 @@ function PureStopButton({
 }
 
 const StopButton = memo(PureStopButton);
+

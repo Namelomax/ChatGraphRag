@@ -1,12 +1,31 @@
-export const DEFAULT_CHAT_MODEL = "moonshotai/kimi-k2.5";
+const localModelId =
+  process.env.NEXT_PUBLIC_LOCAL_OPENAI_MODEL ??
+  process.env.LOCAL_OPENAI_MODEL ??
+  "qwen/qwen3.5-35b-a3b";
+const isLocalProvider = Boolean(
+  process.env.NEXT_PUBLIC_LOCAL_OPENAI_MODEL ??
+    process.env.LOCAL_OPENAI_BASE_URL
+);
+export const isLocalProviderEnabled = isLocalProvider;
 
-export const titleModel = {
-  id: "mistral/mistral-small",
-  name: "Mistral Small",
-  provider: "mistral",
-  description: "Fast model for title generation",
-  gatewayOrder: ["mistral"],
-};
+export const DEFAULT_CHAT_MODEL = isLocalProvider
+  ? localModelId
+  : "moonshotai/kimi-k2.5";
+
+export const titleModel = isLocalProvider
+  ? {
+      id: localModelId,
+      name: "Local Title Model",
+      provider: "local",
+      description: "Local model for title generation",
+    }
+  : {
+      id: "mistral/mistral-small",
+      name: "Mistral Small",
+      provider: "mistral",
+      description: "Fast model for title generation",
+      gatewayOrder: ["mistral"],
+    };
 
 export type ModelCapabilities = {
   tools: boolean;
@@ -23,63 +42,83 @@ export type ChatModel = {
   reasoningEffort?: "none" | "minimal" | "low" | "medium" | "high";
 };
 
-export const chatModels: ChatModel[] = [
-  {
-    id: "deepseek/deepseek-v3.2",
-    name: "DeepSeek V3.2",
-    provider: "deepseek",
-    description: "Fast and capable model with tool use",
-    gatewayOrder: ["bedrock", "deepinfra"],
-  },
-  {
-    id: "mistral/codestral",
-    name: "Codestral",
-    provider: "mistral",
-    description: "Code-focused model with tool use",
-    gatewayOrder: ["mistral"],
-  },
-  {
-    id: "mistral/mistral-small",
-    name: "Mistral Small",
-    provider: "mistral",
-    description: "Fast vision model with tool use",
-    gatewayOrder: ["mistral"],
-  },
-  {
-    id: "moonshotai/kimi-k2.5",
-    name: "Kimi K2.5",
-    provider: "moonshotai",
-    description: "Moonshot AI flagship model",
-    gatewayOrder: ["fireworks", "bedrock"],
-  },
-  {
-    id: "openai/gpt-oss-20b",
-    name: "GPT OSS 20B",
-    provider: "openai",
-    description: "Compact reasoning model",
-    gatewayOrder: ["groq", "bedrock"],
-    reasoningEffort: "low",
-  },
-  {
-    id: "openai/gpt-oss-120b",
-    name: "GPT OSS 120B",
-    provider: "openai",
-    description: "Open-source 120B parameter model",
-    gatewayOrder: ["fireworks", "bedrock"],
-    reasoningEffort: "low",
-  },
-  {
-    id: "xai/grok-4.1-fast-non-reasoning",
-    name: "Grok 4.1 Fast",
-    provider: "xai",
-    description: "Fast non-reasoning model with tool use",
-    gatewayOrder: ["xai"],
-  },
-];
+export const chatModels: ChatModel[] = isLocalProvider
+  ? [
+      {
+        id: localModelId,
+        name: "Local LM Studio",
+        provider: "local",
+        description: "Local OpenAI-compatible model",
+      },
+    ]
+  : [
+      {
+        id: "deepseek/deepseek-v3.2",
+        name: "DeepSeek V3.2",
+        provider: "deepseek",
+        description: "Fast and capable model with tool use",
+        gatewayOrder: ["bedrock", "deepinfra"],
+      },
+      {
+        id: "mistral/codestral",
+        name: "Codestral",
+        provider: "mistral",
+        description: "Code-focused model with tool use",
+        gatewayOrder: ["mistral"],
+      },
+      {
+        id: "mistral/mistral-small",
+        name: "Mistral Small",
+        provider: "mistral",
+        description: "Fast vision model with tool use",
+        gatewayOrder: ["mistral"],
+      },
+      {
+        id: "moonshotai/kimi-k2.5",
+        name: "Kimi K2.5",
+        provider: "moonshotai",
+        description: "Moonshot AI flagship model",
+        gatewayOrder: ["fireworks", "bedrock"],
+      },
+      {
+        id: "openai/gpt-oss-20b",
+        name: "GPT OSS 20B",
+        provider: "openai",
+        description: "Compact reasoning model",
+        gatewayOrder: ["groq", "bedrock"],
+        reasoningEffort: "low",
+      },
+      {
+        id: "openai/gpt-oss-120b",
+        name: "GPT OSS 120B",
+        provider: "openai",
+        description: "Open-source 120B parameter model",
+        gatewayOrder: ["fireworks", "bedrock"],
+        reasoningEffort: "low",
+      },
+      {
+        id: "xai/grok-4.1-fast-non-reasoning",
+        name: "Grok 4.1 Fast",
+        provider: "xai",
+        description: "Fast non-reasoning model with tool use",
+        gatewayOrder: ["xai"],
+      },
+    ];
 
 export async function getCapabilities(): Promise<
   Record<string, ModelCapabilities>
 > {
+  if (isLocalProvider) {
+    const localToolsEnabled =
+      process.env.LOCAL_OPENAI_TOOLS_ENABLED?.toLowerCase() !== "false";
+    return Object.fromEntries(
+      chatModels.map((model) => [
+        model.id,
+        { tools: localToolsEnabled, vision: false, reasoning: false },
+      ])
+    );
+  }
+
   const results = await Promise.all(
     chatModels.map(async (model) => {
       try {
@@ -136,6 +175,10 @@ export type GatewayModelWithCapabilities = ChatModel & {
 export async function getAllGatewayModels(): Promise<
   GatewayModelWithCapabilities[]
 > {
+  if (isLocalProvider) {
+    return [];
+  }
+
   try {
     const res = await fetch("https://ai-gateway.vercel.sh/v1/models", {
       next: { revalidate: 86_400 },

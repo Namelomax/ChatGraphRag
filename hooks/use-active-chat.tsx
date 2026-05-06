@@ -3,7 +3,7 @@
 import type { UseChatHelpers } from "@ai-sdk/react";
 import { useChat } from "@ai-sdk/react";
 import { DefaultChatTransport } from "ai";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   createContext,
   type Dispatch,
@@ -28,6 +28,8 @@ import { ChatbotError } from "@/lib/errors";
 import type { ChatMessage } from "@/lib/types";
 import { fetcher, fetchWithErrorHandlers, generateUUID } from "@/lib/utils";
 
+const ACTIVE_STREAM_CHAT_KEY = "active-stream-chat-id";
+
 type ActiveChatContextValue = {
   chatId: string;
   messages: ChatMessage[];
@@ -47,6 +49,8 @@ type ActiveChatContextValue = {
   setCurrentModelId: (id: string) => void;
   showCreditCardAlert: boolean;
   setShowCreditCardAlert: Dispatch<SetStateAction<boolean>>;
+  excludedAttachmentUrls: string[];
+  setExcludedAttachmentUrls: Dispatch<SetStateAction<string[]>>;
 };
 
 const ActiveChatContext = createContext<ActiveChatContextValue | null>(null);
@@ -58,6 +62,7 @@ function extractChatId(pathname: string): string | null {
 
 export function ActiveChatProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
   const { setDataStream } = useDataStream();
   const { mutate } = useSWRConfig();
 
@@ -81,6 +86,9 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
 
   const [input, setInput] = useState("");
   const [showCreditCardAlert, setShowCreditCardAlert] = useState(false);
+  const [excludedAttachmentUrls, setExcludedAttachmentUrls] = useState<string[]>(
+    []
+  );
 
   const { data: chatData, isLoading } = useSWR(
     isNewChat
@@ -146,6 +154,7 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
               : { message: lastMessage }),
             selectedChatModel: currentModelIdRef.current,
             selectedVisibilityType: visibility,
+            excludedAttachmentUrls,
             ...request.body,
           },
         };
@@ -244,6 +253,43 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
     { revalidateOnFocus: false }
   );
 
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    if (status === "submitted" || status === "streaming") {
+      window.sessionStorage.setItem(ACTIVE_STREAM_CHAT_KEY, chatId);
+      return;
+    }
+
+    const activeStreamChatId = window.sessionStorage.getItem(ACTIVE_STREAM_CHAT_KEY);
+    if (activeStreamChatId === chatId) {
+      window.sessionStorage.removeItem(ACTIVE_STREAM_CHAT_KEY);
+    }
+  }, [chatId, status]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const activeStreamChatId = window.sessionStorage.getItem(ACTIVE_STREAM_CHAT_KEY);
+    if (!activeStreamChatId) {
+      return;
+    }
+
+    if (activeStreamChatId === chatId) {
+      return;
+    }
+
+    toast({
+      type: "error",
+      description: "Сначала дождитесь завершения ответа в активном чате",
+    });
+    router.replace(`/chat/${activeStreamChatId}`);
+  }, [chatId, router]);
+
   const value = useMemo<ActiveChatContextValue>(
     () => ({
       chatId,
@@ -264,6 +310,8 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
       setCurrentModelId,
       showCreditCardAlert,
       setShowCreditCardAlert,
+      excludedAttachmentUrls,
+      setExcludedAttachmentUrls,
     }),
     [
       chatId,
@@ -282,6 +330,8 @@ export function ActiveChatProvider({ children }: { children: ReactNode }) {
       votes,
       currentModelId,
       showCreditCardAlert,
+      excludedAttachmentUrls,
+      setExcludedAttachmentUrls,
     ]
   );
 

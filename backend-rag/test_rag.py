@@ -17,7 +17,8 @@ async def main():
     config = RAGAnythingConfig(
         working_dir="./rag_storage",
         parser="mineru",
-        parse_method="fast",
+        # MinerU CLI поддерживает только: auto, txt, ocr
+        parse_method="auto",
     )
 
     # 2. LLM (локальный!)
