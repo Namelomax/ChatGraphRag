@@ -1,0 +1,14 @@
+.git
+.cursor
+.github
+.next
+node_modules
+backend-rag/.venv
+backend-rag/__pycache__
+backend-rag/uploads
+backend-rag/output
+backend-rag/rag_storage
+.env
+.env.local
+.env.*.local
+*.log

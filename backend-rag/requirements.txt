@@ -1,0 +1,6 @@
+aiofiles
+fastapi
+lightrag-hku
+python-multipart
+raganything
+uvicorn[standard]

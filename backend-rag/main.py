@@ -1,13 +1,11 @@
 import os
 import uuid
-import shutil
 import asyncio
 from contextlib import asynccontextmanager
-from typing import List, Optional
+from typing import Optional
 
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 import aiofiles
 
@@ -49,10 +47,12 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+CORS_ORIGINS = os.getenv("RAG_CORS_ORIGINS", "http://localhost:3000").split(",")
+
 # CORS для React приложения
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Адрес React приложения
+    allow_origins=[origin.strip() for origin in CORS_ORIGINS if origin.strip()],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

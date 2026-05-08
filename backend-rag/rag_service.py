@@ -4,14 +4,13 @@ import shutil
 import uuid
 from pathlib import Path
 import re
-from lightrag import QueryParam
 from lightrag.llm.openai import openai_embed
 from lightrag.utils import EmbeddingFunc
 from raganything import RAGAnything, RAGAnythingConfig
 
-BASE_URL = "http://127.0.0.1:1234/v1"
-API_KEY = "lm-studio"
-MODEL_ID = "qwen/qwen3.5-35b-a3b"
+BASE_URL = os.getenv("LOCAL_OPENAI_BASE_URL", "http://127.0.0.1:1234/v1")
+API_KEY = os.getenv("LOCAL_OPENAI_API_KEY", "lm-studio")
+EMBEDDING_MODEL = os.getenv("LOCAL_OPENAI_EMBEDDING_MODEL", "text-embedding-nomic")
 
 class RAGService:
     def __init__(self):
@@ -89,7 +88,7 @@ class RAGService:
             max_token_size=2000,
             func=lambda texts: openai_embed.func(
                 texts,
-                model="text-embedding-nomic",
+                model=EMBEDDING_MODEL,
                 api_key=API_KEY,
                 base_url=BASE_URL,
             ),

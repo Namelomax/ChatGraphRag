@@ -1,0 +1,81 @@
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-chatbot}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-chatbot}"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  rag-api:
+    build:
+      context: ./backend-rag
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env.docker.lmstudio
+    environment:
+      LOCAL_OPENAI_BASE_URL: ${LOCAL_OPENAI_BASE_URL:-http://host.docker.internal:1234/v1}
+      LOCAL_OPENAI_API_KEY: ${LOCAL_OPENAI_API_KEY:-lm-studio}
+      LOCAL_OPENAI_EMBEDDING_MODEL: ${LOCAL_OPENAI_EMBEDDING_MODEL:-text-embedding-nomic}
+      RAG_CORS_ORIGINS: ${RAG_CORS_ORIGINS:-http://localhost,http://localhost:80,http://localhost:3000}
+    volumes:
+      - rag_uploads:/app/uploads
+      - rag_output:/app/output
+      - rag_storage:/app/rag_storage
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    env_file:
+      - .env.docker.lmstudio
+    environment:
+      NODE_ENV: production
+      POSTGRES_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-chatbot}
+      REDIS_URL: redis://redis:6379
+      RAG_API_URL: http://rag-api:8000
+      LOCAL_OPENAI_BASE_URL: ${LOCAL_OPENAI_BASE_URL:-http://host.docker.internal:1234/v1}
+      LOCAL_OPENAI_API_KEY: ${LOCAL_OPENAI_API_KEY:-lm-studio}
+      LOCAL_OPENAI_MODEL: ${LOCAL_OPENAI_MODEL:-qwen/qwen3.5-35b-a3b}
+      NEXT_PUBLIC_LOCAL_OPENAI_MODEL: ${NEXT_PUBLIC_LOCAL_OPENAI_MODEL:-qwen/qwen3.5-35b-a3b}
+    ports:
+      - "80:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rag-api:
+        condition: service_started
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  postgres_data:
+  redis_data:
+  rag_uploads:
+  rag_output:
+  rag_storage:
