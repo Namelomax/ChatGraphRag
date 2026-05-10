@@ -83,6 +83,31 @@ const ragSupportedExtensions = new Set([
 const execFileAsync = promisify(execFile);
 const MAX_EXTRACTED_TEXT_CHARS = 12000;
 
+/** When UPLOAD_DEBUG_ERRORS=1, JSON includes detail/code for self-hosted debugging (disable after fixing). */
+function uploadErrorJson(message: string, cause?: unknown) {
+  const payload: Record<string, string> = { error: message };
+  if (process.env.UPLOAD_DEBUG_ERRORS === "1" && cause !== undefined) {
+    if (cause instanceof Error) {
+      payload.detail = cause.message;
+      payload.code = cause.name;
+    } else {
+      payload.detail = String(cause);
+    }
+  }
+  return payload;
+}
+
+function logUploadException(scope: string, error: unknown) {
+  if (error instanceof Error) {
+    console.error(`[upload] ${scope}: ${error.name}: ${error.message}`);
+    if (error.stack) {
+      console.error(error.stack);
+    }
+    return;
+  }
+  console.error(`[upload] ${scope}:`, error);
+}
+
 async function indexFileInRagIfNeeded(
   shouldIndex: boolean,
   fileBuffer: ArrayBuffer,
@@ -208,17 +233,19 @@ async function extractDocxText(fileBuffer: ArrayBuffer) {
 }
 
 export async function POST(request: Request) {
-  const session = await auth();
-
-  if (!session) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
-  if (request.body === null) {
-    return new Response("Request body is empty", { status: 400 });
-  }
-
   try {
+    console.info("[upload] POST received");
+
+    const session = await auth();
+
+    if (!session) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    if (request.body === null) {
+      return new Response("Request body is empty", { status: 400 });
+    }
+
     const formData = await request.formData();
     const file = formData.get("file") as File;
 
@@ -242,51 +269,28 @@ export async function POST(request: Request) {
     const uniqueFilename = `${uniquePrefix}-${safeName}`;
     const outputPath = path.join(uploadsDir, uniqueFilename);
 
-    try {
-      await mkdir(uploadsDir, { recursive: true });
+    await mkdir(uploadsDir, { recursive: true });
 
-      if (officeExtensionsToConvert.has(extension)) {
-        const sourcePath = path.join(uploadsDir, `${uniquePrefix}-${safeName}`);
-        await writeFile(sourcePath, Buffer.from(fileBuffer));
-
-        let extractedText: string | undefined;
-        try {
-          extractedText =
-            extension === ".docx"
-              ? await extractDocxText(fileBuffer)
-              : await extractTextWithLibreOffice({ uploadsDir, sourcePath });
-        } catch {
-          extractedText = undefined;
-        }
-
-        const converted = await convertOfficeToPdf({
-          uploadsDir,
-          uniquePrefix,
-          safeName,
-          fileBuffer,
-        });
-
-        const ragIndexed = await indexFileInRagIfNeeded(
-          shouldIndexInRag,
-          fileBuffer,
-          filename,
-          file.type || "application/octet-stream",
-        );
-
-        return NextResponse.json({
-          ...converted,
-          displayName: filename,
-          extractedText,
-          ragIndexed,
-        });
-      }
-
-      await writeFile(outputPath, Buffer.from(fileBuffer));
+    if (officeExtensionsToConvert.has(extension)) {
+      const sourcePath = path.join(uploadsDir, `${uniquePrefix}-${safeName}`);
+      await writeFile(sourcePath, Buffer.from(fileBuffer));
 
       let extractedText: string | undefined;
-      if (file.type.startsWith("text/") || extension === ".json" || extension === ".md") {
-        extractedText = truncateExtractedText(Buffer.from(fileBuffer).toString("utf8"));
+      try {
+        extractedText =
+          extension === ".docx"
+            ? await extractDocxText(fileBuffer)
+            : await extractTextWithLibreOffice({ uploadsDir, sourcePath });
+      } catch {
+        extractedText = undefined;
       }
+
+      const converted = await convertOfficeToPdf({
+        uploadsDir,
+        uniquePrefix,
+        safeName,
+        fileBuffer,
+      });
 
       const ragIndexed = await indexFileInRagIfNeeded(
         shouldIndexInRag,
@@ -295,25 +299,44 @@ export async function POST(request: Request) {
         file.type || "application/octet-stream",
       );
 
+      console.info("[upload] ok office route", { filename, ragIndexed });
+
       return NextResponse.json({
-        pathname: `/uploads/${uniqueFilename}`,
-        url: `/uploads/${uniqueFilename}`,
-        contentType: file.type || "application/octet-stream",
+        ...converted,
         displayName: filename,
         extractedText,
         ragIndexed,
       });
-    } catch (error) {
-      console.error("[upload] failed", error);
-      return NextResponse.json(
-        { error: "Upload failed or RAG indexing failed" },
-        { status: 500 }
-      );
     }
+
+    await writeFile(outputPath, Buffer.from(fileBuffer));
+
+    let extractedText: string | undefined;
+    if (file.type.startsWith("text/") || extension === ".json" || extension === ".md") {
+      extractedText = truncateExtractedText(Buffer.from(fileBuffer).toString("utf8"));
+    }
+
+    const ragIndexed = await indexFileInRagIfNeeded(
+      shouldIndexInRag,
+      fileBuffer,
+      filename,
+      file.type || "application/octet-stream",
+    );
+
+    console.info("[upload] ok direct route", { filename, ragIndexed });
+
+    return NextResponse.json({
+      pathname: `/uploads/${uniqueFilename}`,
+      url: `/uploads/${uniqueFilename}`,
+      contentType: file.type || "application/octet-stream",
+      displayName: filename,
+      extractedText,
+      ragIndexed,
+    });
   } catch (error) {
-    console.error("[upload] request handling failed", error);
+    logUploadException("POST", error);
     return NextResponse.json(
-      { error: "Failed to process request" },
+      uploadErrorJson("Upload failed", error),
       { status: 500 }
     );
   }

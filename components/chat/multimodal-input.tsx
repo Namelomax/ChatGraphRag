@@ -297,23 +297,50 @@ function PureMultimodalInput({
         {
           method: "POST",
           body: formData,
+          credentials: "include",
           signal,
         }
       );
 
-      if (response.ok) {
-        const data = await response.json();
-        const { url, pathname, contentType, displayName, extractedText } = data;
-
-        return {
-          url,
-          name: displayName ?? pathname,
-          contentType,
-          extractedText,
-        };
+      const raw = await response.text();
+      if (!response.ok) {
+        let userMessage = `Загрузка не удалась (${response.status})`;
+        try {
+          const parsed = JSON.parse(raw) as {
+            error?: string;
+            detail?: string;
+          };
+          if (typeof parsed.error === "string") {
+            userMessage = parsed.error;
+          }
+          if (typeof parsed.detail === "string") {
+            userMessage = `${userMessage}: ${parsed.detail}`;
+          }
+        } catch {
+          const snippet = raw.trim().slice(0, 240);
+          if (snippet.length > 0) {
+            userMessage = `${userMessage}: ${snippet}`;
+          }
+        }
+        toast.error(userMessage);
+        return;
       }
-      const { error } = await response.json();
-      toast.error(error);
+
+      const data = JSON.parse(raw) as {
+        url: string;
+        pathname?: string;
+        contentType: string;
+        displayName?: string;
+        extractedText?: string;
+      };
+      const { url, pathname, contentType, displayName, extractedText } = data;
+
+      return {
+        url,
+        name: displayName ?? pathname,
+        contentType,
+        extractedText,
+      };
     } catch (_error) {
       if (_error instanceof Error && _error.name === "AbortError") {
         toast.info(`Upload canceled: ${file.name}`);

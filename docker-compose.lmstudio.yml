@@ -54,6 +54,7 @@ services:
       - .env.docker.lmstudio
     environment:
       NODE_ENV: production
+      UPLOAD_DEBUG_ERRORS: ${UPLOAD_DEBUG_ERRORS:-}
       POSTGRES_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-chatbot}
       REDIS_URL: redis://redis:6379
       RAG_API_URL: http://rag-api:8000

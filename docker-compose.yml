@@ -63,6 +63,8 @@ services:
       - .env.docker
     environment:
       NODE_ENV: production
+      # Set to 1 in .env.docker while debugging upload 500s — adds detail to JSON + stderr stack traces.
+      UPLOAD_DEBUG_ERRORS: ${UPLOAD_DEBUG_ERRORS:-}
       POSTGRES_URL: postgres://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@postgres:5432/${POSTGRES_DB:-chatbot}
       REDIS_URL: redis://redis:6379
       RAG_API_URL: http://rag-api:8000
