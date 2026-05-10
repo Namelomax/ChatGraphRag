@@ -765,13 +765,36 @@ function PureModelSelectorCompact({
   const { data: modelsData } = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/models`,
     (url: string) => fetch(url).then((r) => r.json()),
-    { revalidateOnFocus: true, dedupingInterval: 60_000 }
+    {
+      revalidateOnFocus: true,
+      dedupingInterval: 60_000,
+      // Не сбрасывать data в undefined при фоновой ревалидации — иначе на долю секунды показывается «LM Studio» из бандла.
+      keepPreviousData: true,
+    }
   );
 
   const capabilities: Record<string, ModelCapabilities> | undefined =
     modelsData?.capabilities ?? modelsData;
-  const modelsFromApi: ChatModel[] | undefined = modelsData?.models;
-  const localCurated = modelsData?.localCurated === true;
+
+  const modelsFromApiFresh: ChatModel[] | undefined = modelsData?.models;
+  const localCuratedFresh = modelsData?.localCurated === true;
+
+  const lastGoodApiModelsRef = useRef<ChatModel[] | undefined>(undefined);
+  const lastGoodLocalCuratedRef = useRef(false);
+  if (modelsFromApiFresh && modelsFromApiFresh.length > 0) {
+    lastGoodApiModelsRef.current = modelsFromApiFresh;
+    lastGoodLocalCuratedRef.current = localCuratedFresh;
+  }
+
+  const modelsFromApi =
+    modelsFromApiFresh && modelsFromApiFresh.length > 0
+      ? modelsFromApiFresh
+      : lastGoodApiModelsRef.current;
+  const localCurated =
+    modelsFromApiFresh && modelsFromApiFresh.length > 0
+      ? localCuratedFresh
+      : lastGoodLocalCuratedRef.current;
+
   const hasApiModels = Array.isArray(modelsFromApi) && modelsFromApi.length > 0;
 
   const clientCuratedIds = new Set(chatModels.map((m) => m.id));
@@ -798,11 +821,26 @@ function PureModelSelectorCompact({
   })();
 
   const curatedIdsForUi =
-    localCurated && hasApiModels
+    localCurated && hasApiModels && modelsFromApi
       ? new Set(modelsFromApi.map((m) => m.id))
       : clientCuratedIds;
 
   const activeModels = allModels;
+
+  useEffect(() => {
+    if (!onModelChange || !modelsFromApi?.length) {
+      return;
+    }
+    const ids = new Set(modelsFromApi.map((m) => m.id));
+    if (ids.has(selectedModelId)) {
+      return;
+    }
+    const fallback = modelsFromApi[0]?.id;
+    if (fallback) {
+      onModelChange(fallback);
+      setCookie("chat-model", fallback);
+    }
+  }, [modelsFromApi, onModelChange, selectedModelId]);
 
   const selectedModel =
     activeModels.find((m: ChatModel) => m.id === selectedModelId) ??
