@@ -765,7 +765,7 @@ function PureModelSelectorCompact({
   const { data: modelsData } = useSWR(
     `${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/api/models`,
     (url: string) => fetch(url).then((r) => r.json()),
-    { revalidateOnFocus: false, dedupingInterval: 3_600_000 }
+    { revalidateOnFocus: true, dedupingInterval: 60_000 }
   );
 
   const capabilities: Record<string, ModelCapabilities> | undefined =
@@ -780,13 +780,21 @@ function PureModelSelectorCompact({
     if (!hasApiModels) {
       return chatModels;
     }
-    if (localCurated) {
-      return modelsFromApi;
+    const raw = localCurated
+      ? modelsFromApi
+      : [
+          ...chatModels,
+          ...modelsFromApi.filter((m) => !clientCuratedIds.has(m.id)),
+        ];
+    const seen = new Set<string>();
+    const deduped: ChatModel[] = [];
+    for (const m of raw) {
+      if (!seen.has(m.id)) {
+        seen.add(m.id);
+        deduped.push(m);
+      }
     }
-    return [
-      ...chatModels,
-      ...modelsFromApi.filter((m) => !clientCuratedIds.has(m.id)),
-    ];
+    return deduped;
   })();
 
   const curatedIdsForUi =

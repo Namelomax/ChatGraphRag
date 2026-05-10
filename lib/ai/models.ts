@@ -1,14 +1,29 @@
+function envNonEmpty(key: string): string | undefined {
+  const raw = process.env[key];
+  if (typeof raw !== "string") {
+    return undefined;
+  }
+  const t = raw.trim();
+  return t.length > 0 ? t : undefined;
+}
+
 const localModelId =
-  process.env.NEXT_PUBLIC_LOCAL_OPENAI_MODEL ??
-  process.env.LOCAL_OPENAI_MODEL ??
+  envNonEmpty("NEXT_PUBLIC_LOCAL_OPENAI_MODEL") ??
+  envNonEmpty("LOCAL_OPENAI_MODEL") ??
   "qwen/qwen3.5-35b-a3b";
 
 /** Вторая модель в селекторе (Ollama: `ollama run qwen3.6:27b`). Имя должно совпадать с API `/v1/chat/completions`. */
 export const LOCAL_SECONDARY_CHAT_MODEL_ID = "qwen3.6:27b";
 
+/**
+ * Локальный LLM (как в providers.ts нужен LOCAL_OPENAI_BASE_URL).
+ * Не использовать `??`: пустая строка из Dockerfile/build не должна отключать режим, если BASE_URL задан.
+ */
 const isLocalProvider = Boolean(
-  process.env.NEXT_PUBLIC_LOCAL_OPENAI_MODEL ??
-    process.env.LOCAL_OPENAI_BASE_URL
+  envNonEmpty("LOCAL_OPENAI_BASE_URL") ||
+    envNonEmpty("NEXT_PUBLIC_LOCAL_OPENAI_BASE_URL") ||
+    envNonEmpty("LOCAL_OPENAI_MODEL") ||
+    envNonEmpty("NEXT_PUBLIC_LOCAL_OPENAI_MODEL")
 );
 export const isLocalProviderEnabled = isLocalProvider;
 
@@ -24,9 +39,7 @@ function formatPrimaryLocalModelDisplayName(modelId: string): string {
   return tail ?? modelId;
 }
 
-export const DEFAULT_CHAT_MODEL = isLocalProvider
-  ? localModelId
-  : "moonshotai/kimi-k2.5";
+export const DEFAULT_CHAT_MODEL = localModelId;
 
 export const titleModel = {
   id: localModelId,
