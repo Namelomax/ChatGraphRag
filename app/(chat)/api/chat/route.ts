@@ -23,7 +23,7 @@ import {
   DEFAULT_CHAT_MODEL,
   getCapabilities,
 } from "@/lib/ai/models";
-import { type RequestHints, systemPrompt } from "@/lib/ai/prompts";
+import { systemPrompt } from "@/lib/ai/prompts";
 import { getLanguageModel, isGatewayProviderEnabled } from "@/lib/ai/providers";
 import { createDocument } from "@/lib/ai/tools/create-document";
 import { editDocument } from "@/lib/ai/tools/edit-document";
@@ -546,12 +546,6 @@ export async function POST(request: Request) {
 
     const { longitude, latitude, city, country } = geolocation(request);
 
-    const requestHints: RequestHints = {
-      longitude,
-      latitude,
-      city,
-      country,
-    };
 
     if (message?.role === "user") {
       await saveMessages({
@@ -614,7 +608,7 @@ export async function POST(request: Request) {
 
         const baseSystemText =
           buildTranscriptAdaptationPrefix(contextFilteredMessages) +
-          systemPrompt({ requestHints, supportsTools });
+          systemPrompt({ supportsTools });
         let ragQueryUsed = "";
         let ragContext = "";
         let ragContextPreview = "";
