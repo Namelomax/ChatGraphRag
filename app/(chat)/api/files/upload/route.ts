@@ -83,6 +83,29 @@ const ragSupportedExtensions = new Set([
 const execFileAsync = promisify(execFile);
 const MAX_EXTRACTED_TEXT_CHARS = 12000;
 
+async function indexFileInRagIfNeeded(
+  shouldIndex: boolean,
+  fileBuffer: ArrayBuffer,
+  filename: string,
+  mimeType: string,
+): Promise<boolean> {
+  if (!shouldIndex) {
+    return false;
+  }
+
+  try {
+    await uploadDocumentToRAG(
+      new File([fileBuffer], filename, {
+        type: mimeType || "application/octet-stream",
+      }),
+    );
+    return true;
+  } catch (ragError) {
+    console.error("[upload] RAG indexing failed (file still saved)", ragError);
+    return false;
+  }
+}
+
 function validateFile(file: File) {
   if (file.size > MAX_FILE_SIZE_BYTES) {
     return "File size should be less than 25MB";
@@ -243,19 +266,18 @@ export async function POST(request: Request) {
           fileBuffer,
         });
 
-        if (shouldIndexInRag) {
-          await uploadDocumentToRAG(
-            new File([fileBuffer], filename, {
-              type: file.type || "application/octet-stream",
-            })
-          );
-        }
+        const ragIndexed = await indexFileInRagIfNeeded(
+          shouldIndexInRag,
+          fileBuffer,
+          filename,
+          file.type || "application/octet-stream",
+        );
 
         return NextResponse.json({
           ...converted,
           displayName: filename,
           extractedText,
-          ragIndexed: shouldIndexInRag,
+          ragIndexed,
         });
       }
 
@@ -266,13 +288,12 @@ export async function POST(request: Request) {
         extractedText = truncateExtractedText(Buffer.from(fileBuffer).toString("utf8"));
       }
 
-      if (shouldIndexInRag) {
-        await uploadDocumentToRAG(
-          new File([fileBuffer], filename, {
-            type: file.type || "application/octet-stream",
-          })
-        );
-      }
+      const ragIndexed = await indexFileInRagIfNeeded(
+        shouldIndexInRag,
+        fileBuffer,
+        filename,
+        file.type || "application/octet-stream",
+      );
 
       return NextResponse.json({
         pathname: `/uploads/${uniqueFilename}`,
@@ -280,15 +301,17 @@ export async function POST(request: Request) {
         contentType: file.type || "application/octet-stream",
         displayName: filename,
         extractedText,
-        ragIndexed: shouldIndexInRag,
+        ragIndexed,
       });
-    } catch (_error) {
+    } catch (error) {
+      console.error("[upload] failed", error);
       return NextResponse.json(
         { error: "Upload failed or RAG indexing failed" },
         { status: 500 }
       );
     }
-  } catch (_error) {
+  } catch (error) {
+    console.error("[upload] request handling failed", error);
     return NextResponse.json(
       { error: "Failed to process request" },
       { status: 500 }
