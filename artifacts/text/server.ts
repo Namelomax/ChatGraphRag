@@ -1,5 +1,8 @@
 import { smoothStream, streamText } from "ai";
-import { updateDocumentPrompt } from "@/lib/ai/prompts";
+import {
+  TEXT_ARTIFACT_FORUS_PROTOCOL_SYSTEM,
+  updateDocumentPrompt,
+} from "@/lib/ai/prompts";
 import { getLanguageModel } from "@/lib/ai/providers";
 import { createDocumentHandler } from "@/lib/artifacts/server";
 
@@ -12,10 +15,9 @@ export const textDocumentHandler = createDocumentHandler<"text">({
 
     const result = streamText({
       model: getLanguageModel(modelId),
-      system:
-        "Write about the given topic. Markdown is supported. Use headings wherever appropriate.",
+      system: TEXT_ARTIFACT_FORUS_PROTOCOL_SYSTEM,
       experimental_transform: smoothStream({ chunking: "word" }),
-      prompt: title,
+      prompt: `Заголовок или указание пользователя к документу:\n${title}\n\nСформируй полный протокол по структуре выше.`,
     });
 
     for await (const delta of result.fullStream) {
@@ -52,7 +54,7 @@ export const textDocumentHandler = createDocumentHandler<"text">({
 
     const result = streamText({
       model: getLanguageModel(modelId),
-      system: updateDocumentPrompt(document.content, "text"),
+      system: `${TEXT_ARTIFACT_FORUS_PROTOCOL_SYSTEM}\n\nТекущий документ ниже — сохраняй согласованные факты и правь только по описанию изменений.\n\n${updateDocumentPrompt(document.content, "text")}`,
       experimental_transform: smoothStream({ chunking: "word" }),
       prompt: description,
     });

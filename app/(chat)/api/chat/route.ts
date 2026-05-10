@@ -13,6 +13,7 @@ import { after } from "next/server";
 import { createResumableStreamContext } from "resumable-stream";
 import { auth, type UserType } from "@/app/(auth)/auth";
 import { entitlementsByUserType } from "@/lib/ai/entitlements";
+import { buildTranscriptAdaptationPrefix } from "@/lib/ai/forus-transcript-adaptation";
 import {
   allowedModelIds,
   chatModels,
@@ -60,6 +61,41 @@ function truncateRagContext(context: string) {
     return normalized;
   }
   return `${normalized.slice(0, RAG_CONTEXT_PREVIEW_LIMIT)}...`;
+}
+
+function normalizeRetrievalQueryCandidate(raw: string) {
+  const normalized = raw
+    .replace(/[`"'«»]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (normalized.length === 0) {
+    return "";
+  }
+
+  const lower = normalized.toLowerCase();
+  const bannedFragments = [
+    "сформулируй",
+    "сформулируйте",
+    "сгенерируй",
+    "сгенерируйте",
+    "пользователь приветствует",
+    "rag-запрос",
+    "retrieval",
+    "дополнительной информации",
+    "уточня",
+    "верни",
+    "you are",
+  ];
+
+  const hasBannedFragment = bannedFragments.some((fragment) =>
+    lower.includes(fragment)
+  );
+  if (hasBannedFragment) {
+    return "";
+  }
+
+  return normalized.slice(0, 500);
 }
 
 function getMessageText(message: ChatMessage) {
@@ -147,15 +183,63 @@ async function queryRagContext(question: string) {
 
 async function buildRetrievalQuery({
   modelId,
-  uiMessages,
   currentUserText,
+  uiMessages,
   attachmentHints,
 }: {
   modelId: string;
-  uiMessages: ChatMessage[];
   currentUserText: string;
+  uiMessages: ChatMessage[];
   attachmentHints: string;
 }) {
+  const trimmedHints = attachmentHints.trim();
+  const trimmedUser = currentUserText.replace(/\s+/g, " ").trim();
+  const source = `${trimmedHints}\n${trimmedUser}`.toLowerCase();
+
+  if (trimmedUser.length === 0 && trimmedHints.length > 0) {
+    return "протокол встречи расшифровка повестка решения участники содержание документа Форус";
+  }
+
+  if (trimmedHints.length > 0 && isShortGreetingText(trimmedUser)) {
+    return "расшифровка встречи ключевые темы решения участники протокол компании Форус содержание документа";
+  }
+
+  if (trimmedUser.length > 0 && !isShortGreetingText(trimmedUser)) {
+    return trimmedUser;
+  }
+
+  const topicHints = [
+    "протокол",
+    "обследован",
+    "расшифровк",
+    "встреч",
+    "повест",
+    "решени",
+    "участник",
+    "договоренн",
+    "задач",
+    "вопрос",
+    "ответ",
+    "требован",
+  ].filter((token) => source.includes(token));
+
+  if (topicHints.length > 0) {
+    return `протокол встречи ${topicHints.join(" ")}`;
+  }
+
+  if (trimmedHints.length > 0) {
+    return "протокол встречи расшифровка повестка решения участники содержание документа Форус";
+  }
+
+  if (isShortGreetingText(trimmedUser)) {
+    return "протокол обследования встреч Форус шаблон разделы заполнение";
+  }
+
+  const deterministicFallback =
+    trimmedUser.length > 0
+      ? trimmedUser
+      : "протокол встречи расшифровка повестка решения участники содержание документа Форус";
+
   const dialogue = uiMessages
     .slice(-10)
     .map((message) => {
@@ -168,55 +252,64 @@ async function buildRetrievalQuery({
     .filter((line): line is string => Boolean(line))
     .join("\n");
 
-  const trimmedHints = attachmentHints.trim();
-  const trimmedUser = currentUserText.replace(/\s+/g, " ").trim();
-
-  let fallbackQuery = trimmedUser;
-  if (fallbackQuery.length === 0 && trimmedHints.length > 0) {
-    fallbackQuery =
-      "протокол встречи расшифровка повестка решения участники содержание документа Форус";
-  } else if (trimmedHints.length > 0 && isShortGreetingText(fallbackQuery)) {
-    fallbackQuery =
-      "расшифровка встречи ключевые темы решения участники протокол компании Форус содержание документа";
-  }
-
-  const hintsBlock =
-    trimmedHints.length > 0
-      ? `\n\nПрикреплённые документы (обязательно учти при формулировке запроса):\n${trimmedHints}`
-      : "";
-
   try {
     const result = await generateText({
       model: getLanguageModel(modelId),
-      system: `Сгенерируй один поисковый запрос для корпоративной базы документов (RAG), связанной с протоколами встреч компании Форус.
+      system: `Ты формируешь ОДНУ строку поискового запроса для RAG по протоколам обследования встреч Форус.
 
 Правила:
-- Только финальный запрос на русском языке, без пояснений и кавычек.
-- Если пользователь пишет короткое приветствие («привет», «здравствуйте»), но есть вложения или расшифровка — запрос должен описывать содержание встречи, темы, решения, участников, повестку; НЕ используй слова про «приветствия», «русский этикет», общую болтовню.
-- Если есть фрагменты текста из файлов — включи в запрос сущности из них (названия проектов, даты, имена ролей), если они явно видны.
-- Если последнее сообщение пустое, но есть вложения — запрос только по содержанию вложений/протокола.`,
-      prompt: `Контекст диалога (только текстовые реплики):
+- Выведи ТОЛЬКО готовый поисковый запрос, без пояснений.
+- Не пиши инструкции, формулировки задания, мета-комментарии.
+- Не используй фразы «сформулируй/сгенерируй/верни» и не пересказывай задание.
+- Запрос должен быть как ключевая строка для поиска фактов: дата встречи, цель, участники, повестка, решения, открытые вопросы.
+- Язык: русский.`,
+      prompt: `Контекст диалога:
 ${dialogue || "(пусто)"}
-${hintsBlock}
 
-Последнее сообщение пользователя (может быть пустым):
-${trimmedUser.length > 0 ? trimmedUser : "(нет текста — только вложения)"}
+Фрагменты из вложений:
+${trimmedHints || "(нет)"}
 
-Верни один итоговый RAG-запрос на русском.`,
+Последний текст пользователя:
+${trimmedUser || "(пусто)"}
+
+Верни только одну строку поискового запроса.`,
     });
 
-    const query = result.text.replace(/\s+/g, " ").trim();
-    if (query.length > 0) {
-      return query;
+    const candidate = normalizeRetrievalQueryCandidate(result.text);
+    if (candidate.length > 0) {
+      return candidate;
     }
   } catch (error) {
     console.warn(
-      "[chat] Retrieval query generation failed, using user message",
+      "[chat] Retrieval query generation failed, using fallback",
       error
     );
   }
 
-  return fallbackQuery;
+  return deterministicFallback;
+}
+
+function isFirstGreetingWithoutTranscript(
+  userText: string,
+  uiMessages: ChatMessage[],
+  attachmentHints: string
+) {
+  if (!isShortGreetingText(userText)) {
+    return false;
+  }
+
+  if (attachmentHints.trim().length > 0) {
+    return false;
+  }
+
+  const userMessagesWithText = uiMessages.filter((message) => {
+    if (message.role !== "user") {
+      return false;
+    }
+    return getMessageText(message).trim().length > 0;
+  });
+
+  return userMessagesWithText.length <= 1;
 }
 
 async function buildMeetingContextSummary({
@@ -518,7 +611,9 @@ export async function POST(request: Request) {
           isReasoningModel,
         });
 
-        const baseSystemText = systemPrompt({ requestHints, supportsTools });
+        const baseSystemText =
+          buildTranscriptAdaptationPrefix(contextFilteredMessages) +
+          systemPrompt({ requestHints, supportsTools });
         let ragQueryUsed = "";
         let ragContext = "";
         let ragContextPreview = "";
@@ -539,8 +634,8 @@ export async function POST(request: Request) {
             });
             ragQueryUsed = await buildRetrievalQuery({
               modelId: chatModel,
-              uiMessages: contextFilteredMessages,
               currentUserText: userMessageText,
+              uiMessages: contextFilteredMessages,
               attachmentHints: attachmentHintsForRetrieval,
             });
             dataStream.write({
@@ -569,23 +664,28 @@ export async function POST(request: Request) {
           attachmentHints: attachmentHintsForRetrieval,
         });
 
+        const greetingLockBlock = isFirstGreetingWithoutTranscript(
+          userMessageText,
+          contextFilteredMessages,
+          attachmentHintsForRetrieval
+        )
+          ? `
+
+Жесткий режим первого приветствия (активирован сервером):
+- Ответь строго в роли AI-агента компании Форус по протоколам обследования.
+- Не используй фразу «Чем могу помочь?».
+- Скажи, что для старта нужна расшифровка встречи (текстом или файлом), затем опиши следующий шаг: после получения расшифровки ты задашь уточняющие вопросы и начнешь поэтапно формировать протокол.`
+          : "";
         const ragInstruction = supportsTools
           ? `
 
 Инструмент ragQuery (не ослабляет режим Форус из системного промпта):
-- Перед итоговым текстом для пользователя вызови инструмент ragQuery с запросом по полному контексту чата и задаче протокола Форус (не только по последней короткой реплике).
-- Смысл ответа опирай на возвращённый контекст RAG.
-- Весь видимый пользователю текст ответа — только на русском; без англоязычных обзоров, учебных планов и консалтинговых эссе.
-
-Порядок в тексте для пользователя (видимая часть):
-1) Если это первый ответ ассистента в чате — сначала представление и приветствие Форус и явное начало работы над протоколом (как в системном промпте).
-2) Служебные строки про RAG в чат пользователю не выводи (query/preview для отладки не нужны).
-3) Далее содержательная работа по протоколу (блоки «Что уже известно», раздел и т.д.) — заголовки и текст только на русском.
-
-Разделение источников:
+- Если в серверном RAG-контексте уже есть данные, НЕ вызывай ragQuery повторно без необходимости.
+- Весь видимый пользователю текст ответа — только на русском; без англоязычных обзоров и консалтинговых эссе.
 - Текст расшифровки и документов — внешний источник, не личность пользователя.
 - Не обращайся к пользователю по именам/ролям из документов, если он сам так себя не назвал.
-- Отличай формулировку запроса пользователя от фактов из документов.`
+- Отличай формулировку запроса пользователя от фактов из документов.
+- Если RAG-контекст уже содержит материал по вложению, не проси пользователя повторно прислать расшифровку.`
           : "";
         const prefetchedRagBlock =
           ragContext.length > 0
@@ -605,7 +705,7 @@ ${ragContext}`
 Рабочая память встречи (кумулятивный контекст по диалогу и вложениям — используй при ответе):
 ${meetingContextSummary}`
             : "";
-        const systemText = `${baseSystemText}${prefetchedRagBlock}${meetingMemoryBlock}${ragInstruction}`;
+        const systemText = `${baseSystemText}${prefetchedRagBlock}${meetingMemoryBlock}${ragInstruction}${greetingLockBlock}`;
         const streamMessages = modelMessages.map((streamMessage) => {
           const role =
             typeof streamMessage === "object" &&
