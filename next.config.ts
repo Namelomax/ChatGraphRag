@@ -21,7 +21,8 @@ const nextConfig: NextConfig = {
   env: {
     NEXT_PUBLIC_BASE_PATH: basePath,
   },
-  cacheComponents: true,
+  // Off for self-hosted: Auth.js + cookies() conflict with Cache Components / blocking prerender (e.g. /_not-found).
+  cacheComponents: false,
   devIndicators: false,
   poweredByHeader: false,
   reactCompiler: true,
@@ -44,7 +45,6 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     prefetchInlining: true,
-    cachedNavigations: true,
     appNewScrollHandler: true,
     inlineCss: true,
     turbopackFileSystemCacheForDev: true,
