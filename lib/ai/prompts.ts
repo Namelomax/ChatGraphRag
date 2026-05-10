@@ -1,4 +1,3 @@
-import type { Geo } from "@vercel/functions";
 import type { ArtifactKind } from "@/components/chat/artifact";
 import { FORUS_PROTOCOL_AGENT_FULL_PROMPT } from "@/lib/ai/forus-protocol-sgr-prompt";
 
