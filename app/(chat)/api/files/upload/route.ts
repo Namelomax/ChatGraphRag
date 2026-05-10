@@ -84,7 +84,7 @@ const ragSupportedExtensions = new Set([
 ]);
 
 const execFileAsync = promisify(execFile);
-const MAX_EXTRACTED_TEXT_CHARS = 12000;
+const MAX_EXTRACTED_TEXT_CHARS = 12_000;
 
 /** When UPLOAD_DEBUG_ERRORS=1, JSON includes detail/code for self-hosted debugging (disable after fixing). */
 function uploadErrorJson(message: string, cause?: unknown) {
@@ -115,24 +115,19 @@ async function indexFileInRagIfNeeded(
   shouldIndex: boolean,
   fileBuffer: ArrayBuffer,
   filename: string,
-  mimeType: string,
+  mimeType: string
 ): Promise<boolean> {
   if (!shouldIndex) {
     return false;
   }
 
-  try {
-    await uploadDocumentToRAG(
-      new File([fileBuffer], filename, {
-        type: mimeType || "application/octet-stream",
-      }),
-      { waitUntilIndexed: true },
-    );
-    return true;
-  } catch (ragError) {
-    console.error("[upload] RAG indexing failed (file still saved)", ragError);
-    return false;
-  }
+  await uploadDocumentToRAG(
+    new File([fileBuffer], filename, {
+      type: mimeType || "application/octet-stream",
+    }),
+    { waitUntilIndexed: true }
+  );
+  return true;
 }
 
 function validateFile(file: File) {
@@ -165,7 +160,6 @@ async function convertOfficeToPdf({
   const sourcePath = path.join(uploadsDir, `${uniquePrefix}-${safeName}`);
   const sourceBaseName = path.parse(sourcePath).name;
   const expectedPdfName = `${sourceBaseName}.pdf`;
-  const expectedPdfPath = path.join(uploadsDir, expectedPdfName);
 
   await writeFile(sourcePath, Buffer.from(fileBuffer));
 
@@ -300,7 +294,7 @@ export async function POST(request: Request) {
         shouldIndexInRag,
         fileBuffer,
         filename,
-        file.type || "application/octet-stream",
+        file.type || "application/octet-stream"
       );
 
       console.info("[upload] ok office route", { filename, ragIndexed });
@@ -316,15 +310,21 @@ export async function POST(request: Request) {
     await writeFile(outputPath, Buffer.from(fileBuffer));
 
     let extractedText: string | undefined;
-    if (file.type.startsWith("text/") || extension === ".json" || extension === ".md") {
-      extractedText = truncateExtractedText(Buffer.from(fileBuffer).toString("utf8"));
+    if (
+      file.type.startsWith("text/") ||
+      extension === ".json" ||
+      extension === ".md"
+    ) {
+      extractedText = truncateExtractedText(
+        Buffer.from(fileBuffer).toString("utf8")
+      );
     }
 
     const ragIndexed = await indexFileInRagIfNeeded(
       shouldIndexInRag,
       fileBuffer,
       filename,
-      file.type || "application/octet-stream",
+      file.type || "application/octet-stream"
     );
 
     console.info("[upload] ok direct route", { filename, ragIndexed });
@@ -339,9 +339,8 @@ export async function POST(request: Request) {
     });
   } catch (error) {
     logUploadException("POST", error);
-    return NextResponse.json(
-      uploadErrorJson("Upload failed", error),
-      { status: 500 }
-    );
+    return NextResponse.json(uploadErrorJson("Upload failed", error), {
+      status: 500,
+    });
   }
 }
