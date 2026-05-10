@@ -742,6 +742,18 @@ function PureAttachmentsButton({
 
 const AttachmentsButton = memo(PureAttachmentsButton);
 
+/** models.dev slug — id локальных моделей без «vendor/id» не использовать как есть (двоеточие в URL). */
+function logoSlugForChatModel(model: ChatModel): string {
+  if (model.provider === "local") {
+    const lower = model.id.toLowerCase();
+    if (lower.startsWith("qwen")) {
+      return "qwen";
+    }
+    return "ollama";
+  }
+  return model.id.split("/")[0] ?? model.provider;
+}
+
 function PureModelSelectorCompact({
   selectedModelId,
   onModelChange,
@@ -758,14 +770,37 @@ function PureModelSelectorCompact({
 
   const capabilities: Record<string, ModelCapabilities> | undefined =
     modelsData?.capabilities ?? modelsData;
-  const dynamicModels: ChatModel[] | undefined = modelsData?.models;
-  const activeModels = dynamicModels ?? chatModels;
+  const modelsFromApi: ChatModel[] | undefined = modelsData?.models;
+  const localCurated = modelsData?.localCurated === true;
+  const hasApiModels = Array.isArray(modelsFromApi) && modelsFromApi.length > 0;
+
+  const clientCuratedIds = new Set(chatModels.map((m) => m.id));
+
+  const allModels = (() => {
+    if (!hasApiModels) {
+      return chatModels;
+    }
+    if (localCurated) {
+      return modelsFromApi;
+    }
+    return [
+      ...chatModels,
+      ...modelsFromApi.filter((m) => !clientCuratedIds.has(m.id)),
+    ];
+  })();
+
+  const curatedIdsForUi =
+    localCurated && hasApiModels
+      ? new Set(modelsFromApi.map((m) => m.id))
+      : clientCuratedIds;
+
+  const activeModels = allModels;
 
   const selectedModel =
     activeModels.find((m: ChatModel) => m.id === selectedModelId) ??
     activeModels.find((m: ChatModel) => m.id === DEFAULT_CHAT_MODEL) ??
     activeModels[0];
-  const [provider] = selectedModel.id.split("/");
+  const logoSlug = logoSlugForChatModel(selectedModel);
 
   return (
     <ModelSelector onOpenChange={setOpen} open={open}>
@@ -775,7 +810,7 @@ function PureModelSelectorCompact({
           data-testid="model-selector"
           variant="ghost"
         >
-          {provider && <ModelSelectorLogo provider={provider} />}
+          <ModelSelectorLogo provider={logoSlug} />
           <ModelSelectorName>{selectedModel.name}</ModelSelectorName>
         </Button>
       </ModelSelectorTrigger>
@@ -783,26 +818,21 @@ function PureModelSelectorCompact({
         <ModelSelectorInput placeholder="Search models..." />
         <ModelSelectorList>
           {(() => {
-            const curatedIds = new Set(chatModels.map((m) => m.id));
-            const allModels = dynamicModels
-              ? [
-                  ...chatModels,
-                  ...dynamicModels.filter((m) => !curatedIds.has(m.id)),
-                ]
-              : chatModels;
-
             const grouped: Record<
               string,
               { model: ChatModel; curated: boolean }[]
             > = {};
             for (const model of allModels) {
-              const key = curatedIds.has(model.id)
+              const key = curatedIdsForUi.has(model.id)
                 ? "_available"
                 : model.provider;
               if (!grouped[key]) {
                 grouped[key] = [];
               }
-              grouped[key].push({ model, curated: curatedIds.has(model.id) });
+              grouped[key].push({
+                model,
+                curated: curatedIdsForUi.has(model.id),
+              });
             }
 
             const sortedKeys = Object.keys(grouped).sort((a, b) => {
@@ -850,7 +880,7 @@ function PureModelSelectorCompact({
                 key={key}
               >
                 {grouped[key].map(({ model, curated }) => {
-                  const logoProvider = model.id.split("/")[0];
+                  const itemLogoSlug = logoSlugForChatModel(model);
                   return (
                     <ModelSelectorItem
                       className={cn(
@@ -877,7 +907,7 @@ function PureModelSelectorCompact({
                       }}
                       value={model.id}
                     >
-                      <ModelSelectorLogo provider={logoProvider} />
+                      <ModelSelectorLogo provider={itemLogoSlug} />
                       <ModelSelectorName>{model.name}</ModelSelectorName>
                       <div className="ml-auto flex items-center gap-2 text-foreground/70">
                         {capabilities?.[model.id]?.tools && (

@@ -58,6 +58,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_LOCAL_OPENAI_MODEL: ${NEXT_PUBLIC_LOCAL_OPENAI_MODEL:-qwen3:32b}
+        NEXT_PUBLIC_LOCAL_OPENAI_BASE_URL: ${NEXT_PUBLIC_LOCAL_OPENAI_BASE_URL:-}
     restart: unless-stopped
     env_file:
       - .env.docker

@@ -2,23 +2,39 @@ const localModelId =
   process.env.NEXT_PUBLIC_LOCAL_OPENAI_MODEL ??
   process.env.LOCAL_OPENAI_MODEL ??
   "qwen/qwen3.5-35b-a3b";
+
+/** Вторая модель в селекторе (Ollama: `ollama run qwen3.6:27b`). Имя должно совпадать с API `/v1/chat/completions`. */
+export const LOCAL_SECONDARY_CHAT_MODEL_ID = "qwen3.6:27b";
+
 const isLocalProvider = Boolean(
   process.env.NEXT_PUBLIC_LOCAL_OPENAI_MODEL ??
     process.env.LOCAL_OPENAI_BASE_URL
 );
 export const isLocalProviderEnabled = isLocalProvider;
 
+function formatPrimaryLocalModelDisplayName(modelId: string): string {
+  const lower = modelId.toLowerCase();
+  if (lower.includes("qwen3.5") && lower.includes("35")) {
+    return "Qwen 3.5 35B";
+  }
+  if (lower.includes("qwen3.6") && lower.includes("27")) {
+    return "Qwen 3.6 27B";
+  }
+  const tail = modelId.includes("/") ? modelId.split("/").pop() : modelId;
+  return tail ?? modelId;
+}
+
 export const DEFAULT_CHAT_MODEL = isLocalProvider
   ? localModelId
   : "moonshotai/kimi-k2.5";
 
 export const titleModel = {
-      id: localModelId,
-      name: "Local Title Model",
-      provider: "local",
-      description: "Local model for title generation",
-      gatewayOrder: ["qwen/qwen3.5-14b"],
-    };
+  id: localModelId,
+  name: "Local Title Model",
+  provider: "local",
+  description: "Local model for title generation",
+  gatewayOrder: ["qwen/qwen3.5-14b"],
+};
 
 export type ModelCapabilities = {
   tools: boolean;
@@ -35,14 +51,35 @@ export type ChatModel = {
   reasoningEffort?: "none" | "minimal" | "low" | "medium" | "high";
 };
 
-export const chatModels: ChatModel[] =
-      [{
+export const chatModels: ChatModel[] = isLocalProvider
+  ? [
+      {
+        id: localModelId,
+        name: formatPrimaryLocalModelDisplayName(localModelId),
+        provider: "local",
+        description:
+          "Модель из LOCAL_OPENAI_MODEL / NEXT_PUBLIC_LOCAL_OPENAI_MODEL",
+      },
+      ...(localModelId === LOCAL_SECONDARY_CHAT_MODEL_ID
+        ? []
+        : [
+            {
+              id: LOCAL_SECONDARY_CHAT_MODEL_ID,
+              name: "Qwen 3.6 27B",
+              provider: "local",
+              description:
+                "Qwen 3.6 27B (Ollama). Запуск: ollama run qwen3.6:27b",
+            },
+          ]),
+    ]
+  : [
+      {
         id: localModelId,
         name: "Local LM Studio",
         provider: "local",
         description: "Local OpenAI-compatible model",
-      }];
-
+      },
+    ];
 
 export async function getCapabilities(): Promise<
   Record<string, ModelCapabilities>

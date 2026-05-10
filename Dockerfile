@@ -12,6 +12,11 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+# Иначе в клиентском бандле NEXT_PUBLIC_* пустые до первого запроса /api/models — см. localCurated в app/(chat)/api/models/route.ts
+ARG NEXT_PUBLIC_LOCAL_OPENAI_MODEL=""
+ARG NEXT_PUBLIC_LOCAL_OPENAI_BASE_URL=""
+ENV NEXT_PUBLIC_LOCAL_OPENAI_MODEL=$NEXT_PUBLIC_LOCAL_OPENAI_MODEL
+ENV NEXT_PUBLIC_LOCAL_OPENAI_BASE_URL=$NEXT_PUBLIC_LOCAL_OPENAI_BASE_URL
 RUN pnpm build
 
 FROM base AS runner
