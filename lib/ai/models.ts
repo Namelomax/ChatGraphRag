@@ -8,6 +8,15 @@ const isLocalProvider = Boolean(
 );
 export const isLocalProviderEnabled = isLocalProvider;
 
+export const DEFAULT_CHAT_MODEL = isLocalProvider
+
+export const titleModel = {
+      id: localModelId,
+      name: "Local Title Model",
+      provider: "local",
+      description: "Local model for title generation",
+    }
+
 export type ModelCapabilities = {
   tools: boolean;
   vision: boolean;
@@ -23,8 +32,7 @@ export type ChatModel = {
   reasoningEffort?: "none" | "minimal" | "low" | "medium" | "high";
 };
 
-export const chatModels: ChatModel[] = isLocalProvider
-  ? [
+export const chatModels: ChatModel[] = [
       {
         id: localModelId,
         name: "Local LM Studio",
@@ -32,7 +40,7 @@ export const chatModels: ChatModel[] = isLocalProvider
         description: "Local OpenAI-compatible model",
       },
     ]
-  : [];
+ 
 
 export async function getCapabilities(): Promise<
   Record<string, ModelCapabilities>
