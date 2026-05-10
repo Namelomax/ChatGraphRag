@@ -24,7 +24,9 @@ export const ragQuery = tool({
       .string()
       .min(1)
       .max(500)
-      .describe("The retrieval query to send to the RAG service"),
+      .describe(
+        "Поисковый запрос на русском для сервиса RAG (содержание встречи, темы, решения)"
+      ),
     mode: z.enum(["hybrid", "local", "global"]).default("hybrid").optional(),
   }),
   execute: async ({ query, mode = "hybrid" }) => {

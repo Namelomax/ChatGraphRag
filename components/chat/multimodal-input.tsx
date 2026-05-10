@@ -42,6 +42,7 @@ import {
   DEFAULT_CHAT_MODEL,
   type ModelCapabilities,
 } from "@/lib/ai/models";
+import { fileRequiresRagIndexing } from "@/lib/constants/rag-indexable-extensions";
 import type { Attachment, ChatMessage } from "@/lib/types";
 import { cn, generateUUID } from "@/lib/utils";
 import {
@@ -332,8 +333,16 @@ function PureMultimodalInput({
         contentType: string;
         displayName?: string;
         extractedText?: string;
+        ragIndexed?: boolean;
       };
       const { url, pathname, contentType, displayName, extractedText } = data;
+
+      if (fileRequiresRagIndexing(file.name) && data.ragIndexed !== true) {
+        toast.error(
+          "Файл не принят: индексация в базе знаний не завершена (ragIndexed). Проверьте rag-api и повторите загрузку."
+        );
+        return;
+      }
 
       return {
         url,
@@ -419,12 +428,14 @@ function PureMultimodalInput({
           .map((item) => item.getAsFile())
           .filter((file): file is File => file !== null)
           .map((file, index) =>
-            uploadFile(file, queueItems[index].controller.signal).finally(() => {
-              const queueId = queueItems[index].id;
-              setUploadQueue((current) =>
-                current.filter((item) => item.id !== queueId)
-              );
-            })
+            uploadFile(file, queueItems[index].controller.signal).finally(
+              () => {
+                const queueId = queueItems[index].id;
+                setUploadQueue((current) =>
+                  current.filter((item) => item.id !== queueId)
+                );
+              }
+            )
           );
 
         const uploadedAttachments = await Promise.all(uploadPromises);
@@ -604,7 +615,9 @@ function PureMultimodalInput({
             }
           }}
           placeholder={
-            editingMessage ? "Редактируйте сообщение..." : "Напишите сообщение..."
+            editingMessage
+              ? "Редактируйте сообщение..."
+              : "Напишите сообщение..."
           }
           ref={textareaRef}
           value={input}
@@ -917,4 +930,3 @@ function PureStopButton({
 }
 
 const StopButton = memo(PureStopButton);
-

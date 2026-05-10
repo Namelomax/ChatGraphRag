@@ -8,6 +8,7 @@ import { NextResponse } from "next/server";
 
 import { auth } from "@/app/(auth)/auth";
 import { uploadDocumentToRAG } from "@/lib/ai/rag-service";
+import { RAG_INDEXABLE_EXTENSIONS } from "@/lib/constants/rag-indexable-extensions";
 
 /** Large Office/PDF + MinerU can exceed default serverless limits; self-hosted nginx may need matching timeouts. */
 export const maxDuration = 600;
@@ -68,19 +69,6 @@ const officeExtensionsToConvert = new Set([
   ".odt",
   ".ods",
   ".odp",
-]);
-
-const ragSupportedExtensions = new Set([
-  ".doc",
-  ".docx",
-  ".xls",
-  ".xlsx",
-  ".ppt",
-  ".pptx",
-  ".txt",
-  ".md",
-  ".pdf",
-  ".rtf",
 ]);
 
 const execFileAsync = promisify(execFile);
@@ -260,7 +248,7 @@ export async function POST(request: Request) {
     const safeName = filename.replace(/[^a-zA-Z0-9._-]/g, "_");
     const extension = path.extname(filename).toLowerCase();
     const fileBuffer = await file.arrayBuffer();
-    const shouldIndexInRag = ragSupportedExtensions.has(extension);
+    const shouldIndexInRag = RAG_INDEXABLE_EXTENSIONS.has(extension);
 
     const uploadsDir = path.join(process.cwd(), "public", "uploads");
     const uniquePrefix = randomUUID();

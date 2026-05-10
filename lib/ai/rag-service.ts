@@ -20,11 +20,7 @@ export type UploadDocumentToRAGOptions = {
 };
 
 function ragUploadErrorMessage(payload: unknown): string {
-  if (
-    typeof payload === "object" &&
-    payload !== null &&
-    "detail" in payload
-  ) {
+  if (typeof payload === "object" && payload !== null && "detail" in payload) {
     const detail = (payload as { detail: unknown }).detail;
     if (typeof detail === "string") {
       return detail;
@@ -38,14 +34,13 @@ function ragUploadErrorMessage(payload: unknown): string {
 
 export async function uploadDocumentToRAG(
   file: File,
-  options?: UploadDocumentToRAGOptions,
+  options?: UploadDocumentToRAGOptions
 ): Promise<RAGResponse> {
   try {
     const formData = new FormData();
     formData.append("file", file);
 
-    const query =
-      options?.waitUntilIndexed === true ? "?wait=true" : "";
+    const query = options?.waitUntilIndexed === true ? "?wait=true" : "";
 
     const response = await fetch(`${RAG_API_URL}/upload${query}`, {
       method: "POST",
@@ -63,17 +58,18 @@ export async function uploadDocumentToRAG(
       throw new Error(message);
     }
 
-    const data: RAGResponse = await response.json();
+    const data = (await response.json()) as RAGResponse;
+    if (options?.waitUntilIndexed === true && data.status !== "indexed") {
+      throw new Error(
+        data.message ||
+          "RAG вернул успех, но индексация не завершена (ожидался status=indexed)"
+      );
+    }
     return data;
   } catch (error) {
     console.error("RAG Service Error:", error);
     throw error;
   }
-}
-
-interface QueryRequest {
-  question: string;
-  mode?: "hybrid" | "local" | "global";
 }
 
 interface QueryResponse {

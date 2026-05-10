@@ -3,8 +3,8 @@ import {
   convertToModelMessages,
   createUIMessageStream,
   createUIMessageStreamResponse,
-  generateText,
   generateId,
+  generateText,
   stepCountIs,
   streamText,
 } from "ai";
@@ -20,10 +20,7 @@ import {
   getCapabilities,
 } from "@/lib/ai/models";
 import { type RequestHints, systemPrompt } from "@/lib/ai/prompts";
-import {
-  getLanguageModel,
-  isGatewayProviderEnabled,
-} from "@/lib/ai/providers";
+import { getLanguageModel, isGatewayProviderEnabled } from "@/lib/ai/providers";
 import { createDocument } from "@/lib/ai/tools/create-document";
 import { editDocument } from "@/lib/ai/tools/edit-document";
 import { getWeather } from "@/lib/ai/tools/get-weather";
@@ -117,15 +114,13 @@ function collectAttachmentHintsForRetrieval(messages: ChatMessage[]): string {
           : "";
 
       const excerpt =
-        excerptRaw.length > 1200
-          ? `${excerptRaw.slice(0, 1200)}…`
-          : excerptRaw;
+        excerptRaw.length > 1200 ? `${excerptRaw.slice(0, 1200)}…` : excerptRaw;
 
       if (excerpt.length > 0) {
         chunks.push(`Файл «${filename}», фрагмент текста: ${excerpt}`);
       } else {
         chunks.push(
-          `Файл «${filename}» (текст на сервере мог быть не извлечён в этот момент — формулируй запрос по имени файла как расшифровке/протоколу встречи Форус).`,
+          `Файл «${filename}» (текст на сервере мог быть не извлечён в этот момент — формулируй запрос по имени файла как расшифровке/протоколу встречи Форус).`
         );
       }
     }
@@ -215,7 +210,10 @@ ${trimmedUser.length > 0 ? trimmedUser : "(нет текста — только 
       return query;
     }
   } catch (error) {
-    console.warn("[chat] Retrieval query generation failed, using user message", error);
+    console.warn(
+      "[chat] Retrieval query generation failed, using user message",
+      error
+    );
   }
 
   return fallbackQuery;
@@ -244,9 +242,12 @@ async function buildMeetingContextSummary({
     .filter((line): line is string => Boolean(line))
     .join("\n");
 
-  const ragSnippet = ragContext.length > 0 ? truncateRagContext(ragContext) : "";
+  const ragSnippet =
+    ragContext.length > 0 ? truncateRagContext(ragContext) : "";
   const hintsSnippet =
-    attachmentHints.trim().length > 0 ? attachmentHints.trim() : "(вложения без извлечённого текста в этом запросе)";
+    attachmentHints.trim().length > 0
+      ? attachmentHints.trim()
+      : "(вложения без извлечённого текста в этом запросе)";
 
   try {
     const result = await generateText({
@@ -313,12 +314,12 @@ function toLocalCompatibleMessage(message: ChatMessage): ChatMessage {
           : undefined;
       const fileContext = extractedText
         ? [
-            `[DOCUMENT_CONTEXT_BEGIN name="${fileName}"]`,
-            "The following text is quoted document content, not a user statement.",
+            `[НАЧАЛО_ТЕКСТА_ДОКУМЕНТА имя="${fileName}"]`,
+            "Ниже приведён текст вложения (цитирование). Это не реплика пользователя в чате; используй как источник фактов для протокола Форус. Ответ пользователю формулируй на русском.",
             extractedText,
-            "[DOCUMENT_CONTEXT_END]",
+            "[КОНЕЦ_ТЕКСТА_ДОКУМЕНТА]",
           ].join("\n")
-        : `[DOCUMENT_REFERENCE name="${fileName}" url="${part.url}"]`;
+        : `[ССЫЛКА_НА_ФАЙЛ имя="${fileName}" url="${part.url}"]`;
 
       return [
         {
@@ -523,8 +524,9 @@ export async function POST(request: Request) {
         let ragContextPreview = "";
         let meetingContextSummary = "";
 
-        const attachmentHintsForRetrieval =
-          collectAttachmentHintsForRetrieval(contextFilteredMessages);
+        const attachmentHintsForRetrieval = collectAttachmentHintsForRetrieval(
+          contextFilteredMessages
+        );
         const shouldPrefetchRag =
           userMessageText.trim().length > 0 ||
           attachmentHintsForRetrieval.trim().length > 0;
@@ -576,11 +578,9 @@ export async function POST(request: Request) {
 - Весь видимый пользователю текст ответа — только на русском; без англоязычных обзоров, учебных планов и консалтинговых эссе.
 
 Порядок в тексте для пользователя (видимая часть):
-1) Если это первый ответ ассистента в чате — сначала приветствие Форус и явное начало работы над протоколом (как в системном промпте).
-2) Затем при необходимости строки:
-   - RAG query: <запрос>
-   - RAG context preview: <краткий фрагмент>
-3) Далее содержательная работа по протоколу (блоки «Что уже известно», раздел и т.д.).
+1) Если это первый ответ ассистента в чате — сначала представление и приветствие Форус и явное начало работы над протоколом (как в системном промпте).
+2) Служебные строки про RAG в чат пользователю не выводи (query/preview для отладки не нужны).
+3) Далее содержательная работа по протоколу (блоки «Что уже известно», раздел и т.д.) — заголовки и текст только на русском.
 
 Разделение источников:
 - Текст расшифровки и документов — внешний источник, не личность пользователя.
@@ -591,18 +591,18 @@ export async function POST(request: Request) {
           ragContext.length > 0
             ? `
 
-Server-prefetched RAG grounding:
-- query_used: ${ragQueryUsed}
-- context_preview: ${ragContextPreview}
+Контекст из корпоративной базы (RAG), уже полученный на сервере — опирайся при формулировках протокола:
+- использованный запрос: ${ragQueryUsed}
+- краткий превью контекста: ${ragContextPreview}
 
-Full RAG context:
+Полный текст контекста RAG:
 ${ragContext}`
             : "";
         const meetingMemoryBlock =
           meetingContextSummary.length > 0
             ? `
 
-Meeting working memory (must be used as cumulative context):
+Рабочая память встречи (кумулятивный контекст по диалогу и вложениям — используй при ответе):
 ${meetingContextSummary}`
             : "";
         const systemText = `${baseSystemText}${prefetchedRagBlock}${meetingMemoryBlock}${ragInstruction}`;
@@ -640,6 +640,8 @@ ${meetingContextSummary}`
           type: "data-chat-progress",
           data: "Формирую итоговый ответ...",
         });
+        // AI SDK: `prompt` — для простых одноходовых запросов без истории чата.
+        // Здесь нужны `system` + `messages`, иначе теряется диалог и вложения в ролях user/assistant.
         const result = streamText({
           model: getLanguageModel(chatModel),
           system: systemText,
