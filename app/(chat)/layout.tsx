@@ -1,5 +1,4 @@
 import { cookies } from "next/headers";
-import { connection } from "next/server";
 import Script from "next/script";
 import { Suspense } from "react";
 import { Toaster } from "sonner";
@@ -27,7 +26,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 }
 
 async function SidebarShell({ children }: { children: React.ReactNode }) {
-  await connection();
   const [session, cookieStore] = await Promise.all([auth(), cookies()]);
   const isCollapsed = cookieStore.get("sidebar_state")?.value !== "true";
 
