@@ -1,8 +1,8 @@
 import equal from "fast-deep-equal";
 import { memo } from "react";
 import { toast } from "sonner";
-import { useCopyToClipboard } from "usehooks-ts";
 import type { ChatMessage } from "@/lib/types";
+import { copyTextToClipboard } from "@/lib/utils/copy-to-clipboard";
 import {
   MessageAction as Action,
   MessageActions as Actions,
@@ -20,8 +20,6 @@ export function PureMessageActions({
   onEdit?: () => void;
   onRegenerate?: () => void;
 }) {
-  const [_, copyToClipboard] = useCopyToClipboard();
-
   if (isLoading) {
     return null;
   }
@@ -38,8 +36,12 @@ export function PureMessageActions({
       return;
     }
 
-    await copyToClipboard(textFromParts);
-    toast.success("Скопировано");
+    const ok = await copyTextToClipboard(textFromParts);
+    if (ok) {
+      toast.success("Скопировано");
+    } else {
+      toast.error("Не удалось скопировать (нет доступа к буферу обмена)");
+    }
   };
 
   if (message.role === "user") {
@@ -48,7 +50,7 @@ export function PureMessageActions({
         <div className="flex items-center gap-0.5">
           {onEdit && (
             <Action
-              className="size-7 text-muted-foreground/50 hover:text-foreground"
+              className="size-8 shrink-0 text-foreground/75 hover:bg-muted hover:text-foreground [&_svg]:size-4"
               data-testid="message-edit-button"
               onClick={onEdit}
               tooltip="Редактировать"
@@ -57,7 +59,7 @@ export function PureMessageActions({
             </Action>
           )}
           <Action
-            className="size-7 text-muted-foreground/50 hover:text-foreground"
+            className="size-8 shrink-0 text-foreground/75 hover:bg-muted hover:text-foreground [&_svg]:size-4"
             onClick={handleCopy}
             tooltip="Копировать"
           >
@@ -65,7 +67,7 @@ export function PureMessageActions({
           </Action>
           {onRegenerate && (
             <Action
-              className="size-7 text-muted-foreground/50 hover:text-foreground"
+              className="size-8 shrink-0 text-foreground/75 hover:bg-muted hover:text-foreground [&_svg]:size-4"
               onClick={onRegenerate}
               tooltip="Отправить заново"
             >
@@ -80,7 +82,7 @@ export function PureMessageActions({
   return (
     <Actions className="-ml-0.5 opacity-0 transition-opacity duration-150 group-hover/message:opacity-100">
       <Action
-        className="text-muted-foreground/50 hover:text-foreground"
+        className="size-8 shrink-0 text-foreground/75 hover:bg-muted hover:text-foreground [&_svg]:size-4"
         onClick={handleCopy}
         tooltip="Копировать"
       >
@@ -92,11 +94,10 @@ export function PureMessageActions({
 
 export const MessageActions = memo(
   PureMessageActions,
-  (prevProps, nextProps) => {
-    if (prevProps.isLoading !== nextProps.isLoading) {
-      return false;
-    }
-
-    return true;
-  }
+  (prevProps, nextProps) =>
+    prevProps.isLoading === nextProps.isLoading &&
+    prevProps.message.id === nextProps.message.id &&
+    prevProps.onEdit === nextProps.onEdit &&
+    prevProps.onRegenerate === nextProps.onRegenerate &&
+    equal(prevProps.message.parts, nextProps.message.parts)
 );
