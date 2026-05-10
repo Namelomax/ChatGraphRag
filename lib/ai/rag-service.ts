@@ -14,19 +14,53 @@ interface RAGResponse {
   status: string;
 }
 
-export async function uploadDocumentToRAG(file: File): Promise<RAGResponse> {
+export type UploadDocumentToRAGOptions = {
+  /** Wait until ingest completes (blocks HTTP until rag-api finishes MinerU + LightRAG insert). */
+  waitUntilIndexed?: boolean;
+};
+
+function ragUploadErrorMessage(payload: unknown): string {
+  if (
+    typeof payload === "object" &&
+    payload !== null &&
+    "detail" in payload
+  ) {
+    const detail = (payload as { detail: unknown }).detail;
+    if (typeof detail === "string") {
+      return detail;
+    }
+    if (Array.isArray(detail)) {
+      return JSON.stringify(detail);
+    }
+  }
+  return "Failed to process document in RAG";
+}
+
+export async function uploadDocumentToRAG(
+  file: File,
+  options?: UploadDocumentToRAGOptions,
+): Promise<RAGResponse> {
   try {
     const formData = new FormData();
     formData.append("file", file);
 
-    const response = await fetch(`${RAG_API_URL}/upload`, {
+    const query =
+      options?.waitUntilIndexed === true ? "?wait=true" : "";
+
+    const response = await fetch(`${RAG_API_URL}/upload${query}`, {
       method: "POST",
       body: formData,
     });
 
     if (!response.ok) {
-      const error = await response.json();
-      throw new Error(error.detail || "Failed to process document in RAG");
+      let message = "Failed to process document in RAG";
+      try {
+        const errorPayload = (await response.json()) as unknown;
+        message = ragUploadErrorMessage(errorPayload);
+      } catch {
+        /* non-JSON error body */
+      }
+      throw new Error(message);
     }
 
     const data: RAGResponse = await response.json();

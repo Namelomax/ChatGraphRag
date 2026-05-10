@@ -9,6 +9,9 @@ import { NextResponse } from "next/server";
 import { auth } from "@/app/(auth)/auth";
 import { uploadDocumentToRAG } from "@/lib/ai/rag-service";
 
+/** Large Office/PDF + MinerU can exceed default serverless limits; self-hosted nginx may need matching timeouts. */
+export const maxDuration = 600;
+
 const MAX_FILE_SIZE_BYTES = 25 * 1024 * 1024;
 const allowedMimeTypes = new Set([
   // Images
@@ -123,6 +126,7 @@ async function indexFileInRagIfNeeded(
       new File([fileBuffer], filename, {
         type: mimeType || "application/octet-stream",
       }),
+      { waitUntilIndexed: true },
     );
     return true;
   } catch (ragError) {

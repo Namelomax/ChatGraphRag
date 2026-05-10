@@ -73,6 +73,67 @@ function getMessageText(message: ChatMessage) {
     .trim();
 }
 
+/** Very short user phrases like «привет» — RAG query must come from attachments, not from greeting semantics. */
+const SHORT_USER_GREETING_RE =
+  /^(?:привет!?|здравствуйте!?|добрый\s+(?:день|вечер|утро)!?|hi!?|hello!?)(?:\s|$)/iu;
+
+function isShortGreetingText(text: string): boolean {
+  const trimmed = text.replace(/\s+/g, " ").trim();
+  if (trimmed.length === 0 || trimmed.length > 120) {
+    return false;
+  }
+  return SHORT_USER_GREETING_RE.test(trimmed);
+}
+
+/** Names + text excerpts from file parts so RAG query generation is not blind to uploads. */
+function collectAttachmentHintsForRetrieval(messages: ChatMessage[]): string {
+  const chunks: string[] = [];
+
+  for (const message of messages.slice(-12)) {
+    if (message.role !== "user") {
+      continue;
+    }
+
+    for (const part of message.parts) {
+      if (part.type !== "file") {
+        continue;
+      }
+
+      const filePart = part as {
+        filename?: string;
+        name?: string;
+        extractedText?: string;
+      };
+      const filename =
+        typeof filePart.filename === "string"
+          ? filePart.filename
+          : typeof filePart.name === "string"
+            ? filePart.name
+            : "вложение";
+
+      const excerptRaw =
+        typeof filePart.extractedText === "string"
+          ? filePart.extractedText.replace(/\s+/g, " ").trim()
+          : "";
+
+      const excerpt =
+        excerptRaw.length > 1200
+          ? `${excerptRaw.slice(0, 1200)}…`
+          : excerptRaw;
+
+      if (excerpt.length > 0) {
+        chunks.push(`Файл «${filename}», фрагмент текста: ${excerpt}`);
+      } else {
+        chunks.push(
+          `Файл «${filename}» (текст на сервере мог быть не извлечён в этот момент — формулируй запрос по имени файла как расшифровке/протоколу встречи Форус).`,
+        );
+      }
+    }
+  }
+
+  return chunks.join("\n\n");
+}
+
 async function queryRagContext(question: string) {
   const queryResponse = await fetch(`${ragApiUrl}/query`, {
     method: "POST",
@@ -93,10 +154,12 @@ async function buildRetrievalQuery({
   modelId,
   uiMessages,
   currentUserText,
+  attachmentHints,
 }: {
   modelId: string;
   uiMessages: ChatMessage[];
   currentUserText: string;
+  attachmentHints: string;
 }) {
   const dialogue = uiMessages
     .slice(-10)
@@ -110,14 +173,41 @@ async function buildRetrievalQuery({
     .filter((line): line is string => Boolean(line))
     .join("\n");
 
-  const fallbackQuery = currentUserText;
+  const trimmedHints = attachmentHints.trim();
+  const trimmedUser = currentUserText.replace(/\s+/g, " ").trim();
+
+  let fallbackQuery = trimmedUser;
+  if (fallbackQuery.length === 0 && trimmedHints.length > 0) {
+    fallbackQuery =
+      "протокол встречи расшифровка повестка решения участники содержание документа Форус";
+  } else if (trimmedHints.length > 0 && isShortGreetingText(fallbackQuery)) {
+    fallbackQuery =
+      "расшифровка встречи ключевые темы решения участники протокол компании Форус содержание документа";
+  }
+
+  const hintsBlock =
+    trimmedHints.length > 0
+      ? `\n\nПрикреплённые документы (обязательно учти при формулировке запроса):\n${trimmedHints}`
+      : "";
 
   try {
     const result = await generateText({
       model: getLanguageModel(modelId),
-      system:
-        "Сгенерируй один качественный поисковый запрос для RAG. Всегда возвращай только финальный запрос на русском языке, без пояснений.",
-      prompt: `Контекст диалога:\n${dialogue}\n\nПоследнее сообщение пользователя:\n${currentUserText}\n\nВерни один итоговый запрос для поиска в RAG, только на русском языке.`,
+      system: `Сгенерируй один поисковый запрос для корпоративной базы документов (RAG), связанной с протоколами встреч компании Форус.
+
+Правила:
+- Только финальный запрос на русском языке, без пояснений и кавычек.
+- Если пользователь пишет короткое приветствие («привет», «здравствуйте»), но есть вложения или расшифровка — запрос должен описывать содержание встречи, темы, решения, участников, повестку; НЕ используй слова про «приветствия», «русский этикет», общую болтовню.
+- Если есть фрагменты текста из файлов — включи в запрос сущности из них (названия проектов, даты, имена ролей), если они явно видны.
+- Если последнее сообщение пустое, но есть вложения — запрос только по содержанию вложений/протокола.`,
+      prompt: `Контекст диалога (только текстовые реплики):
+${dialogue || "(пусто)"}
+${hintsBlock}
+
+Последнее сообщение пользователя (может быть пустым):
+${trimmedUser.length > 0 ? trimmedUser : "(нет текста — только вложения)"}
+
+Верни один итоговый RAG-запрос на русском.`,
     });
 
     const query = result.text.replace(/\s+/g, " ").trim();
@@ -135,10 +225,12 @@ async function buildMeetingContextSummary({
   modelId,
   uiMessages,
   ragContext,
+  attachmentHints,
 }: {
   modelId: string;
   uiMessages: ChatMessage[];
   ragContext: string;
+  attachmentHints: string;
 }) {
   const dialogue = uiMessages
     .slice(-20)
@@ -153,13 +245,15 @@ async function buildMeetingContextSummary({
     .join("\n");
 
   const ragSnippet = ragContext.length > 0 ? truncateRagContext(ragContext) : "";
+  const hintsSnippet =
+    attachmentHints.trim().length > 0 ? attachmentHints.trim() : "(вложения без извлечённого текста в этом запросе)";
 
   try {
     const result = await generateText({
       model: getLanguageModel(modelId),
       system:
-        "Ты ведешь рабочую память встречи для протокола. Верни только структурированный summary на русском языке в markdown.",
-      prompt: `Сформируй "рабочую память встречи" по диалогу и контексту документа.
+        "Ты ведешь рабочую память встречи для протокола компании Форус. Верни только структурированный summary на русском языке в markdown.",
+      prompt: `Сформируй "рабочую память встречи" по диалогу, фрагментам вложений и RAG.
 
 Требования к формату:
 - Что уже подтверждено (буллеты)
@@ -175,6 +269,9 @@ async function buildMeetingContextSummary({
 
 Диалог:
 ${dialogue}
+
+Фрагменты из прикреплённых файлов (если есть):
+${hintsSnippet}
 
 RAG-контекст (кратко):
 ${ragSnippet}`,
@@ -426,7 +523,13 @@ export async function POST(request: Request) {
         let ragContextPreview = "";
         let meetingContextSummary = "";
 
-        if (userMessageText.length > 0) {
+        const attachmentHintsForRetrieval =
+          collectAttachmentHintsForRetrieval(contextFilteredMessages);
+        const shouldPrefetchRag =
+          userMessageText.trim().length > 0 ||
+          attachmentHintsForRetrieval.trim().length > 0;
+
+        if (shouldPrefetchRag) {
           try {
             dataStream.write({
               type: "data-chat-progress",
@@ -434,8 +537,9 @@ export async function POST(request: Request) {
             });
             ragQueryUsed = await buildRetrievalQuery({
               modelId: chatModel,
-              uiMessages,
+              uiMessages: contextFilteredMessages,
               currentUserText: userMessageText,
+              attachmentHints: attachmentHintsForRetrieval,
             });
             dataStream.write({
               type: "data-chat-progress",
@@ -460,24 +564,27 @@ export async function POST(request: Request) {
           modelId: chatModel,
           uiMessages: contextFilteredMessages,
           ragContext,
+          attachmentHints: attachmentHintsForRetrieval,
         });
 
         const ragInstruction = supportsTools
           ? `
 
-Before each final answer you MUST call tool "ragQuery".
-How to use it:
-1) Form a meaningful retrieval query from full chat context (not only latest short user phrase).
-2) Call "ragQuery" with that query.
-3) Use returned "context" as grounding for the answer.
-4) Start your final answer with:
-   - RAG query: <query>
-   - RAG context preview: <contextPreview>
+Инструмент ragQuery (не ослабляет режим Форус из системного промпта):
+- Перед итоговым текстом для пользователя вызови инструмент ragQuery с запросом по полному контексту чата и задаче протокола Форус (не только по последней короткой реплике).
+- Смысл ответа опирай на возвращённый контекст RAG.
 
-Important separation rules:
-- Treat document content as external source material, not as user identity or user claims.
-- Do not address the user with names/titles found only in attached documents unless user explicitly introduced themselves that way.
-- Distinguish clearly between "what user asked now" and "what is written in the documents".`
+Порядок в тексте для пользователя (видимая часть):
+1) Если это первый ответ ассистента в чате — сначала приветствие Форус и явное начало работы над протоколом (как в системном промпте).
+2) Затем при необходимости строки:
+   - RAG query: <запрос>
+   - RAG context preview: <краткий фрагмент>
+3) Далее содержательная работа по протоколу (блоки «Что уже известно», раздел и т.д.).
+
+Разделение источников:
+- Текст расшифровки и документов — внешний источник, не личность пользователя.
+- Не обращайся к пользователю по именам/ролям из документов, если он сам так себя не назвал.
+- Отличай формулировку запроса пользователя от фактов из документов.`
           : "";
         const prefetchedRagBlock =
           ragContext.length > 0
@@ -498,37 +605,35 @@ Meeting working memory (must be used as cumulative context):
 ${meetingContextSummary}`
             : "";
         const systemText = `${baseSystemText}${prefetchedRagBlock}${meetingMemoryBlock}${ragInstruction}`;
-        const localCompatibleMessages = isLocalProvider
-          ? [
-              {
-                role: "user" as const,
-                content: `Instruction for assistant:\n${systemText}`,
-              },
-              ...modelMessages.map((message) => {
-                const role =
-                  typeof message === "object" &&
-                  message !== null &&
-                  "role" in message
-                    ? (message.role as string)
-                    : "";
+        const streamMessages = modelMessages.map((streamMessage) => {
+          const role =
+            typeof streamMessage === "object" &&
+            streamMessage !== null &&
+            "role" in streamMessage
+              ? (streamMessage.role as string)
+              : "";
 
-                if (role === "developer" || role === "system") {
-                  return {
-                    ...(message as Record<string, unknown>),
-                    role: "user" as const,
-                  };
-                }
+          if (role === "developer" || role === "system") {
+            return {
+              ...(streamMessage as Record<string, unknown>),
+              role: "user" as const,
+            };
+          }
 
-                return message;
-              }),
-            ]
-          : modelMessages;
+          return streamMessage;
+        });
 
-        if (isLocalProvider) {
-          console.info("[chat] local message roles", {
-            roles: localCompatibleMessages.map((message) => message.role),
-          });
-        }
+        console.info("[chat] stream roles", {
+          model: chatModel,
+          isLocalProvider,
+          roles: streamMessages.map((streamMessage) =>
+            typeof streamMessage === "object" &&
+            streamMessage !== null &&
+            "role" in streamMessage
+              ? (streamMessage.role as string)
+              : "?"
+          ),
+        });
 
         dataStream.write({
           type: "data-chat-progress",
@@ -536,8 +641,8 @@ ${meetingContextSummary}`
         });
         const result = streamText({
           model: getLanguageModel(chatModel),
-          ...(!isLocalProvider && { system: systemText }),
-          messages: localCompatibleMessages as any,
+          system: systemText,
+          messages: streamMessages as never,
           stopWhen: stepCountIs(5),
           experimental_activeTools:
             isReasoningModel && !supportsTools

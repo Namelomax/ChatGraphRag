@@ -37,6 +37,7 @@ export const PreviewAttachment = ({
         <div
           className="absolute inset-0 flex items-center justify-center rounded-xl bg-black/40 backdrop-blur-sm"
           data-testid="input-attachment-loader"
+          title="Загрузка на сервер и индексация в RAG (пока спиннер активен, отправить сообщение нельзя)"
         >
           <Spinner className="size-5" />
         </div>

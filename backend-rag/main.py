@@ -5,7 +5,7 @@ import uuid
 from contextlib import asynccontextmanager
 from typing import Optional
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, File, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 import aiofiles
@@ -70,10 +70,19 @@ async def root():
     return {"message": "RAG API Service is running", "status": "ok"}
 
 @app.post("/upload", response_model=DocumentResponse)
-async def upload_document(file: UploadFile = File(...)):
+async def upload_document(
+    file: UploadFile = File(...),
+    wait: bool = Query(
+        False,
+        description="Дождаться окончания индексации (для внутренних вызовов из Next.js).",
+    ),
+):
     """
     Загрузка документа для обработки.
     Поддерживаемые форматы: .doc/.docx, .xls/.xlsx, .ppt/.pptx, .pdf, .txt, .md, .rtf
+
+    По умолчанию ответ сразу status=queued, индексация в фоне.
+    С wait=true HTTP-ответ после завершения ingest (дольше, но клиент не отправит чат раньше времени).
     """
     # Проверка расширения
     allowed_extensions = {
@@ -118,13 +127,29 @@ async def upload_document(file: UploadFile = File(...)):
             if os.path.exists(path_to_process):
                 os.remove(path_to_process)
 
-    # Запускаем долгую обработку в фоне, чтобы API не таймаутился
+    if wait:
+        try:
+            result = await rag_service.process_document(file_path)
+            if result.get("status") == "error":
+                raise HTTPException(
+                    status_code=500,
+                    detail=str(result.get("message") or "RAG processing failed"),
+                )
+            return DocumentResponse(
+                message=f"Документ {file.filename} проиндексирован",
+                filename=file.filename,
+                status="indexed",
+            )
+        finally:
+            if os.path.exists(file_path):
+                os.remove(file_path)
+
     asyncio.create_task(process_in_background(file_path))
 
     return DocumentResponse(
         message=f"Документ {file.filename} принят в обработку",
         filename=file.filename,
-        status="queued"
+        status="queued",
     )
 
 @app.post("/query", response_model=QueryResponse)
