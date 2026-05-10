@@ -10,6 +10,12 @@ export const isTestEnvironment = Boolean(
 
 export const guestRegex = /^guest-\d+$/;
 
+/** Match Auth.js cookie mode to the public URL scheme (HTTP vs HTTPS). */
+export const authUsesSecureCookies = (): boolean => {
+  const url = process.env.NEXTAUTH_URL ?? process.env.AUTH_URL ?? "";
+  return url.startsWith("https://");
+};
+
 export const DUMMY_PASSWORD = generateDummyPassword();
 
 export const suggestions = [

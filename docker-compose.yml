@@ -71,7 +71,8 @@ services:
       LOCAL_OPENAI_MODEL: ${LOCAL_OPENAI_MODEL:-qwen3:32b}
       NEXT_PUBLIC_LOCAL_OPENAI_MODEL: ${NEXT_PUBLIC_LOCAL_OPENAI_MODEL:-qwen3:32b}
     ports:
-      - "80:3000"
+      # Bind localhost only so host nginx can listen on :80 and proxy here.
+      - "127.0.0.1:3000:3000"
     depends_on:
       postgres:
         condition: service_healthy
