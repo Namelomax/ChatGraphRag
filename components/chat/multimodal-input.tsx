@@ -43,7 +43,7 @@ import {
   type ModelCapabilities,
 } from "@/lib/ai/models";
 import type { Attachment, ChatMessage } from "@/lib/types";
-import { cn } from "@/lib/utils";
+import { cn, generateUUID } from "@/lib/utils";
 import {
   PromptInput,
   PromptInputFooter,
@@ -331,7 +331,7 @@ function PureMultimodalInput({
       }
 
       const queueItems = files.map((file) => ({
-        id: crypto.randomUUID(),
+        id: generateUUID(),
         name: file.name,
         controller: new AbortController(),
       }));
@@ -381,7 +381,7 @@ function PureMultimodalInput({
       event.preventDefault();
 
       const queueItems = imageItems.map(() => ({
-        id: crypto.randomUUID(),
+        id: generateUUID(),
         name: "Pasted image",
         controller: new AbortController(),
       }));
