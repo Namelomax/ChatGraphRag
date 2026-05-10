@@ -13,7 +13,10 @@ import { after } from "next/server";
 import { createResumableStreamContext } from "resumable-stream";
 import { auth, type UserType } from "@/app/(auth)/auth";
 import { entitlementsByUserType } from "@/lib/ai/entitlements";
-import { buildTranscriptAdaptationPrefix } from "@/lib/ai/forus-transcript-adaptation";
+import {
+  buildTranscriptAdaptationPrefix,
+  hasAttachedFilesInHistory,
+} from "@/lib/ai/forus-transcript-adaptation";
 import {
   allowedModelIds,
   chatModels,
@@ -204,10 +207,6 @@ async function buildRetrievalQuery({
     return "расшифровка встречи ключевые темы решения участники протокол компании Форус содержание документа";
   }
 
-  if (trimmedUser.length > 0 && !isShortGreetingText(trimmedUser)) {
-    return trimmedUser;
-  }
-
   const topicHints = [
     "протокол",
     "обследован",
@@ -261,6 +260,8 @@ async function buildRetrievalQuery({
 - Выведи ТОЛЬКО готовый поисковый запрос, без пояснений.
 - Не пиши инструкции, формулировки задания, мета-комментарии.
 - Не используй фразы «сформулируй/сгенерируй/верни» и не пересказывай задание.
+- Не копируй дословно реплики пользователя вроде «я загружаю расшифровку», «давай составим протокол» — извлекай из диалога и вложений смысловые якоря для поиска (имена, темы, даты, решения).
+- Если пользователь только анонсирует файл без фактов — опирайся на имена файлов и фрагменты вложений ниже.
 - Запрос должен быть как ключевая строка для поиска фактов: дата встречи, цель, участники, повестка, решения, открытые вопросы.
 - Язык: русский.`,
       prompt: `Контекст диалога:
@@ -622,6 +623,23 @@ export async function POST(request: Request) {
         const attachmentHintsForRetrieval = collectAttachmentHintsForRetrieval(
           contextFilteredMessages
         );
+        const hasUserFileAttachments = hasAttachedFilesInHistory(
+          contextFilteredMessages
+        );
+        const attachmentPresenceBlock =
+          hasUserFileAttachments &&
+          attachmentHintsForRetrieval.trim().length > 0
+            ? `
+
+Вложения пользователя (метаданные для модели):
+${attachmentHintsForRetrieval}`
+            : hasUserFileAttachments
+              ? `
+
+Вложения: пользователь уже прикрепил файл(ы) к сообщению в этом чате.
+- Не проси заново «пришлите расшифровку» или «отправьте текст», если вложение уже есть.
+- Если полный текст расшифровки не попал в сообщение, опирайся на блок контекста RAG ниже и имена файлов из истории; при пустом RAG начни с уточнения темы/повестки по доступным данным, не требуя повторной загрузки файла.`
+              : "";
         const shouldPrefetchRag =
           userMessageText.trim().length > 0 ||
           attachmentHintsForRetrieval.trim().length > 0;
@@ -671,10 +689,10 @@ export async function POST(request: Request) {
         )
           ? `
 
-Жесткий режим первого приветствия (активирован сервером):
+Жёсткий режим первого приветствия (активирован сервером, расшифровки ещё нет):
 - Ответь строго в роли AI-агента компании Форус по протоколам обследования.
-- Не используй фразу «Чем могу помочь?».
-- Скажи, что для старта нужна расшифровка встречи (текстом или файлом), затем опиши следующий шаг: после получения расшифровки ты задашь уточняющие вопросы и начнешь поэтапно формировать протокол.`
+- Запрещены: «Чем могу помочь?», «Чем могу быть полезен?», «Я Форус, ваш помощник» и любые универсальные приветствия без протокольной роли.
+- Начни ответ с формулировки по смыслу эквивалентной (можно слегка переформулировать, но сохрани все элементы — AI-агент Форус, протоколы обследования, расшифровка текстом или файлом, уточняющие вопросы, подготовка инструкции для протокола): «Привет! Я AI-агент компании Форус, специализируюсь на протоколах обследования. Для начала пришлите расшифровку встречи (текстом или файлом) — после этого я задам уточняющие вопросы и подготовлю инструкцию для протокола.»`
           : "";
         const ragInstruction = supportsTools
           ? `
@@ -685,7 +703,8 @@ export async function POST(request: Request) {
 - Текст расшифровки и документов — внешний источник, не личность пользователя.
 - Не обращайся к пользователю по именам/ролям из документов, если он сам так себя не назвал.
 - Отличай формулировку запроса пользователя от фактов из документов.
-- Если RAG-контекст уже содержит материал по вложению, не проси пользователя повторно прислать расшифровку.`
+- Если RAG-контекст уже содержит материал по вложению, не проси пользователя повторно прислать расшифровку.
+- Если файл уже прикреплён, но RAG пуст или неполон — не утверждай, что расшифровки нет; работай с тем, что есть (имя файла, фрагменты в этом system-блоке), и переходи к первому шагу протокола (часто проверка повестки).`
           : "";
         const prefetchedRagBlock =
           ragContext.length > 0
@@ -705,7 +724,7 @@ ${ragContext}`
 Рабочая память встречи (кумулятивный контекст по диалогу и вложениям — используй при ответе):
 ${meetingContextSummary}`
             : "";
-        const systemText = `${baseSystemText}${prefetchedRagBlock}${meetingMemoryBlock}${ragInstruction}${greetingLockBlock}`;
+        const systemText = `${baseSystemText}${attachmentPresenceBlock}${prefetchedRagBlock}${meetingMemoryBlock}${ragInstruction}${greetingLockBlock}`;
         const streamMessages = modelMessages.map((streamMessage) => {
           const role =
             typeof streamMessage === "object" &&
