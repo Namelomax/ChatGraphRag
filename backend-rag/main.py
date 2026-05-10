@@ -1,6 +1,7 @@
+import asyncio
+import logging
 import os
 import uuid
-import asyncio
 from contextlib import asynccontextmanager
 from typing import Optional
 
@@ -10,6 +11,8 @@ from pydantic import BaseModel, Field
 import aiofiles
 
 from rag_service import RAGService
+
+logger = logging.getLogger(__name__)
 
 # Модели данных для API
 class QueryRequest(BaseModel):
@@ -133,6 +136,7 @@ async def query_rag(request: QueryRequest):
         answer = await rag_service.query(request.question, request.mode)
         return QueryResponse(answer=answer)
     except Exception as e:
+        logger.exception("RAG /query failed")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/health")

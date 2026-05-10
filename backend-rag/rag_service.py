@@ -110,6 +110,19 @@ class RAGService:
         self._initialized = True
         print("RAGAnything initialized")
 
+        # RAGAnything creates LightRAG lazily inside process_document_complete(), after
+        # doc_parser.check_installation(). Without MinerU CLI that gate never passes and
+        # lightrag stays None — POST /query then raises (seen as HTTP 500) while upload
+        # returns "queued" but indexing fails in the background.
+        # Mark parser checked once so storages initialize at startup; ingest still runs MinerU
+        # when processing files — MinerU must be installed in the image (requirements/Dockerfile).
+        self.rag._parser_installation_checked = True
+        bootstrap = await self.rag._ensure_lightrag_initialized()
+        if isinstance(bootstrap, dict) and bootstrap.get("success") is False:
+            print(f"WARNING: LightRAG bootstrap failed: {bootstrap.get('error')}")
+        else:
+            print("LightRAG storages ready")
+
     def _convert_office_to_pdf(self, file_path: str) -> str:
         source_path = Path(file_path).resolve()
         output_dir = source_path.parent
@@ -176,6 +189,12 @@ class RAGService:
 
     async def query(self, question: str, mode: str = "hybrid") -> str:
         """Запрос к RAG — как у вас в основном коде"""
+        if self.rag is None:
+            return ""
+        if getattr(self.rag, "lightrag", None) is None:
+            print("WARNING: LightRAG missing; skipping RAG query")
+            return ""
+
         # We only need retrieved context (Next.js will do final LLM generation).
         result = await self.rag.aquery(
             question,
