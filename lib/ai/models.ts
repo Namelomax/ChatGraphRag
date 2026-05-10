@@ -9,13 +9,16 @@ const isLocalProvider = Boolean(
 export const isLocalProviderEnabled = isLocalProvider;
 
 export const DEFAULT_CHAT_MODEL = isLocalProvider
+  ? localModelId
+  : "moonshotai/kimi-k2.5";
 
 export const titleModel = {
       id: localModelId,
       name: "Local Title Model",
       provider: "local",
       description: "Local model for title generation",
-    }
+      gatewayOrder: ["qwen/qwen3.5-14b"],
+    };
 
 export type ModelCapabilities = {
   tools: boolean;
@@ -32,15 +35,14 @@ export type ChatModel = {
   reasoningEffort?: "none" | "minimal" | "low" | "medium" | "high";
 };
 
-export const chatModels: ChatModel[] = [
-      {
+export const chatModels: ChatModel[] =
+      [{
         id: localModelId,
         name: "Local LM Studio",
         provider: "local",
         description: "Local OpenAI-compatible model",
-      },
-    ]
- 
+      }];
+
 
 export async function getCapabilities(): Promise<
   Record<string, ModelCapabilities>
